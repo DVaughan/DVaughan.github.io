@@ -6,4 +6,4 @@ You can find the first part over at [http://www.codeproject.com/Articles/1138427
 
 Below is a screen shot of the game.
 
-![Alien Sokoban Game](/assets/images/AlienSokobanIos.jpg)
+<img src="/assets/images/AlienSokobanIos.jpg" alt="Alien Sokoban Game" width="500px" />

@@ -1,0 +1,30 @@
+Live near the Geneva area of Switzerland? Feel like meeting up with other developers to discuss Microsoft software development, 
+in particular Windows Phone, XAML, WinRT, Silverlight , WPF and ASP.NET? Come join us at the Microsoft building in Geneva on the 7th of February 2012.
+
+Please let us know if you'll attend by adding your name to this [poll](http://www.doodle.com/et9unw7ug7s9ar3a). 
+
+The location of the meeting is:
+Microsoft Sarl  
+MBC 12 ave. des Morgines 1213 Petit-Lancy, Geneva  
+[View on Bing Maps](http://www.bing.com/maps/?v=2&cp=rpyqh7hh892b&lvl=19.33&dir=5.37&sty=u&sp=Point.rpyqh6hh892c_MS%20GVA____&where1=Avenue%20des%20Morgines%2012%2C%201213%20Lancy%2C%20Switzerland)
+
+Getting there:
+
+* Public transport
+	* From "Cornavin", the main train station o Tram #14, direction "Bernex"
+	* Get off at "Les Esserts" (15 min)
+	* The "ave. des Morgines" is on the right o Walk 1 block
+* Car: there are 2 supermarkets with parking nearby, but I don't know if they close at night o "Migros", rue des Bossons 78-80
+	* Centre commercial de Lancy, route de Chancy 71
+ 
+Once you're in front of the building:
+* Enter the front door
+* Turn right
+* Turn left just before the Atrium
+* Take elevator E
+* 3rd floor
+* Turn left
+ 
+The gates to the building close at 6.30 pm, so be sure to arrive before then.
+
+Hope to see you there!
