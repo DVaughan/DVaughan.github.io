@@ -14,7 +14,7 @@ The following code sample is a simple demonstration to show that there is no pro
     workflowRuntime1.WorkflowTerminated 
 		+= ((sender, e) => Console.WriteLine(e.Exception.Message));
 
-	var parameters = new Dictionary<string, object> {{"Identifier", "Workflow 1"}};
+	{% raw %}var parameters = new Dictionary<string, object> {{"Identifier", "Workflow 1"}};{% endraw %}
 	WorkflowInstance instance1 = workflowRuntime1.CreateWorkflow(
 		typeof(MultiRuntime.Workflow1), parameters);
     instance1.Start();
