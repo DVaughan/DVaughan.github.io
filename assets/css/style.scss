@@ -6,3 +6,50 @@
 div .content {
 	margin-bottom: 5em;
 }
+
+#Header {
+	margin-bottom: 2em;
+}
+
+#NameBanner {
+	font-size: 2em;
+	color: gray;
+	font-family: 'Oswald', Helvetica, Arial, sans-serif;
+}
+
+#BlogTitleBanner {
+	font-size: 1.4em;
+	color: dimgrey;
+}
+
+#MainButtons {
+	text-align: left;
+	margin-top: 2em;
+	margin-bottom: 2em;
+}
+
+#MainButtons a {
+	margin-left: .5em;
+	margin-right: .5em;
+	font-size: 1.2em;
+	font-weight: bold;
+}
+
+#MainButtons a:first-child {
+	margin-left: 0em;
+}
+
+body {
+	font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+}
+
+a {
+	color: #466195;
+}
+
+a:hover {
+	text-decoration: underline;
+	color: #597ab9;
+}
+
+/* 7952b2 */

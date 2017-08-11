@@ -14,8 +14,27 @@
 	<![endif]-->
 </head>
 <body>
-<div class="wrapper">
-{{ content }}
+<div class="wrapper" id="Content">
+	
+	<div id="Header">
+		<span>
+			<div style="float: right"><img src="/assets/images/MVPLogo.gif" height="130px" /></div>
+			<div>
+				<h1 id="NameBanner">Daniel Vaughan's Free Range Code</h1>
+<!--				<h2 id="BlogTitleBanner">Free Range Code</h2>-->
+			</div>
+
+		</span>
+	
+		<div id="MainButtons">
+			<a href="/">HOME</a>
+			<a href="/Publications/">PUBLICATIONS</a>
+			<a href="/AboutMe/">ABOUT ME</a>
+			<a href="/Awards/" style="margin-right: 0px">AWARDS</a>
+		</div>
+	</div>
+
+	{{ content }}
 </div>
 </body>
 </html>
