@@ -1,3 +1,7 @@
+---
+categories: Announcements
+---
+
 I arrived back in Geneva on Thursday night, after spending a couple of days in Belgium attending Techdays 10. I had a blast, and some of the highlights for me were:
 
 * The presentation by my good friend [Laurent Bugnion](http://geekswithblogs.net/lbugnion/) entitled A day in the life of a WPF/SL. Very cool.

@@ -1,3 +1,7 @@
+---
+categories: .NET
+---
+
 This part focusses on the Calcium integration of the Task Model.
 
 This project is a Desktop and Silverlight user action management system, with undo, redo, and repeat. Allowing actions to be monitored, and grouped according to a context (such as a UI control), executed sequentially or in parallel, and even to be rolled back on failure.

@@ -1,3 +1,7 @@
+---
+categories: Events
+---
+
 Hi All, I wanted to let you know about a great free event that Microsoft and the MVPs are putting on, May 14th & 15th.  
 Join Microsoft MVPs from the Americas' region as they share their knowledge and real-world expertise during a free event, the [MVP Virtual Conference](http://mvp.microsoft.com/en-us/virtualconference.aspx).
 

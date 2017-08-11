@@ -1,4 +1,8 @@
-Introduction
+---
+categories: .NET WPF
+---
+
+## Introduction
 Today the [WPF Disciples](http://wpfdisciples.wordpress.com/), and in particular my good friend and fellow WPF Disciple, [Pete O'Hanlon](http://peteohanlon.wordpress.com/), 
 were sitting around the proverbial campfire, [discussing how to enforce single instance WPF apps](http://groups.google.com/group/wpf-disciples/browse_thread/thread/72ebbeb4fcd90fea), 
 for Pete's cool [Goldlight project](http://goldlight.codeplex.com/). By single instance WPF apps, I mean limiting an executable to only one instance in execution. This can be useful in scenarios where multiple application instances may play havoc with shared state. I took some time away from writing my book, to see if I could come up with something usable.

@@ -1,3 +1,7 @@
+---
+categories: XAML
+---
+
 Yesterday my fellow WPF Disciple Paul Stovell got me thinking about resolving XAML file paths.
 
 As Paul points out, there doesn't appear to be an easy way to locate the URI for a XAML file. 

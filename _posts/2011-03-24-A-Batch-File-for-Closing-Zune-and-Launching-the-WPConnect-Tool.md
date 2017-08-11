@@ -1,3 +1,7 @@
+---
+categories: Windows-Phone
+---
+
 In a post from late last year, I looked at using a .bat file to detect the platform and launch the WPConnect tool using the path appropriate to the OS (32bit or 64 bit).
 
 I've since updated the batch file, which now closes the Zune software, waits a few seconds, and then attempts to use the WPConnect tool. It's not rocket science, but it eases the burden a little when debugging on a Window Phone device.

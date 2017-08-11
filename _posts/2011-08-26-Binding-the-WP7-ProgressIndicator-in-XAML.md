@@ -1,3 +1,7 @@
+---
+categories: Windows-Phone
+---
+
 Update:
 
 Since first posting this article, a later version of the WP FCL the ProgressIndicator gained binding support. You can bind it in a page like so:

@@ -1,3 +1,8 @@
+---
+title: Creating a Figure Auto-Number Addin for Markdown Monster
+categories: .NET Markdown-Monster
+---
+
 Today I was faced with manually updating all the figure numbers in a large markdown document. 
 Given that [Markdown Monster](https://markdownmonster.west-wind.com/) has a terrific extensibility model, 
 I couldn't resist building another addin to automate the updating of the figure numbers. 

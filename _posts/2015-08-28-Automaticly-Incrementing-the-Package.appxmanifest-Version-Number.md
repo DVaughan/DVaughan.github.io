@@ -1,3 +1,7 @@
+---
+categories: UWP
+---
+
 When submitting a UWP or WinRT app to the Windows Store, you must increase the Version number of the package or the submission will fail. 
 
 It can be a chore to manually update the version number. One solution is to use a pre-build event action that executes a Powershell script that increments the version number automatically. In this post you see how a Powershell script reads the Package.appmanifest file for your project, replaces the Version attribute, and overwrites the Package.appmanifest file; leaving your package ready to submit without having to modify the manifest file manually.

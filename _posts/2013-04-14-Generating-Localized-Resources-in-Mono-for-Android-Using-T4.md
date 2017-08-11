@@ -1,3 +1,7 @@
+---
+categories: Xamarin Android
+---
+
 ## Introduction
 Recently I have been using the Xamarin products: Mono for iOS and Mono for Android, to port some of our Windows Phone apps to iOS and Android. 
 I like the Xamarin products a lot. Being able to contain most of my development activities 

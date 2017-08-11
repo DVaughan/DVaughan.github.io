@@ -1,3 +1,7 @@
+---
+categories: WPF WCF
+---
+
 When developing an application, clearly it's prudent to have uniformity in the manner certain tasks are carried out, 
 thereby avoiding violation of the DRY principle. An example of this is displaying common dialog boxes. 
 But wait, if you think this post is just going to be about an abstracted dialog box system, then think again. 

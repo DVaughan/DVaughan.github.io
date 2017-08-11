@@ -1,3 +1,7 @@
+---
+categories: App-Monetization
+---
+
 Tax rates for digital goods in the EU, which includes apps and in-app purchases, are set to rise significantly 
 on 1 January 2015. This will affect the revenue of many indie developers. If you're an app publisher, you may want to look at adjusting your pricing. 
 

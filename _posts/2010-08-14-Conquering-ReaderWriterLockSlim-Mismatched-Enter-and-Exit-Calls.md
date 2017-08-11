@@ -1,3 +1,8 @@
+---
+title: Conquering ReaderWriterLockSlim Mismatched Enter And Exit Calls
+categories: .NET Concurrency
+---
+
 The ReaderWriterLockSlim class is used to protect a resource that is read by multiple threads and written to by one thread at a time. 
 The class exists in the desktop FCL, but is noticeably absent from the Silverlight FCL. To readily support both platforms, some time ago, 
 I incorporated the open-source mono implementation of the `ReaderWriterLockSlim` class into the Silverlight version of my core library, 

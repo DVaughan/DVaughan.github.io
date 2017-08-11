@@ -1,3 +1,7 @@
+---
+categories: Announcements
+---
+
 For the last couple of months I've had my head down writing a WP7 book. Entitled Windows Phone 7 Unleashed, it will be published though Sams Publishing. I'm pouring lots of tips and techniques into this book, along with the requisite WP7 development info. The book will lead you through end to end production of WP7 apps, from developing Silverlight and XNA apps, through to certification and publishing on the Windows Phone Marketplace.
 
 ![Windows Phone 7 Unleashed book cover](/assets/images/2010-07-28-WP7Unleashed.jpg)

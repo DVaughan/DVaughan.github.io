@@ -1,3 +1,8 @@
+---
+title: Work Around For DataContractJsonSerializer ArgumentNullExceptions
+categories: Windows-Phone
+---
+
 If you've tried using a DataContractJsonSerializer or a DataContractSerializer with Push Notification for the Windows Phone, 
 you may have experienced an `ArgumentNullException` during deserialization. 
 This can happen because the `MemoryStream` is buffered with null characters '\0' that prevent deserialization. 

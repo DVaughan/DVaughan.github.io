@@ -1,3 +1,7 @@
+---
+categories: Xamarin Android
+---
+
 For a while I've been using Dotfuscator to obfuscate my Windows Phone and UWP apps. It's a great product and PreEmptive have excellent support. 
 Recently I ported a large app to Xamarin Android. I was pleased that the obfuscation process was easy to integrate into the build process. 
 There's a good starter article [here](https://www.preemptive.com/blog/90-dotfuscator/xamarin-applications-and-dotfuscator/671).

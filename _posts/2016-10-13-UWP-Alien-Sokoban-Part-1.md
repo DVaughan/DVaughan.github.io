@@ -1,3 +1,7 @@
+---
+categories: UWP
+---
+
 ![Alien Sokoban Logo](/assets/images/AlienSokobanLogo.png)
 
 I had some fun over the last couple of days writing up an article on using UWP to create a sokoban puzzle game implementation.

@@ -1,3 +1,7 @@
+---
+categories: Silverlight
+---
+
 ## Introduction
 In this post I would like to briefly discuss the `System.Windows.Threading.Dispatcher` class, and the significant differences between its Silverlight and Desktop CLR implementations. 
 We are going to look at solving two things:

@@ -1,3 +1,7 @@
+---
+categories: .NET XAML
+---
+
 This week there was a short discussion on the WPF Disciples about Knockout observables and the implications of field level and owner level data bindings. 
 The discussion can be found in the guts of this post.
 

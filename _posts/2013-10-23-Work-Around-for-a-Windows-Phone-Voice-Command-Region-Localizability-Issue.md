@@ -1,3 +1,7 @@
+---
+categories: Windows-Phone
+---
+
 With the latest release of [Surfy for Windows Phone 8](http://www.windowsphone.com/en-us/store/app/surfy-free/a5820177-5118-4f34-b8c1-6715289fc321) I've been getting more deeply acquainted 
 with the intricacies of Windows Phone Voice Command localizability. 
 In the process I have uncovered some issues that may snag an unsuspecting dev or two.

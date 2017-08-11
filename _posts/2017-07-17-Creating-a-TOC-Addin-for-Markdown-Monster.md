@@ -1,3 +1,8 @@
+---
+title: Creating a Toc Addin for Markdown Monster
+categories: .NET Markdown-Monster
+---
+
 I've been using [Markdown Monster](https://markdownmonster.west-wind.com/) for a few days and I'm smitten. It's a great tool. 
 It was created by none other than [Rick Strahl](https://weblog.west-wind.com/). 
 Rick has been contributing to the developer community for many years. I recall reading Rick's blog more than a decade a go. The guy's a legend.

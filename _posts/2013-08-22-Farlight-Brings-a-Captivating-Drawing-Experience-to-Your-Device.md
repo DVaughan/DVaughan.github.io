@@ -1,3 +1,7 @@
+---
+categories: Announcements
+---
+
 ![Farlight Logo](/assets/images/FarlightLogo.png)
 
 Today we at [Outcoder](http://outcoder.com/) are pleased to announce the release of our brand new app: Farlight! Farlight lets you paint onto a moving canvas while creating stunning translucent animated abstract art.

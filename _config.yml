@@ -3,9 +3,9 @@ name: Daniel Vaughan
 markdown: kramdown
 highlighter: rouge
 default_lang: csharp
-permalink: /blog/:year/:month/:day/:title
 encoding: utf-8
 repository: DVaughan/DVaughan.github.io
 paginate: 5
 paginate_path: "/blog/page:num/"
 gems: [jekyll-paginate]
+permalink: /posts/:categories/:year/:month/:day/:title/

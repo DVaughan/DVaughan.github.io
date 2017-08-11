@@ -1,3 +1,7 @@
+---
+categories: Announcements
+---
+
 ![Intellicam Logo](/assets/images/IntellicamLogo.png)
 
 Katka has done a [short and sweet write-up](http://katkavaughan.net/post/Just-released-Intellicam-a-voice-controlled-app-with-face-tracking.aspx) of our new app, Intellicam, which was just released to the Windows Phone Marketplace.

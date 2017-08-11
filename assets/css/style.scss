@@ -2,3 +2,7 @@
 --- 
 
 @import "{{ site.theme }}";
+
+div .content {
+	margin-bottom: 5em;
+}

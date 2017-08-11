@@ -1,3 +1,8 @@
+---
+categories: .NET Collections
+title: IEnumerable IsNullOrEmpty
+---
+
 `String.IsNullOrEmpty` is a commonly used method for determining whether a string is null or has a zero length. 
 But, no such method exists in the FCL for collections. A moment ago I whipped up an extension method for `IEnumerable` types. It's not rocket science, but I thought I would post it anyway.
 

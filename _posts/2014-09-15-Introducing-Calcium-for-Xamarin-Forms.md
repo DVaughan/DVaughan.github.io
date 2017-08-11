@@ -1,3 +1,7 @@
+---
+categories: Xamarin Xamarin-Forms
+---
+
 ![Three devices showing Calcium elements](/assets/images/IntroducingCalciumForXamarinForms.png)
 
 Over the last few weeks I've been busy porting Calcium to Xamarin.Forms. Today I've released the first of 6 articles demonstrating some of its key features. In this series you learn how to do things with Xamarin Forms that you'll not find anywhere else.

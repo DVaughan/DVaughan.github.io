@@ -1,4 +1,8 @@
-# Introduction
+---
+categories: UWP
+---
+
+## Introduction
 With UWP and WinRT, Microsoft introduced a new means for localizability, which differs significantly from the method employed 
 in Silverlight and .NET desktop apps. The new model allows you to localize all aspects of your UI, including element dimensions, 
 using x:Uid element identifiers. The downside is that you don't get the nice static typing that used to come for free with resx code generation.
@@ -8,7 +12,7 @@ In this article you see how to generate classes from a .resw file, which provide
 > **NOTE:** The UWP and WinRT localizability model is the recommended approach by Microsoft and the techniques described in this article should not be seen as a replacement for the new model, but rather they complement it and can be used in conjuntion with it. 
 See the [MSDN](https://msdn.microsoft.com/en-us/library/windows/apps/xaml/hh965329.aspx) resources for more information on preparing a UWP app for localization.
 
-# Generating Resource Classes with T4
+## Generating Resource Classes with T4
 Using T4 to generate strongly typed resources is not new. I used T4 to provide [a unified way to access localized resource for Xamarin.Android and Xamarin.iOS](http://www.codeproject.com/Articles/842041/Sharing-Images-between-Projects-in-Xamarin-Forms). 
 In fact there already exists [a Visual Studio extension](https://reswcodegen.codeplex.com/) for generating statically typed resources for UWP. The beauty of that tool is that there's no need to refresh the T4 template. 
 So why this article? Well, we go further than just static static accessors. We look at supporting compiled bindings. 
@@ -326,7 +330,7 @@ namespace <#= GetNamespace(namespaceOveride) #>
 #>
 ```
 
-# Registering a Converter with the StringParserService
+## Registering a Converter with the StringParserService
 
 Calcium's `StringParserService` allows you to register `IConverter` objects. An `IConverter` is used to resolve text when a string is being parsed.  
 `IConverter` has a single `Convert` method and accepts an object parameter. The following shows the `LocalizableResourcesConverter` that allows you to embed resources within other resources:
@@ -356,7 +360,7 @@ Dependency.Register<IStringParserService>(stringParserService);
 
 You could choose a fancier way of resolving the IConverters at run-time, but I haven't seen cause for that. You'll find more example of IoC registerations in the [Calcium template apps](http://calcium.codeplex.com/).
 
-# Conclusion
+## Conclusion
 This article demonstrated how to generate a classes from a .resw file, which provides both static accessors and instance accessors 
 that are compatible with UWP's x:Bind markup extension; enabling compile time validation of your resource names. 
 You also saw how to plug-in a StringParserService to enable text to be dynamically inserted into strings as well 

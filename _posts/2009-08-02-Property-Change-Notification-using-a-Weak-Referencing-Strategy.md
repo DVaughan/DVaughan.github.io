@@ -1,3 +1,7 @@
+---
+categories: XAML
+---
+
 ## Features
 
 * Desktop and Silverlight CLR compatibility

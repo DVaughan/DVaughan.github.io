@@ -1,3 +1,7 @@
+---
+categories: Announcements
+---
+
 ![Perceptor Logo](/assets/images/2009-03-22-Header.png)
 
 I have just published my latest article entitled Perceptor.

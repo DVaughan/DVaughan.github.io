@@ -1,3 +1,7 @@
+---
+categories: Announcements
+---
+
 Live near the Geneva area of Switzerland? Feel like meeting up with other developers to discuss Microsoft software development, 
 in particular Windows Phone, XAML, WinRT, Silverlight , WPF and ASP.NET? Come join us at the Microsoft building in Geneva on the 7th of February 2012.
 

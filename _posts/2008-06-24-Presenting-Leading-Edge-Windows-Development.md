@@ -1,3 +1,7 @@
+---
+categories: Announcements
+---
+
 ![Title Image](/assets/images/2008-06-24-Header.jpg)
 
 Yesterday I had a great time presenting an introduction on WPF to [DEEWR](http://www.deewr.gov.au/) developers and managers.

@@ -1,3 +1,6 @@
+---
+categories: Xamarin
+---
 
 ![Cross-Platform Application Bar](/assets/images/CrossPlatformApplicationBarForXamarinFormsWithCalcium.png)
 

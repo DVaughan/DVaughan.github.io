@@ -1,7 +1,12 @@
-Introduction
+---
+categories: XAML
+---
+
+## Introduction
 Prompted by a recent comment on the T4 Metadata Generation template article, which I released some weeks ago, I have implemented a new mechanism for concatenating property paths. This allows compile time validation of properties that exist on composite or nested members.
 
-Background
+## Background
+
 Previously I have demonstrated how generated metadata can be used to provide compile-time validation of binding expressions. Rather than using string literals in binding expressions, one is able to use the x:Static markup extension and a T4 generated constant to indicate the binding path; as shown in the following excerpt.
 
 <Label Content="{Binding Path={x:Static Metadata:PersonMetadata.NamePath}}"/>

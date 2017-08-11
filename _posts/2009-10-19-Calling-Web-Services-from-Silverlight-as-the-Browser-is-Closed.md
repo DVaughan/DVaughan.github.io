@@ -1,3 +1,7 @@
+---
+categories: Silverlight
+---
+
 ## Introduction
 
 Today I was reading an [excellent post](http://blog.galasoft.ch/archive/2009/10/18/clean-shutdown-in-silverlight-and-wpf-applications.aspx) 

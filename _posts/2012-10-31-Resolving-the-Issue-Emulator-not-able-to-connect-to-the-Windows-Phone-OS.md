@@ -1,3 +1,7 @@
+---
+categories: Windows-Phone
+---
+
 The Windows Phone 8.0 SDK is out, and while most sink their teeth into its cavalcade of new features, 
 a few may encounter a small road bump when moving to the RTW version; as I did.
 

@@ -1,3 +1,7 @@
+---
+categories: Xamarin Xamarin-Forms
+---
+
 I've just published the fifth installment of my Calcium for Xamarin.Forms series.
 
 In this article you see how to share and consume image files between projects in a unified manner. 

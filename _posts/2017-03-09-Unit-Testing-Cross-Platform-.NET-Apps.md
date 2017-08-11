@@ -1,3 +1,8 @@
+---
+title: Unit Testing Cross Platform .NET Apps
+categories: .NET Unit-Testing
+---
+
 I'm working on a new, soon to be released, open-source project. Without giving too much away, it's a set of libraries for UWP, WPF, and Xamarin.* apps.
 
 Now if you're using VS 2017 to build your apps, the tooling story for cross-platform apps has become ever more unified. 

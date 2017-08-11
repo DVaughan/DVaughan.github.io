@@ -1,3 +1,7 @@
+---
+categories: JavaScript Knockout
+---
+
 Recently I've been working on a HTML5 single page application (SPA). 
 I've been relying Knockout with Script#. Nearly all of my application logic is in C#, 
 which has allowed me to reuse a lot of my previously thought out approaches to validation and so forth. 

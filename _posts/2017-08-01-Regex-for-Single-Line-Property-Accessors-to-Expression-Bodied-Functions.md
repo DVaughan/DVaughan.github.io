@@ -1,3 +1,8 @@
+---
+title: Regex for Single-Line Property Accessors to Expression Bodied Functions
+categories: .NET csharp
+---
+
 Since C# 6.0 arrived, expression bodied functions have made for more concise properties; turning this:
 
 ```csharp

@@ -1,3 +1,7 @@
+---
+categories: Announcements
+---
+
 I'm here in Redmond attending the annual MVP summit. Besides all the terrific sessions, connecting with product teams, 
 and the after parties, I'm excited about what I've seen on the upcoming Apollo release of the Windows Phone OS. 
 While an NDA prevents me from providing any detail, I can say that, in my view, Microsoft is making the right choices 

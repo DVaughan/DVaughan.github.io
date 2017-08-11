@@ -1,3 +1,7 @@
+---
+categories: WF
+---
+
 Like me, you may have read in various books and articles that there exists a restriction of one WorkflowRuntime instance for each App Domain. This is, in fact, not true. In an early beta release of WF such a restriction existed, and this fact has been perpetuated even though the restriction has long since been removed.
 
 The following code sample is a simple demonstration to show that there is no problem creating multiple WorkflowRuntime instances. 

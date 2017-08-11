@@ -1,3 +1,7 @@
+---
+categories: Announcements
+---
+
 I've just published the third part of the Calcium series of articles. 
 Calcium is now provided as an SDK, and comes with 12 VS Project templates (3 for 2008, 2010, C#, and VB.NET)
 

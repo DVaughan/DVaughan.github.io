@@ -1,3 +1,7 @@
+---
+categories: T4
+---
+
 I am rather excited to share with you something that I have been working on in my spare time for the last couple of days. 
 I have used T4 to build a metadata generator for your Silverlight and Desktop CLR projects. It can be used as a replacement for static reflection (expression trees), reflection (walking the stack), and various other means for deriving the name of a property, method, or field.
 

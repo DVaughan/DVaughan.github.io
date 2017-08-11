@@ -1,3 +1,7 @@
+---
+categories: WCF
+---
+
 ## Introduction
 
 It is generally considered good form to define a separate `ServiceContract` interface for all WCF services. 

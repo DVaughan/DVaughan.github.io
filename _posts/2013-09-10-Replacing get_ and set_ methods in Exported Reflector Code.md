@@ -1,3 +1,7 @@
+---
+categories: .NET
+---
+
 Reflector is a terrific tool, no doubt. If you've ever used its export code feature, however, 
 you'll notice it has a tough time interpreting calls to property accessors. Code is intermingled with get_Foo() and set_Bah(...).
 

@@ -1,3 +1,7 @@
+---
+categories: XAML T4
+---
+
 ## Introduction
 
 Since my initial experimentation with generating project metadata data using T4 (Text Template Transformation Toolkit),

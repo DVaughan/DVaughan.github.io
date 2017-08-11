@@ -1,3 +1,7 @@
+---
+categories: Windows-Phone
+---
+
 Here is a quick a dirty way to refresh a WP7 page. We use the NavigationService to navigate to the current page. 
 There's a catch though (in fact there are two but we'll get to the second in a moment), we need to make a change to the Uri, 
 else the NavigationService thinks we are trying to perform fragment navigation, which is not supported, and will raise an exception. 

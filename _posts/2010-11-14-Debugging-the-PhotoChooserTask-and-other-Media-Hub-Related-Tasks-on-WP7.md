@@ -1,3 +1,7 @@
+---
+categories: Windows-Phone
+---
+
 Using the device debugger is a snap in Windows Phone 7. There are many benefits, and you can see your app executing in a real world environment, with most of the launchers and choosers available for testing. Some choosers, however, rely on the Windows Phone Media Hub; such as the PhotoChooserTask. Trying to debug across a call to that bad boy, with the Zune software running, will lock up your app.
 
 Fortunately there's an easy to use tool that solves the problem by removing the need to have the Zune software running while debugging. It's called the Windows Phone Connect Tool. 

@@ -1,3 +1,7 @@
+---
+categories: Announcements
+---
+
 ![Header Image](/assets/images/2008-03-31-Header.gif)
 
 Today I gave the first in a series of presentations on Workflow Foundation (at [DEEWR](http://deewr.gov.au/)).

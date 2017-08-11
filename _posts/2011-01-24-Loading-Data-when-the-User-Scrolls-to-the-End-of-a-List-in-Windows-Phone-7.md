@@ -1,3 +1,7 @@
+---
+categories: Windows-Phone
+---
+
 Most phone users are concerned about network usage. Network traffic comes at a premium, 
 and a user's perception of the quality of your app depends a lot on its responsiveness. 
 When it comes to fetching data from a network service, it should be done in the most efficient manner possible. 

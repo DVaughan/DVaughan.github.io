@@ -1,3 +1,7 @@
+---
+categories: Cloud Azure
+---
+
 I'm in process of enabling some cloud services for [Surfy](http://surfybrowser.com/), the web browser app for Windows Phone. 
 Part of this process has involved leveraging Azure Notification hubs. 
 A notification hub allows you to send notifications to a host of different devices, including Windows Phone, Windows, 
