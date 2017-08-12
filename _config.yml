@@ -1,4 +1,4 @@
-theme: jekyll-theme-minimal
+theme: jekyll-theme-slate
 name: Daniel Vaughan
 markdown: kramdown
 highlighter: rouge

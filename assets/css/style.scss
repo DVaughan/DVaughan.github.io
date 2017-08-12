@@ -11,27 +11,28 @@ div .content {
 	margin-bottom: 2em;
 }
 
+/* font-family: 'Oswald', Helvetica, Arial, sans-serif; 
+
+*/
 #NameBanner {
-	font-size: 2em;
-	color: gray;
-	font-family: 'Oswald', Helvetica, Arial, sans-serif;
+	font-size: 1.4em;
+	
 }
 
 #BlogTitleBanner {
-	font-size: 1.4em;
+	font-size: 1.1em;
 	color: dimgrey;
 }
 
 #MainButtons {
 	text-align: left;
-	margin-top: 2em;
-	margin-bottom: 2em;
+	margin-bottom:1em;
 }
 
 #MainButtons a {
 	margin-left: .5em;
 	margin-right: .5em;
-	font-size: 1.2em;
+	font-size: 1.1em;
 	font-weight: bold;
 }
 
@@ -39,17 +40,45 @@ div .content {
 	margin-left: 0em;
 }
 
+/* font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; */
 body {
-	font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+	
 }
 
+
+
 a {
-	color: #466195;
+	color: #0072c6;
 }
 
 a:hover {
 	text-decoration: underline;
-	color: #597ab9;
+	
 }
 
-/* 7952b2 */
+img {
+	border: none;
+	box-shadow: none;
+	-webkit-box-shadow: none;
+	padding: 0px;
+	margin: 0px;
+}
+
+#header_wrap .inner {
+	padding: 20px 10px 0px 10px;
+}
+
+.Publications img {
+	margin-top: 10px;
+	margin-bottom: 10px;
+}
+
+.Publications td, .Publications table {
+	border: none;
+}
+
+/* 
+	color: #466195;
+	color: #597ab9;
+	
+	7952b2 */
