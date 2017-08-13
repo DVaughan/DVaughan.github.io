@@ -7,6 +7,8 @@ encoding: utf-8
 repository: DVaughan/DVaughan.github.io
 paginate: 5
 paginate_path: "/blog/page:num/"
-gems: [jekyll-paginate]
+gems: 
+- [jekyll-paginate]
+- jekyll-sitemap
 permalink: /posts/:categories/:year/:month/:day/:title/
 excerpt_separator: '<a name="excerpt-end"></a>'
