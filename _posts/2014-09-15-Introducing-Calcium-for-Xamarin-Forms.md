@@ -4,9 +4,11 @@ categories: Xamarin Xamarin-Forms
 
 ![Three devices showing Calcium elements](/assets/images/IntroducingCalciumForXamarinForms.png)
 
-Over the last few weeks I've been busy porting Calcium to Xamarin.Forms. Today I've released the first of 6 articles demonstrating some of its key features. In this series you learn how to do things with Xamarin Forms that you'll not find anywhere else.
+Over the last few weeks I've been busy porting Calcium to Xamarin.Forms. Today I've released the first of 6 articles demonstrating some of its key features. 
+In this series you learn how to do things with Xamarin Forms that you'll not find anywhere else.
 
-For example, you see how to create a cross-platform Application Bar component using the Xamarin Forms native rendering API with Menu Item support that works on iOS, Android, and Windows Phone; and which offers more features than the built-in Windows Phone Application Bar.
+For example, you see how to create a cross-platform Application Bar component using the Xamarin Forms native rendering API with Menu Item support 
+that works on iOS, Android, and Windows Phone; and which offers more features than the built-in Windows Phone Application Bar.
 
 You learn how it is possible to place images anywhere in a shared project as Content resources like in Windows Phone, and consume them in the same way across all three platforms.
 

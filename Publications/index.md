@@ -8,7 +8,7 @@ divisionclass: Publications
 
 ## Books
 
-| ![Windows Phone 8 Unleashed cover](/assets/images/WP8UnleashedSmallForBlogHomepage.png)  | ![Windows Phone 7.5 Unleashed cover](/assets/images/WP75Unleashed_195Height.png)  |
+| [![Windows Phone 8 Unleashed cover](/assets/images/WP8UnleashedSmallForBlogHomepage.png)](http://www.amazon.com/gp/product/0672336898/ref=as_li_qf_sp_asin_il_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=0672336898&linkCode=as2&tag=danielvaughan-20)  | [![Windows Phone 7.5 Unleashed cover](/assets/images/WP75Unleashed_195Height.png)](http://www.amazon.com/gp/product/0672336898/ref=as_li_qf_sp_asin_il_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=0672336898&linkCode=as2&tag=danielvaughan-20)  |
 | [Windows Phone 8 Unleashed](http://www.amazon.com/gp/product/0672336898/ref=as_li_qf_sp_asin_il_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=0672336898&linkCode=as2&tag=danielvaughan-20) Published by SAMS | [Windows Phone 7.5 Unleashed](http://www.amazon.com/gp/product/0672336898/ref=as_li_qf_sp_asin_il_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=0672336898&linkCode=as2&tag=danielvaughan-20) Published by SAMS |
 
 

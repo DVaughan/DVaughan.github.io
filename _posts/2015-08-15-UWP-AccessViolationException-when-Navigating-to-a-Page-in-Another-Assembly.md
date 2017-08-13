@@ -2,7 +2,9 @@
 categories: UWP
 ---
 
-When you're building apps for multiple platforms or deployment scenarios, it is important to manage your app's configuration in a way that reduces friction and allows you to plainly separate app configurations for each scenario. Having your app's package manifest file lumped in with your code can lead to silly errors or require a laborious set of steps whenever you perform an app update.
+When you're building apps for multiple platforms or deployment scenarios, it is important to manage your app's configuration in a way that reduces friction 
+and allows you to plainly separate app configurations for each scenario. Having your app's package manifest file lumped in with your code can lead 
+to silly errors or require a laborious set of steps whenever you perform an app update.
 
 For these reasons I like to separate the entry point of my app and it's accompanying configuration by placing it into, what I'll call, a launcher project. I place the guts of my app in a secondary project. Launcher projects remain absent of all but deployment specific artifacts. Pages and so forth are placed in a secondary project.
 

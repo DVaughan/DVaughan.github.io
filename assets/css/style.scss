@@ -1,6 +1,5 @@
 ---
---- 
-
+---
 @import "{{ site.theme }}";
 
 div .content {
@@ -77,8 +76,16 @@ img {
 	border: none;
 }
 
+pre {
+	margin-bottom:20px;
+}
+
 /* 
 	color: #466195;
 	color: #597ab9;
 	
 	7952b2 */
+
+.post-excerpt-content {
+
+}

@@ -10,9 +10,10 @@ enabled: true
 <p class="author">
 	<span class="date">{{ post.date | date_to_string }}</span>
 </p>
-<div class="content">
-	{{ post.content }}
+<div class="post-excerpt-content">
+	{{ post.content | strip_html | truncatewords:75 }}
 </div>
+<p><a class="btn btn-sm btn-primary" href="{{ post.url }}#read-more" role="button">Read more <i class="fa fa-arrow-circle-right"></i></a></p>
 <hr />
 {% endfor %}
 
