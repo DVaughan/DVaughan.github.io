@@ -24,4 +24,6 @@ Daniel also manages the Windows 10 Experts group on LinkedIn; a group that has o
 
 Daniel is the author of numerous award winning articles on topics such as grid programming, machine learning, and full-stack development.
 
+[Contact](/Contact/)
+
 
