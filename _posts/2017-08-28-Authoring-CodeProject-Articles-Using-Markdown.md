@@ -1,6 +1,5 @@
 ---
 categories: .NET Markdown-Monster
-published: false
 ---
 
 Use, and learn how to build, a Markdown Monster addin that outputs HTML compatible with CodeProject's article submission wizard.
