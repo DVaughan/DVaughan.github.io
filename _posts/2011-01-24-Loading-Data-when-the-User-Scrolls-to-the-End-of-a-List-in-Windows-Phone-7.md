@@ -2,7 +2,7 @@
 categories: Windows-Phone
 redirect_from:
  - /post/Scroll-Based-Data-Loading-in-Windows-Phone-7.aspx.html
- - /post/Loading-Data-when-the-User-Scrolls-to-the-End-of-a-List-in-Windows-Phone-7.aspx
+ - /post/Loading-Data-when-the-User-Scrolls-to-the-End-of-a-List-in-Windows-Phone-7.aspx.html
 ---
 
 Most phone users are concerned about network usage. Network traffic comes at a premium, 
