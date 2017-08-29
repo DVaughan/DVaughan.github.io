@@ -1,5 +1,7 @@
 ---
 categories: .NET WPF
+redirect_from:
+ - /post/Enforcing-Single-Instance-WPF-Applications.aspx.html
 ---
 
 ## Introduction

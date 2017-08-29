@@ -4,6 +4,8 @@ heading: Contact
 layout: page
 customjs:
  - Contact.js
+redirect_from:
+ - /contact.aspx.html
 ---
 
 <div class="col-lg-6">

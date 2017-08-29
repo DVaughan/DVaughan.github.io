@@ -3,6 +3,8 @@ title: Daniel Vaughan - Publications
 heading: Publications
 layout: page
 divisionclass: Publications
+redirect_from:
+ - /page/Publications.aspx.html
 ---
 
 

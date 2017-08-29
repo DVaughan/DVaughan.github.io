@@ -1,6 +1,8 @@
 ---
 title: Creating a Figure Auto-Number Addin for Markdown Monster
 categories: .NET Markdown-Monster
+redirect_from:
+ - /post/Creating-a-Figure-Auto-Number-Addin-for-Markdown-Monster-using-NET.aspx.html
 ---
 
 Today I was faced with manually updating all the figure numbers in a large markdown document. 

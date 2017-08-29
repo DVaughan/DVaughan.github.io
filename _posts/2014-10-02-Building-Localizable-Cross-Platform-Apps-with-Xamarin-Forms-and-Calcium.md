@@ -1,5 +1,7 @@
 ---
 categories: Xamarin
+redirect_from:
+ - /post/Building-Localizable-Cross-Platform-Apps-with-Xamarin-Forms-and-Calcium.aspx.html
 ---
 
 In this third part of the series you see how to use the same .resx files across all three platforms: Windows Phone, iOS, and Android. 

@@ -1,5 +1,9 @@
 ---
 categories: XAML T4
+title: XAML Resources Without String Literals.aspx
+redirect_from:
+ - /post/XAML-Resources-Without-String-Literals.aspx.html
+ - /post/Banishing-String-Literals-from-XAML-Resource-References.aspx.html
 ---
 
 ## Introduction

@@ -2,6 +2,8 @@
 title: Daniel Vaughan - Honors & Awards
 heading: Honors & Awards
 layout: page
+redirect_from:
+ - /page/Awards.aspx.html
 ---
 
 ## Scholastic

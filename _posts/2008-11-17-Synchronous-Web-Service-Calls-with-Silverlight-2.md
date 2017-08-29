@@ -1,5 +1,7 @@
 ---
 categories: Announcements
+redirect_from:
+ - /post/Synchronous-Web-Service-Calls-with-Silverlight-2.aspx.html
 ---
 
 ## Dispelling the async-only myth. 

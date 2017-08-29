@@ -1,5 +1,7 @@
 ---
 categories: Silverlight
+redirect_from:
+ - /post/Calling-Web-Services-from-Silverlight-as-the-Browser-is-Closed.aspx.html
 ---
 
 ## Introduction

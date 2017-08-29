@@ -1,5 +1,7 @@
 ---
 categories: Silverlight
+redirect_from:
+ - /post/Synchronous-Invocation-of-Delegates-with-the-Silverlight-Dispatcher.aspx.html
 ---
 
 ## Introduction

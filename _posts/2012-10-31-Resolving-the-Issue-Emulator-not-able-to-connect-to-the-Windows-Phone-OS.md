@@ -1,5 +1,7 @@
 ---
 categories: Windows-Phone
+redirect_from:
+ - /post/Resolving-the-Issue-Windows-Phone-Emulator-wasnt-able-to-connect-to-the-Windows-Phone-operating-system.aspx.html
 ---
 
 The Windows Phone 8.0 SDK is out, and while most sink their teeth into its cavalcade of new features, 

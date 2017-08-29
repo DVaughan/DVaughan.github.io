@@ -1,6 +1,8 @@
 ---
 title: Creating a Toc Addin for Markdown Monster
 categories: .NET Markdown-Monster
+redirect_from:
+ - /post/Creating-a-TOC-Addin-for-Markdown-Monster-using-NET-and-Visual-Studio.aspx.html
 ---
 
 I've been using [Markdown Monster](https://markdownmonster.west-wind.com/) for a few days and I'm smitten. It's a great tool. 

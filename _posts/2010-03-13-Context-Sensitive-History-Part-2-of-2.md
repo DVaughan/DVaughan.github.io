@@ -1,5 +1,7 @@
 ---
 categories: .NET
+redirect_from:
+ - /post/Article-Published-Context-Sensitive-History-Part-2-of-2.aspx.html
 ---
 
 This part focusses on the Calcium integration of the Task Model.

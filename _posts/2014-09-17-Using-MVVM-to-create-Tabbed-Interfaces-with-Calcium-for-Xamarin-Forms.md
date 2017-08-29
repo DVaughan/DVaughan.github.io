@@ -1,5 +1,7 @@
 ---
 categories: Xamarin Xamarin-Forms
+redirect_from:
+ - /post/Using-MVVM-to-create-Tabbed-Interfaces-with-Calcium-for-Xamarin-Forms.aspx.html
 ---
 
 ![Screen shot of three devices](/assets/images/UsingMvvmToCreateTabbedInterfacesWithCalciumForXamarinForms.png)

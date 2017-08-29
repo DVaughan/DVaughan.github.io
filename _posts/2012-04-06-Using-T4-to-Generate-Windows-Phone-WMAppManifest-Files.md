@@ -1,5 +1,7 @@
 ---
 categories: Windows-Phone
+redirect_from:
+ - /post/Using-T4-to-Generate-the-WMAppManifest-File-For-Windows-Phone-Apps.aspx.html
 ---
 
 Recently, Eric Schoenholzer began an interesting discussion on the Windows Phone Experts group on linkedin centred around techniques for effectively monetizing your apps on the Windows Phone marketplace. In particular, he raised the interesting question of whether it is better to publish a single app with a trial, or whether it is more effective to go for two apps: a free version with ads and a paid version without ads. These days I favour the later in most cases (I explain why in linkedin discussion). But the downside is that because of the reliance on the WMAppManifest file in your phone app, it often means you have to maintain two versions of your app. Rather than do that, my approach has been to rely on a T4 template to generate the WMAppManifest file, which takes care of changing various fields such as the title of the app depending on the value of a pre-processor directive. This allows you to maintain a single version of your app, and a single version of your WMAppManifest file. It's an approach that I have used in several published apps, and it has made maintaining them that little bit easier.

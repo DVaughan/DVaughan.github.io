@@ -1,5 +1,7 @@
 ---
 categories: Xamarin
+redirect_from:
+ - /post/Creating-a-Cross-Platform-Application-Bar-for-Xamarin-Forms-with-Calcium.aspx.html
 ---
 
 ![Cross-Platform Application Bar](/assets/images/CrossPlatformApplicationBarForXamarinFormsWithCalcium.png)

@@ -1,5 +1,7 @@
 ---
 categories: Cloud Azure
+redirect_from:
+ - /post/Encoding-Azure-Notification-Tags.aspx.html
 ---
 
 I'm in process of enabling some cloud services for [Surfy](http://surfybrowser.com/), the web browser app for Windows Phone. 

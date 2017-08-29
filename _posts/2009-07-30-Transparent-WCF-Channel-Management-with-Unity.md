@@ -1,5 +1,7 @@
 ---
 categories: WCF
+redirect_from:
+ - /post/Transparent-WCF-Channel-Management-with-Unity.aspx.html
 ---
 
 ## Introduction

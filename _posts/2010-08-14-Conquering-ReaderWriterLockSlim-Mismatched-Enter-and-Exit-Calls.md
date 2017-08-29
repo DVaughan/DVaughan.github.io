@@ -1,6 +1,8 @@
 ---
 title: Conquering ReaderWriterLockSlim Mismatched Enter And Exit Calls
 categories: .NET Concurrency
+redirect_from:
+ - /post/ReaderWriterSlimLock-Conquering-Mismatched-Enter-and-Exit-Calls.aspx.html
 ---
 
 The ReaderWriterLockSlim class is used to protect a resource that is read by multiple threads and written to by one thread at a time. 

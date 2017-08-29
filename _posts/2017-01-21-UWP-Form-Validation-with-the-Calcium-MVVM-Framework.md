@@ -1,6 +1,8 @@
 ---
 categories: UWP
 title: UWP Form Validation with the Calcium MVVM Framework
+redirect_from:
+ - /post/UWP-Form-Validation-with-the-Calcium-MVVM-Framework.aspx.html
 ---
 
 I've published a new CodeProject article covering form validation in Calcium. While the form validation APIs are cross-platform, this article is specific to UWP. 

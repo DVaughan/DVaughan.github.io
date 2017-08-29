@@ -1,5 +1,7 @@
 ---
 categories: Announcements
+redirect_from:
+ - /post/Geneva-Developers-Meetup-Feb-2012.aspx.html
 ---
 
 Live near the Geneva area of Switzerland? Feel like meeting up with other developers to discuss Microsoft software development, 

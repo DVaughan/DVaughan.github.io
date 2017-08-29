@@ -1,5 +1,7 @@
 ---
 categories: UWP
+redirect_from:
+ - /post/UWP-AccessViolationException-when-Navigating-to-a-Page-in-Another-Assembly.aspx.html
 ---
 
 When you're building apps for multiple platforms or deployment scenarios, it is important to manage your app's configuration in a way that reduces friction 

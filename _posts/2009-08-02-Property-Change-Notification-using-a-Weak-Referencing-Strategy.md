@@ -1,5 +1,7 @@
 ---
 categories: XAML
+redirect_from:
+ - /post/Property-Change-Notification-using-a-Weak-Referencing-Strategy.aspx.html
 ---
 
 ## Features

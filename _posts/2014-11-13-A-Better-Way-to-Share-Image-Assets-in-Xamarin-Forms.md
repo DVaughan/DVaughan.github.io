@@ -1,5 +1,7 @@
 ---
 categories: Xamarin Xamarin-Forms
+redirect_from:
+ - /post/A-Better-Way-to-Share-Image-Assets-in-Xamarin-Forms.aspx.html
 ---
 
 I've just published the fifth installment of my Calcium for Xamarin.Forms series.

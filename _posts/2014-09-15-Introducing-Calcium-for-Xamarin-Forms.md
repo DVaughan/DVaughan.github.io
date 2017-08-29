@@ -1,5 +1,7 @@
 ---
 categories: Xamarin Xamarin-Forms
+redirect_from:
+ - /post/Introducing-Calcium-for-XamarinForms.aspx.html
 ---
 
 ![Three devices showing Calcium elements](/assets/images/IntroducingCalciumForXamarinForms.png)

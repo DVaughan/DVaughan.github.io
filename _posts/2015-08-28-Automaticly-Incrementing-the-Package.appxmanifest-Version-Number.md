@@ -1,5 +1,7 @@
 ---
 categories: UWP
+redirect_from:
+ - /post/Automaticly-Incrementing-the-Packageappxmanifest-Version-Number.aspx.html
 ---
 
 When submitting a UWP or WinRT app to the Windows Store, you must increase the Version number of the package or the submission will fail. 

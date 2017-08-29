@@ -1,5 +1,7 @@
 ---
 categories: UWP
+redirect_from:
+ - /post/UWP-Alien-Sokoban-Part-1.aspx.html
 ---
 
 ![Alien Sokoban Logo](/assets/images/AlienSokobanLogo.png)

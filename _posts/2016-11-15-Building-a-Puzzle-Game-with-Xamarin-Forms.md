@@ -1,5 +1,7 @@
 ---
 categories: Xamarin Xamarin-Forms
+redirect_from:
+ - /post/Building-a-Puzzle-Game-with-Xamarin-Forms.aspx.html
 ---
 
 My [latest article](http://www.codeproject.com/Articles/1157626/Building-a-Puzzle-Game-with-Xamarin-Forms) is a fun Xamarin Forms implementation of the game Sokoban, 

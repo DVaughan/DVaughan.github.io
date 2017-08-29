@@ -1,6 +1,8 @@
 ---
 title: Unit Testing Cross Platform .NET Apps
 categories: .NET Unit-Testing
+redirect_from:
+ - /post/Unit-Testing-Cross-Platform-NET-Apps.aspx.html
 ---
 
 I'm working on a new, soon to be released, open-source project. Without giving too much away, it's a set of libraries for UWP, WPF, and Xamarin.* apps.

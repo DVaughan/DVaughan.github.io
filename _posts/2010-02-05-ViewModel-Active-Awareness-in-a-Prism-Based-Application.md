@@ -1,5 +1,7 @@
 ---
 categories: .NET WPF
+redirect_from:
+ - /post/ViewModel-Active-Awareness-in-a-Prism-Based-Application.aspx.html
 ---
 
 Yesterday, while chatting with the talented [Jeremiah Morrill](http://jmorrill.hjtcentral.com/) and other [WPF Disciples](http://wpfdisciples.wordpress.com/) 

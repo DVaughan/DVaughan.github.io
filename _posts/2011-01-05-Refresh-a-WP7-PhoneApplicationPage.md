@@ -1,5 +1,7 @@
 ---
 categories: Windows-Phone
+redirect_from:
+ - /post/Refresh-a-WP7-PhoneApplicationPage.aspx.html
 ---
 
 Here is a quick a dirty way to refresh a WP7 page. We use the NavigationService to navigate to the current page. 

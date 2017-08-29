@@ -1,5 +1,7 @@
 ---
 categories: XAML T4
+redirect_from:
+ - /post/MetaGen-A-project-metadata-generator-for-Visual-Studio-using-T4.aspx.html
 ---
 
 ![T4 metadata generation flow](/assets/images/2009-09-03-Header.jpg)

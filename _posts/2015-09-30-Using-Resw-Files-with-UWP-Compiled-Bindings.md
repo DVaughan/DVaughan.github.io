@@ -1,5 +1,7 @@
 ---
 categories: UWP
+redirect_from:
+ - /post/Using-resw-files-with-UWP-Compiled-Bindings.aspx.html
 ---
 
 ## Introduction

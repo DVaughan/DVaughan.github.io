@@ -1,5 +1,7 @@
 ---
 categories: Xamarin Android
+redirect_from:
+ - /post/Generating-Localized-Resources-in-Mono-for-Android-Using-T4.aspx.html
 ---
 
 ## Introduction

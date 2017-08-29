@@ -1,5 +1,7 @@
 ---
 categories: JavaScript Knockout
+redirect_from:
+ - /post/Knockout-Inline-Binding-Handlers.aspx.html
 ---
 
 Recently I've been working on a HTML5 single page application (SPA). 

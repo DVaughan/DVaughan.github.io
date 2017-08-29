@@ -1,6 +1,8 @@
 ---
 title: Regex for Single-Line Property Accessors to Expression Bodied Functions
 categories: .NET csharp
+redirect_from:
+ - /post/Transform-Single-Line-Property-Accessors-into-Expression-Body-Functions-using-a-Regular-Expression.aspx.html
 ---
 
 Since C# 6.0 arrived, expression bodied functions have made for more concise properties; turning this:
