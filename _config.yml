@@ -11,5 +11,6 @@ gems:
  - [jekyll-paginate]
  - jekyll-sitemap
  - jekyll-redirect-from
+ - jekyll-feed
 permalink: /posts/:categories/:year/:month/:day/:title/
 excerpt_separator: '<a name="excerpt-end"></a>'
