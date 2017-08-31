@@ -28,4 +28,7 @@ Daniel is the author of numerous award winning articles on topics such as grid p
 
 [Contact](/Contact/)
 
+<iframe src="https://www.codeproject.com/members/flair/187345" 
+        height="150" width="250" scrolling="no" frameborder="no"></iframe>
+
 
