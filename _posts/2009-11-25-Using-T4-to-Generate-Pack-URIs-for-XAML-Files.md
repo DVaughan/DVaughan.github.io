@@ -1,5 +1,7 @@
 ---
 categories: XAML
+redirect_from:
+- /post/Using-T4-to-Generate-Pack-URIs-for-XAML-Files.aspx.html
 ---
 
 Yesterday my fellow WPF Disciple Paul Stovell got me thinking about resolving XAML file paths.
