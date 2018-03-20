@@ -1,7 +1,6 @@
 ---
 categories: UWP Azure
 title: Adding User Authentication to UWP Apps and Azure Functions
-published: true
 ---
 
 [//]: # (TOC Begin)
