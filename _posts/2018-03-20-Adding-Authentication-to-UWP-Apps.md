@@ -3,6 +3,8 @@ categories: UWP Azure
 title: User Authentication in UWP Apps that Speak to Azure Functions
 ---
 
+## Table of Contents
+
 [//]: # (TOC Begin)
 * [Reserving an App Name](#reserving-an-app-name)
 * [Associating a UWP App with the Microsoft Store](#associating-a-uwp-app-with-the-microsoft-store)
@@ -19,6 +21,7 @@ title: User Authentication in UWP Apps that Speak to Azure Functions
 [//]: # (TOC End)
 
 
+## Introduction
 
 I've been working on an Azure application that makes use of Azure Functions. I built out the front-end using UWP because the tooling is great and it allows me to create a minimal viable product in no time.
 
