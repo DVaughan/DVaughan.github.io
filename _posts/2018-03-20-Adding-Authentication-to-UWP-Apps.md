@@ -1,13 +1,14 @@
 ---
 categories: UWP Azure
-published: false
+title: Adding User Authentication to UWP Apps and Azure Functions
+published: true
 ---
 
 [//]: # (TOC Begin)
 * [Reserving an App Name](#reserving-an-app-name)
 * [Associating a UWP App with the Microsoft Store](#associating-a-uwp-app-with-the-microsoft-store)
-* [Marrying a UWP App with an Azure Mobile Service](#marrying-a-uwp-app-with-an-azure-mobile-service)
-* [Declaring a Custom Protocol Scheme](#declaring-a-custom-protocol-scheme)
+* [Marrying a UWP App with an Azure Function Application](#marrying-a-uwp-app-with-an-azure-function-application)
+* [Declaring a Custom Protocol](#declaring-a-custom-protocol)
 * [Using the Azure Mobile Services Client](#using-the-azure-mobile-services-client)
 * [Creating a MobileClientService ](#creating-a-mobileclientservice)
 * [Detecting an Expired Token](#detecting-an-expired-token)
@@ -17,6 +18,7 @@ published: false
 * [Conclusion](#conclusion)
 
 [//]: # (TOC End)
+
 
 
 I've been working on a Azure application that makes use of Azure Functions. I built out the front-end using UWP because the tooling is great and it allows me to create a minimal viable product in no time.
@@ -52,7 +54,7 @@ Once you reserve the app's name you can fire up Visual Studio 2017, create a new
 ![Associate an app with the store](../assets/images/2018-03-20_VSAssociateWithStoreApp.png)
 **Figure 2.** Associating an app with the store.
 
-## Marrying a UWP App with an Azure Mobile Service
+## Marrying a UWP App with an Azure Function Application
 
 To set up authentication in Azure you need to find out the two pieces of information about the UWP app: the application's ID and its Secret code. You can find this information by expanding the App Management node for your app in the dashboard. See figure 3.
 
@@ -80,7 +82,7 @@ The first thing to enable is *App Services Authentication*. I chose to have the 
 **Figure 5.** The authentication blade for an Azure Functions application.
 
 Before we configure the Microsoft settings on the authentication blade, you need to enter an 'Allowed External Redirect URL'. This is one of the steps that if you forget it, you'll be pulling your hair out.
-The value for this URL must be unique, and must use a custom protocol scheme of your invention. Rather than `https://` or `http://` it must be something that you can tell your UWP app to listen out for and to handle. So, make it unique and copy and paste it somewhere. You'll be entering that into your UWP's properties in a moment. Please note you only need the protocol scheme and not the whole URL. the `://easyauth.callback` segment is appended to the protocol scheme by the `MobileServiceClient` object that you see later in this article.
+The value for this URL must be unique, and must use a custom protocol scheme of your invention. Rather than `https://` or `http://` it must be something that you can tell your UWP app to listen out for and to handle. So, make it unique and copy and paste it somewhere. You'll be entering that into your UWP's properties in a moment. Please note you only need the protocol scheme and not the whole URL. the `://easyauth.callback` segment is appended to the protocol by the `MobileServiceClient` object that you see later in this article.
 
 Click on the Microsoft row on the authentication blade. You're presented with a place to enter the ID of the UWP app and its secret code. The ID should resemble: `0000000012345678` and the secret should look something like: `aBCde15Fg3hijKLra8SIuSGwjt5Ba+J+`
 
@@ -125,7 +127,7 @@ else
 
 ## Creating a MobileClientService 
 
-To use the `MobileServiceClient` with a service that requires authentication, you must have the client perform authentication first. The `MobileClientService` class in Listing 2, demonstrates how to authenticate using the `MobileServiceClient's` `LoginAsync` method. The `LoginAsync` method accepts a provider name: "Google", "Facebook", "Microsoft" and so forth; and the custom protocol scheme. The `MobileServiceClient` constructs the authentication URLs, embedding the completion redirect to a URL comprising the custom protocol. 
+To use the `MobileServiceClient` with a service that requires authentication, you must have the client perform authentication first. The `MobileClientService` class in Listing 2, demonstrates how to authenticate using the `MobileServiceClient's` `LoginAsync` method. The `LoginAsync` method accepts a known provider name: "Google", "Facebook", "Microsoft" and so forth; and the custom protocol scheme. The `MobileServiceClient` constructs the authentication URLs, embedding the completion redirect to a URL comprising the custom protocol. 
 
 Rather than perform an expensive login each time you wish to use the `MobileServiceClient`, the `PasswordVault` is used to cache the credentials.
 
@@ -215,9 +217,6 @@ class MobileClientService : IMessageSubscriber<ProtocolActivationMessage>
 
 			// Set the user from the stored credentials.
 			ServiceClient.CurrentUser = user;
-
-			// Consider adding a check to determine if the token is 
-			// expired, as shown in this post: http://aka.ms/jww5vp.
 
 			expired = ServiceClient.IsTokenExpired();
 
