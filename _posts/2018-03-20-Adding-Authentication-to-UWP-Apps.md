@@ -1,0 +1,240 @@
+---
+categories: UWP Azure
+published: false
+---
+
+Recently, I've been working on a Azure application that makes use of Azure Functions. I built out the front-end using UWP because the tooling is great and it allows me to create a minimal viable product in no time.
+
+One of the aspect of this project includes authentication with a number of Azure Function applications. Most people familiar with Azure Mobile Services would know that you can configure authentication for an app, within Azure. You can require a user to log into his or her Microsoft, Facebook, Google, or Azure Active Directory account, and that identity will flow through to Azure via the mobile service client. Since Azure Functions are built-on the same infrastructure as App Services, the same authentication methodologies are in place for Azure Functions.
+
+There are, however, a few steps that need to be performed to get your UWP app authenticating via your Azure Function application. I found no single location showing all of the steps, and had to fly by the seat of my pants for some of it. I hope this blog post serves to decrease the time you'll need to set everything up.
+
+Here are the steps. We'll dig deeper into each over the course of this post.
+
+* Reserve a name for your UWP app.
+* Associate your UWP app with the store registration.
+* Find out your app secret and ID.
+* Declare a custom protocol for your UWP app.
+* Add authentication to your Azure Function application.
+* Past your UWP's ID and app secret into the relevant configuration section of your Azure Function application.
+* Add an allowed redirect to your Azure Function application.
+* Add an allowed redirect for your
+
+## Reserving an App Name
+
+If you haven't already done so, head over to the [Windows Development Dashboard](https://developer.microsoft.com/en-us/dashboard/windows/overview). There's a button on the overview page that allows you to 'Create a new app'. See Figure 1.
+
+![Dashboard create a new app](../assets/images/2018-03-20_CreateNewAppDashboard.png)
+**Figure 1.** Create a new app in the Windows Developer Dashboard.
+
+This is really just a step that allows you to reserve a name for your app. Once you reserve the app's name you can fire up Visual Studio 2017, create a new UWP app, and then associate the app with the one in the store. See Figure 2.
+
+![Associate an app with the store](../assets/images/2018-03-20_VSAssociateWithStoreApp.png)
+**Figure 2.** Associating an app with the store.
+
+To set up authentication in Azure you need to find out the two pieces of information about the UWP app: the application's ID and its Secret code. You can find this information by expanding the App Management node for your app in the dashboard. See figure 3.
+
+Surprisingly the link you want is buried down under WNS/MPNS. On the Push notifications page, click the link to the Live Services site. That opens a page on which the ID and the secret is displayed. Copy those two pieces of information to notepad. You'll need them in a minute.
+
+![Select link to Live Services site](../assets/images/2018-03-20_LinkToLiveServices.png)
+**Figure 3.** Select link to Live Services site.
+
+There's one other thing you need to do in the Application Registration Portal (the page with your application ID and application secrets), and that is to enter a Redirect URL in the Web section. The URL looks like this:
+https://[YourFunctionApp].azurewebsites.net/.auth/login/microsoftaccount/callback
+
+Replace [YourFunctionApp] with the name of your function app. You can find this value in the Azure portal. If you haven't already created an Azure Function application, via the Azure portal, now would be a good time.
+Just like the UWP app, you can create and deploy an Azure Function application to Azure after you've set it up via the Azure portal. You do that by right clicking on the Azure Function application node in Visual Studio, and select Deploy. You can then select the known Function application to deploy to.
+
+Head over to the Azure portal and locate your Function application that you wish to associate with your UWP app. Notice the Authentication link in the Configured features section of the page. See Figure 4. Clicking that link opens the Authentication blade for your Function application.
+
+![Azure Portal Function App authentication link](../assets/images/2018-03-20_AzureAuthenticationLink.png)
+**Figure 4.** Azure Portal, authentication options for Function Application.
+
+The authentication blade allows you to configure authentication using a number of first and third-party services. In this example we look only at using Microsoft, so that users can authenticate using a Microsoft account. See Figure 5.
+
+The first thing to enable is 'App Services Authentication'. I chose to have the user authenticate with his or her Microsoft account when the user is not authenticated. This applies to a web scenario rather than an app.
+
+![Authentication blade](../assets/images/2018-03-20_AuthenticationBlade.png)
+**Figure 5.** The authentication blade for an Azure Functions application.
+
+Before we configure the Microsoft settings on the authentication blade, you need to enter an 'Allowed External Redirect URL'. This is one of the steps that if you forget it, you'll be pulling your hair out.
+The value for this URL must be unique, and must use a custom protocol scheme of your invention. Rather than https:// or http:// it must be something that you can tell your UWP app to listen out for and to handle. So, make it unique and copy and paste it somewhere. You'll be entering that into your UWP's properties in a moment. Please note you only need the protocol scheme and not the whole URL. the `://easyauth.callback` segment doesn't appear to have any purpose apart from making the URL valid.
+
+Click on the Microsoft row on the authentication blade. You're presented with a place to enter the ID of the UWP app and its secret code. The ID should resemble: `0000000012345678` and the secret should look something like: `aBCde15Fg3hijKLra8SIuSGwjt5Ba+J+`
+
+Select the scope that best suits the informational needs of your app, while maximizing privacy of your users.
+
+Click the Okay button at the bottom of the blade to return to the authentication blade.
+
+Click *Save* at the top of the authentication blade to lock in your authentication settings.
+
+Azure now knows about your UWP app and that if it attempts to call a Function in your Azure Function application, that it should be authenticated. In the following section we look at setting up the Azure Mobile services client in the UWP app and configuring a custom protocol declaration to respond to redirects from web based authentication.
+
+## Declaring a Custom Protocol Scheme
+
+Recall the 'Allowed External Redirect URL' that we defined in the Authentication blade of our Azure Function app? You need to declare the scheme in the Package.appmanifest file of your UWP app. Double click on the Package.appmanifest file and select the Declarations tab. See Figure 6.
+
+The value of the Name field is the protocol scheme. E.g. `mysuperduperapp`
+
+![Adding a protocol declaration to the UWP app.](../assets/images/2018-03-20_UwpProtocolDeclaration.png)
+**Figure 5.** Adding a protocol declaration to the UWP app.
+
+## Using the Azure Mobile Services Client
+
+The Azure Mobile Services Client allows your UWP app to call your Azure Function application, while seamlessly providing for authentication and transference of security credentials to your cloud service.
+
+To add it to your UWP project, add the NuGet package `Microsoft.Azure.Mobile.Client`.
+
+You create a new instance of the MobileServiceClient in one of two ways. In production, you create a new instance of the MobileServiceClient using the URL of your Azure Function application. For example, `https://yoursuperduperfunctions.azurewebsites.net` If you are doing local development and you want to enable authentication while debugging, you create the MobileServiceClient using the local URL, e.g., `http://localhost:7071`. The MobileServiceClient API has a convenient AlternateLoginHost property, which you populate with the Azure Function application. That way the UWP uses the local URL for debugging your functions and the 'real' URL for authentication. See Listing 1.
+
+**Listing 1.** Instantiating a MobileServiceClient
+```csharp
+if (!string.IsNullOrWhiteSpace(localAppUrl))
+{
+	mobileServiceClient = new MobileServiceClient(localAppUrl);
+	mobileServiceClient.AlternateLoginHost = new Uri(serviceClientAppUrl);
+}
+else
+{
+	mobileServiceClient = new MobileServiceClient(serviceClientAppUrl);
+}
+```
+
+To use the MobileServiceClient with a service that requires authentication, you must have the client perform authentication first. The AuthenticationService class in Listing 2, demonstrates how to authenticate using the MobileServiceClient's LoginAsync method. Rather than perform an expensive login each time you wish to use the MobileServiceClient, the PasswordVault is used to cache the credentials.
+
+The MobileServiceClient.LoginAsync method is awaitable. When the method is called, a browser opens the authentication page for whatever service your app is using. In this case, the Microsoft authentication provider is used. When the user completes authentication, the app is activated using the custom protocol scheme.
+
+
+**Listing 2.** AuthenticationService Class
+```csharp
+class AuthenticationService : IMessageSubscriber<ProtocolActivationMessage>
+{
+	readonly string serviceClientAppUrl;
+	readonly string localAppUrl;
+	readonly string protocolActivationScheme;
+	MobileServiceUser user;
+	MobileServiceClient useProperty_mobileServiceClient;
+	bool authenticated;
+
+	public AuthenticationService(string protocolActivationScheme, 
+		string serviceClientAppUrl, 
+		string localAppUrl = null)
+	{
+		this.protocolActivationScheme = AssertArg.IsNotNullOrWhiteSpace(
+				protocolActivationScheme, nameof(protocolActivationScheme));
+		this.serviceClientAppUrl = AssertArg.IsNotNull(serviceClientAppUrl, nameof(serviceClientAppUrl));
+		this.localAppUrl = localAppUrl;
+
+		var messenger = Dependency.Resolve<IMessenger>();
+		messenger.Subscribe(this);
+	}
+
+	public string Token => user?.MobileServiceAuthenticationToken;
+	public string UserId => user?.UserId;
+
+	public MobileServiceClient ServiceClient
+	{
+		get
+		{
+			if (useProperty_mobileServiceClient == null)
+			{				
+				if (!string.IsNullOrWhiteSpace(localAppUrl))
+				{
+					useProperty_mobileServiceClient = new MobileServiceClient(localAppUrl);
+					useProperty_mobileServiceClient.AlternateLoginHost = new Uri(serviceClientAppUrl);
+				}
+				else
+				{
+					useProperty_mobileServiceClient = new MobileServiceClient(serviceClientAppUrl);
+				}
+			}
+
+			return useProperty_mobileServiceClient;
+		}
+	}
+
+	public async Task<bool> EnsureAuthenticatedAsync()
+	{
+		if (authenticated)
+		{
+			return true;
+		}
+
+		bool success = false;
+
+		var provider = MobileServiceAuthenticationProvider.MicrosoftAccount;
+
+		// Use the PasswordVault to securely store and access credentials.
+		PasswordVault vault = new PasswordVault();
+		PasswordCredential credential = null;
+
+		try
+		{
+			// Try to get an existing credential from the vault.
+			credential = vault.FindAllByResource(provider.ToString()).FirstOrDefault();
+		}
+		catch (Exception)
+		{
+			// When there is no matching resource an error occurs, which we ignore.
+		}
+
+		bool expired = false;
+
+		if (credential != null)
+		{
+			// Create a user from the stored credentials.
+			user = new MobileServiceUser(credential.UserName);
+			credential.RetrievePassword();
+			user.MobileServiceAuthenticationToken = credential.Password;
+
+			// Set the user from the stored credentials.
+			ServiceClient.CurrentUser = user;
+
+			// Consider adding a check to determine if the token is 
+			// expired, as shown in this post: http://aka.ms/jww5vp.
+
+			expired = ServiceClient.IsTokenExpired();
+
+			success = true;
+
+			var log = Dependency.Resolve<ILog>();
+			log.Info(string.Format("Cached credentials for user - {0}", user.UserId));
+		}
+
+		if (credential == null || expired)
+		{
+			try
+			{
+				// Login with the identity provider.
+				user = await ServiceClient.LoginAsync(provider, protocolActivationScheme);
+				// Create and store the user credentials.
+				credential = new PasswordCredential(provider.ToString(),
+					user.UserId, user.MobileServiceAuthenticationToken);
+				vault.Add(credential);
+
+				success = true;
+				//message = string.Format("You are now logged in - {0}", user.UserId);
+			}
+			catch (MobileServiceInvalidOperationException ex)
+			{
+				var log = Dependency.Resolve<ILog>();
+				log.Warn("Unable to log in.", ex);
+			}
+		}
+		else
+		{
+			authenticated = true;
+		}
+
+		return success;
+	}
+
+	Task IMessageSubscriber<ProtocolActivationMessage>.ReceiveMessageAsync(
+		ProtocolActivationMessage message)
+	{
+		ServiceClient.ResumeWithURL(message.Uri);
+
+		return Task.CompletedTask;
+	}
+}
+```
