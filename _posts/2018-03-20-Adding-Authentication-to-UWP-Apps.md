@@ -6,6 +6,7 @@ title: User Authentication in UWP Apps that Speak to Azure Functions
 ## Table of Contents
 
 [//]: # (TOC Begin)
+* [Introduction](#introduction)
 * [Reserving an App Name](#reserving-an-app-name)
 * [Associating a UWP App with the Microsoft Store](#associating-a-uwp-app-with-the-microsoft-store)
 * [Marrying a UWP App with an Azure Function Application](#marrying-a-uwp-app-with-an-azure-function-application)
@@ -19,6 +20,7 @@ title: User Authentication in UWP Apps that Speak to Azure Functions
 * [Conclusion](#conclusion)
 
 [//]: # (TOC End)
+
 
 
 ## Introduction
