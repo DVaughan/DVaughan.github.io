@@ -41,7 +41,7 @@ Here are the steps. We'll dig deeper into each over the course of this post.
 
 If you haven't already done so, head over to the [Windows Development Dashboard](https://developer.microsoft.com/en-us/dashboard/windows/overview). There's a button on the overview page that allows you to 'Create a new app'. See Figure 1.
 
-![Dashboard create a new app](../assets/images/2018-03-20_CreateNewAppDashboard.png)
+![Dashboard create a new app](/assets/images/2018-03-20_CreateNewAppDashboard.png)
 **Figure 1.** Create a new app in the Windows Developer Dashboard.
 
 This is really just a step that allows you to reserve a name for your app and to get an ID and secret code to associate your UWP app with an Azure Function application. 
@@ -50,7 +50,7 @@ This is really just a step that allows you to reserve a name for your app and to
 
 Once you reserve the app's name you can fire up Visual Studio 2017, create a new UWP app, and then associate the app with the one in the store. See Figure 2.
 
-![Associate an app with the store](../assets/images/2018-03-20_VSAssociateWithStoreApp.png)
+![Associate an app with the store](/assets/images/2018-03-20_VSAssociateWithStoreApp.png)
 **Figure 2.** Associating an app with the store.
 
 ## Marrying a UWP App with an Azure Function Application
@@ -59,7 +59,7 @@ To set up authentication in Azure you need to find out the two pieces of informa
 
 Surprisingly the link you want is buried down under WNS/MPNS. On the Push notifications page, click the link to the Live Services site. That opens a page on which the ID and the secret is displayed. Copy those two pieces of information to somewhere like notepad. You'll need them in a minute.
 
-![Select link to Live Services site](../assets/images/2018-03-20_LinkToLiveServices.png)
+![Select link to Live Services site](/assets/images/2018-03-20_LinkToLiveServices.png)
 **Figure 3.** Select link to Live Services site.
 
 There's one other thing you need to do in the Application Registration Portal (the page with your application ID and application secrets), and that is to enter a Redirect URL in the Web section. The URL looks like this:
@@ -70,14 +70,14 @@ Just like the UWP app, you can create and deploy an Azure Function application t
 
 Head over to the Azure portal and locate your Function application that you wish to associate with your UWP app. Notice the Authentication link in the *Configured features* section of the page. See Figure 4. Clicking that link opens the Authentication blade for your Function application.
 
-![Azure Portal Function App authentication link](../assets/images/2018-03-20_AzureAuthenticationLink.png)
+![Azure Portal Function App authentication link](/assets/images/2018-03-20_AzureAuthenticationLink.png)
 **Figure 4.** Azure Portal, authentication options for Function Application.
 
 The authentication blade allows you to configure authentication using a number of first and third-party services. In this example we look only at using Microsoft, so that users can authenticate using a Microsoft account. See Figure 5.
 
 The first thing to enable is *App Services Authentication*. I chose to have the user authenticate with his or her Microsoft account when the user is not authenticated. This applies to web scenarios and not so much mobile apps. I locked that in anyway.
 
-![Authentication blade](../assets/images/2018-03-20_AuthenticationBlade.png)
+![Authentication blade](/assets/images/2018-03-20_AuthenticationBlade.png)
 **Figure 5.** The authentication blade for an Azure Functions application.
 
 Before we configure the Microsoft settings on the authentication blade, you need to enter an 'Allowed External Redirect URL'. This is one of the steps that if you forget it, you'll be pulling your hair out.
@@ -99,7 +99,7 @@ Recall the 'Allowed External Redirect URL' that we defined in the Authentication
 
 The value of the Name field is the protocol. E.g. `mysuperduperapp`
 
-![Adding a protocol declaration to the UWP app.](../assets/images/2018-03-20_UwpProtocolDeclaration.png)
+![Adding a protocol declaration to the UWP app.](/assets/images/2018-03-20_UwpProtocolDeclaration.png)
 **Figure 6.** Adding a protocol declaration to the UWP app.
 
 ## Using the Azure Mobile Services Client
