@@ -18,7 +18,7 @@ Here are the steps. We'll dig deeper into each over the course of this post.
 * Add authentication to your Azure Function application.
 * Past your UWP's ID and app secret into the relevant configuration section of your Azure Function application.
 * Add an allowed redirect to your Azure Function application.
-* Add an allowed redirect for your
+* Add an redirect URL for your UWP app via the Application Registration Portal.
 
 ## Reserving an App Name
 
@@ -27,10 +27,16 @@ If you haven't already done so, head over to the [Windows Development Dashboard]
 ![Dashboard create a new app](../assets/images/2018-03-20_CreateNewAppDashboard.png)
 **Figure 1.** Create a new app in the Windows Developer Dashboard.
 
-This is really just a step that allows you to reserve a name for your app. Once you reserve the app's name you can fire up Visual Studio 2017, create a new UWP app, and then associate the app with the one in the store. See Figure 2.
+This is really just a step that allows you to reserve a name for your app. 
+
+## Associating a UWP App with the Microsoft Store
+
+Once you reserve the app's name you can fire up Visual Studio 2017, create a new UWP app, and then associate the app with the one in the store. See Figure 2.
 
 ![Associate an app with the store](../assets/images/2018-03-20_VSAssociateWithStoreApp.png)
 **Figure 2.** Associating an app with the store.
+
+## Marrying a UWP App with an Azure Mobile Service
 
 To set up authentication in Azure you need to find out the two pieces of information about the UWP app: the application's ID and its Secret code. You can find this information by expanding the App Management node for your app in the dashboard. See figure 3.
 
@@ -100,23 +106,26 @@ else
 }
 ```
 
-To use the MobileServiceClient with a service that requires authentication, you must have the client perform authentication first. The AuthenticationService class in Listing 2, demonstrates how to authenticate using the MobileServiceClient's LoginAsync method. Rather than perform an expensive login each time you wish to use the MobileServiceClient, the PasswordVault is used to cache the credentials.
+## Creating a MobileClientService 
 
-The MobileServiceClient.LoginAsync method is awaitable. When the method is called, a browser opens the authentication page for whatever service your app is using. In this case, the Microsoft authentication provider is used. When the user completes authentication, the app is activated using the custom protocol scheme.
+To use the `MobileServiceClient` with a service that requires authentication, you must have the client perform authentication first. The `MobileClientService` class in Listing 2, demonstrates how to authenticate using the `MobileServiceClient's` `LoginAsync` method. The `LoginAsync` method accepts a provider name: "Google", "Facebook", "Microsoft" and so forth; and the custom protocol scheme. The `MobileServiceClient` constructs the authentication URLs, embedding the completion redirect to a URL comprising the custom protocol. 
 
+Rather than perform an expensive login each time you wish to use the `MobileServiceClient`, the `PasswordVault` is used to cache the credentials.
 
-**Listing 2.** AuthenticationService Class
+The `MobileServiceClient.LoginAsync` method is awaitable. When the method is called, a browser opens the authentication page for whatever service your app is using. In this case, the Microsoft authentication provider is used. When the user completes authentication, the app is activated using the custom protocol.
+
+**Listing 2.** MobileClientService Class
 ```csharp
-class AuthenticationService : IMessageSubscriber<ProtocolActivationMessage>
+class MobileClientService : IMessageSubscriber<ProtocolActivationMessage>
 {
 	readonly string serviceClientAppUrl;
 	readonly string localAppUrl;
 	readonly string protocolActivationScheme;
 	MobileServiceUser user;
-	MobileServiceClient useProperty_mobileServiceClient;
+	MobileServiceClient mobileServiceClient;
 	bool authenticated;
 
-	public AuthenticationService(string protocolActivationScheme, 
+	public MobileClientService(string protocolActivationScheme, 
 		string serviceClientAppUrl, 
 		string localAppUrl = null)
 	{
@@ -136,20 +145,20 @@ class AuthenticationService : IMessageSubscriber<ProtocolActivationMessage>
 	{
 		get
 		{
-			if (useProperty_mobileServiceClient == null)
+			if (mobileServiceClient == null)
 			{				
 				if (!string.IsNullOrWhiteSpace(localAppUrl))
 				{
-					useProperty_mobileServiceClient = new MobileServiceClient(localAppUrl);
-					useProperty_mobileServiceClient.AlternateLoginHost = new Uri(serviceClientAppUrl);
+					mobileServiceClient = new MobileServiceClient(localAppUrl);
+					mobileServiceClient.AlternateLoginHost = new Uri(serviceClientAppUrl);
 				}
 				else
 				{
-					useProperty_mobileServiceClient = new MobileServiceClient(serviceClientAppUrl);
+					mobileServiceClient = new MobileServiceClient(serviceClientAppUrl);
 				}
 			}
 
-			return useProperty_mobileServiceClient;
+			return mobileServiceClient;
 		}
 	}
 
@@ -213,7 +222,6 @@ class AuthenticationService : IMessageSubscriber<ProtocolActivationMessage>
 				vault.Add(credential);
 
 				success = true;
-				//message = string.Format("You are now logged in - {0}", user.UserId);
 			}
 			catch (MobileServiceInvalidOperationException ex)
 			{
@@ -238,3 +246,194 @@ class AuthenticationService : IMessageSubscriber<ProtocolActivationMessage>
 	}
 }
 ```
+
+## Detecting an Expired Token
+
+The token representing the cached credentials of the user can expire, so we need to determine whether a cached credential is still valid. See Listing 2. The code for testing a token's validity was taken verbatim from [Glenn Gailey](https://social.msdn.microsoft.com/profile/Glenn+Gailey+[MSFT]) post over at 
+[http://aka.ms/jww5vp](http://aka.ms/jww5vp).
+
+**Listing 2.** TokenExtension Class
+```csharp
+public static class TokenExtension
+{
+    /// <summary>
+    /// Returns true when the authentication token for the current user is expired.
+    /// </summary>
+    /// <param name="client">The current MobileServiceClient instance</param>
+    /// <returns>true when the token is expired; otherwise false.</returns>
+    public static bool IsTokenExpired(this IMobileServiceClient client)
+    {
+        // Check for a signed-in user.
+        if (client.CurrentUser == null ||
+            String.IsNullOrEmpty(client.CurrentUser.MobileServiceAuthenticationToken))
+        {
+            // Raise an exception if there is no token.
+            throw new InvalidOperationException(
+                "The client isn't signed-in or the token value isn't set.");
+        }
+
+        // Get just the JWT part of the token.
+        var jwt = client.CurrentUser
+            .MobileServiceAuthenticationToken
+            .Split(new Char[] { '.' })[1];
+
+        // Undo the URL encoding.
+        jwt = jwt.Replace('-', '+');
+        jwt = jwt.Replace('_', '/');
+        switch (jwt.Length % 4)
+        {
+            case 0: break;
+            case 2: jwt += "=="; break;
+            case 3: jwt += "="; break;
+            default: throw new System.Exception(
+                "The base64url string is not valid.");
+        }
+
+        // Decode the bytes from base64 and write to a JSON string.
+        var bytes = Convert.FromBase64String(jwt);
+        string jsonString = UTF8Encoding.UTF8.GetString(bytes, 0, bytes.Length);
+
+        // Parse as JSON object and get the exp field value, 
+        // which is the expiration date as a JavaScript primative date.
+        JObject jsonObj = JObject.Parse(jsonString);
+        var exp = Convert.ToDouble(jsonObj["exp"].ToString());
+
+        // Calculate the expiration by adding the exp value (in seconds) to the 
+        // base date of 1/1/1970.
+        DateTime minTime = new DateTime(1970, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc);
+        var expire = minTime.AddSeconds(exp);
+
+        // If the expiration date is less than now, the token is expired and we return true.
+        return expire < DateTime.UtcNow ? true : false;
+    }
+}
+```
+
+## Receiving Notification that Authentication has Completed
+
+In the example, I used [Codon's](http://codonfx.com/) IMessageSubscriber interface to receive notification when the app is activated using a custom protocol. The app's OnActivated method is called when the app is activated via a custom protocol. The Windows operating system knows about the protocol declarations of the apps installed, and automatically redirects requests using the custom protocol to their respective app/s. See Listing x.
+
+
+**Listing 3.** App.OnActivated Method
+```csharp
+protected override void OnActivated(IActivatedEventArgs e)
+{
+	Frame rootFrame = Window.Current.Content as Frame;
+
+	// Do not repeat app initialization when the Window already has content
+	if (rootFrame == null)
+	{
+		// Create a Frame to act as the navigation context
+		rootFrame = new Frame();
+
+		rootFrame.NavigationFailed += OnNavigationFailed;
+
+		if (e.PreviousExecutionState == ApplicationExecutionState.Terminated)
+		{
+			//TODO: Load state from previously suspended application
+		}
+
+		// Place the frame in the current Window
+		Window.Current.Content = rootFrame;
+	}
+
+	// Ensure the current window is active
+	Window.Current.Activate();
+	
+	// Handle protocol activation here
+	activationProcessor.ProcessActivation(e);
+}
+```
+
+The `Kind` property of the `IActivatedEventArgs` indicates if the app was activated via a custom protocol. Codon's `IMessenger` signals to the `MobileClientService` that a protocol activation occurred. See Listing 4
+
+**Listing 4.** AppActivationProcessor.ProcessActivation Method
+```csharp
+public void ProcessActivation(IActivatedEventArgs e)
+{
+	var messenger = Dependency.Resolve<IMessenger>();
+
+	if (e.Kind == ActivationKind.Protocol)
+	{
+		ProtocolActivatedEventArgs protocolArgs = (ProtocolActivatedEventArgs)e;
+		messenger.PublishAsync(new ProtocolActivationMessage(this, protocolArgs?.Uri));
+	}
+	else
+	{
+		messenger.PublishAsync(new ApplicationLifeCycleMessage(this, ApplicationLifeCycleState.Activated));
+	}
+}
+```
+
+## Calling Azure Functions with a MobileServiceClient
+
+Before using the MobileServiceClient, you need to ensure that it has authenticated. Listing 5 demonstrates the retrieval of the MobileClientService from Codon's IoC container and using its EnsureAuthenticated method to ensure that the user is authenticated.
+
+**Listing 5.** GetMobileServiceClientAsync Method
+```csharp
+async Task<MobileServiceClient> GetMobileServiceClientAsync()
+{
+	var service = Dependency.Resolve<MobileClientService>();
+
+	bool authenticated = await service.EnsureAuthenticatedAsync();
+
+	if (!authenticated)
+	{
+		throw new Exception("Unable to authenticate.");
+	}
+
+	return service.ServiceClient;
+}
+```
+
+You make use of the GetMobileServiceClientAsync method whenever you wish to call an Azure Function that requires authentication. See Listing 6. The RetrieveMyObjectsAsync method uses the MobileServiceClient's InvokeApiAsync to call the Azure Function named *MyObject*. It deserializes the result producing a list of `MyObject` instances.
+
+**Listing 6.** Using the MobileServiceClient to Call a Azure Function
+```csharp
+public async Task<ObservableCollection<MyObject>> RetrieveMyObjectsAsync()
+{
+	MobileServiceClient client = await GetMobileServiceClientAsync();
+
+	HttpResponseMessage response = await client.InvokeApiAsync(
+		"MyObject", new StringContent(string.Empty), 
+		HttpMethod.Get, headerDictionary, null);
+
+	response.EnsureSuccessStatusCode();
+
+	string json = await response.Content.ReadAsStringAsync();
+	var items = JsonConvert.DeserializeObject<List<MyObject>>(json);
+	myObjects.Clear();
+	myObjects.AddRange(items);
+
+	return myObjects;
+}
+```
+
+## Retrieving Security Credentials in the Cloud
+
+Once a user has authenticated successfully, the MobileServiceClient automatically passes the security credentials to Azure so that you can determine the identity of the caller. You do this by examining the `Current` property of the `ClaimsPrincipal` object, as shown in the following example:
+
+```csharp
+var principal = System.Security.Claims.ClaimsPrincipal.Current;
+var result = new UserInfo
+			{
+				Authenticated = principal.Identity.IsAuthenticated,
+				Name = principal.FindFirst(ClaimTypes.NameIdentifier)?.Value,
+				EmailAddress = principal.FindFirst(ClaimTypes.Email)?.Value
+			};
+```
+
+Please note that at the time of writing, it was not possible to retrieve the principal when running an Azure Function on your local machine. It is possible to achieve that with Azure Mobile Services but not yet Azure Functions. Until that capability is put in place, you can, as I did, resort to parsing test IDs and so forth via HTTP header values.
+
+## Conclusion
+
+So, I think that about covers it. The thing to keep in mind is that if you forget to configure any of the following items, your `MobileServiceClient` won't get past the `LoginAsync` method:
+
+* Associate your app with the Microsoft Store
+* Copy the App ID and Secret to your Azure Function's authentication blade.
+* Enter the Redirect URL in the Web section of your UWP app's Application Registration Portal.
+* Include the custom protocol URL in the 'Allowed External Redirect calls' in the Azure Function's authentication blade.
+* Declare the custom protocol in your UWP apps Package.appmanifest file.
+* Respond to protocol activation in your UWP app by calling MobileServiceClient.ResumeWithURL.
+
+With all these in place, you'll be able to reliably determine who's using your app, and adjust its behavior accordingly.
