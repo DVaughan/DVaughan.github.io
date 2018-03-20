@@ -20,7 +20,7 @@ title: User Authentication in UWP Apps that Speak to Azure Functions
 
 
 
-I've been working on a Azure application that makes use of Azure Functions. I built out the front-end using UWP because the tooling is great and it allows me to create a minimal viable product in no time.
+I've been working on an Azure application that makes use of Azure Functions. I built out the front-end using UWP because the tooling is great and it allows me to create a minimal viable product in no time.
 
 One aspect of this project includes authentication with a number of Azure Function applications. If you're familiar with Azure Mobile Services you'll know that you can configure authentication for an app, within Azure. You can require a user to log into his or her Microsoft, Facebook, Google, or Azure Active Directory account, and the user's identity will flow through to Azure via the mobile service client. Since Azure Functions are built on the same infrastructure as Mobile Services, the same authentication bits are in place for Azure Functions.
 
