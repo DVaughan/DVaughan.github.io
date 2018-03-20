@@ -376,12 +376,15 @@ public void ProcessActivation(IActivatedEventArgs e)
 
 	if (e.Kind == ActivationKind.Protocol)
 	{
-		ProtocolActivatedEventArgs protocolArgs = (ProtocolActivatedEventArgs)e;
-		messenger.PublishAsync(new ProtocolActivationMessage(this, protocolArgs?.Uri));
+		var protocolArgs = (ProtocolActivatedEventArgs)e;
+		messenger.PublishAsync(
+		    new ProtocolActivationMessage(this, protocolArgs?.Uri));
 	}
 	else
 	{
-		messenger.PublishAsync(new ApplicationLifeCycleMessage(this, ApplicationLifeCycleState.Activated));
+		messenger.PublishAsync(
+		    new ApplicationLifeCycleMessage(
+		            this, ApplicationLifeCycleState.Activated));
 	}
 }
 ```
@@ -437,11 +440,11 @@ Once a user has authenticated successfully, the `MobileServiceClient` automatica
 ```csharp
 var principal = System.Security.Claims.ClaimsPrincipal.Current;
 var result = new UserInfo
-			{
-				Authenticated = principal.Identity.IsAuthenticated,
-				Name = principal.FindFirst(ClaimTypes.NameIdentifier)?.Value,
-				EmailAddress = principal.FindFirst(ClaimTypes.Email)?.Value
-			};
+{
+	Authenticated = principal.Identity.IsAuthenticated,
+	Name = principal.FindFirst(ClaimTypes.NameIdentifier)?.Value,
+	EmailAddress = principal.FindFirst(ClaimTypes.Email)?.Value
+};
 ```
 
 Please note that at the time of writing, it was not possible to retrieve the principal when running an Azure Function on your local machine. It is possible to achieve that with Azure Mobile Services but not yet Azure Functions. Until that capability is put in place, you can, as I did, resort to parsing test IDs and so forth via HTTP header values.
