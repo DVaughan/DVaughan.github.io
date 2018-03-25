@@ -25,7 +25,7 @@ When a request to resolve the `IDialogService` arrives, the `FrameworkContainer`
 
 > **NOTE:** When set to `true` the `Singleton` property of the `DefaultType` and `DefaultTypeName` attributes indicate to the IoC container that only one instance of the specified mapped type should be created, which is reused for all subsequent requests. When the `Singleton` property is set to `false`, the IoC container creates a new instance of the default type upon each request. The default value of the `Singleton` property is true.
 
-The `IDialogService` only makes use of the `DefaultTypeName` attribute. That's because there is no non-platform-specific implementation for this service. There are, however, other services that do have default implementations, such as the `IExceptionHandler` interface. The `IExceptionHandler` allows your application to process exceptions raised within other services and types. The commanding infrastructure uses the `IExceptionHandler` to hand-off exceptions that are thrown during command excecution and potentially not from the UI thread. This saves you from having to wrap all your command logic in try/catch blocks. But, I digress. The default implementation for the `IExceptionHandler` is the `LoggingExceptionHandler` and it is specified by decorating the `IExceptionHandler` with a `DefaultType` attribute, as shown in the following excerpt: 
+The `IDialogService` only makes use of the `DefaultTypeName` attribute. That's because there isn't a non-platform-specific implementation for this service. There are, however, other services that do have default implementations, such as the `IExceptionHandler` interface. The `IExceptionHandler` allows your application to process exceptions raised within other services and types. The commanding infrastructure uses the `IExceptionHandler` to hand-off exceptions that are thrown during command excecution, potentially not from the UI thread. This saves you from having to wrap all your command logic in try/catch blocks. But, I digress. The default implementation for the `IExceptionHandler` is the `LoggingExceptionHandler` and it is specified by decorating the `IExceptionHandler` with a `DefaultType` attribute, as shown in the following excerpt: 
 
 ```csharp
 [DefaultType(typeof(LoggingExceptionHandler))]
@@ -35,7 +35,7 @@ public interface IExceptionHandler
 }
 ```
 
-The default implementation of the `IExceptionHandler` simply logs the message using the registered `ILog` instance and returns true; indicating to the caller that the exception should be re-thrown. See Listing 1.
+The default implementation of the `IExceptionHandler` simply logs the exception message using the registered `ILog` instance and returns true; indicating to the caller that the exception should be re-thrown. See Listing 1.
 
 > **NOTE:** The `IExceptionHandler` interface is one service for which you should really consider providing your own implementation.
 
@@ -63,7 +63,9 @@ class LoggingExceptionHandler : IExceptionHandler
 }
 ```
 
-We've seen how Codon's `DefaultType` and `DefaultTypeName` attributes are used to resolve default implementations. But, what happens if you want to specify a default implementation from an assembly that does not reference the Codon core .NET Standard library. To achieve that, you can use the `System.ComponentModel.DefaultValueAttribute`. This attribute allows you to specify a default implementation as demonstrated in the following example:
+We've seen how Codon's `DefaultType` and `DefaultTypeName` attributes are used to resolve default implementations. But, what happens if you want to specify a default implementation from an assembly that does not reference the Codon core .NET Standard library. 
+
+To achieve that, you can use the `System.ComponentModel.DefaultValueAttribute`. This attribute allows you to specify a default implementation as demonstrated in the following example:
 
 ```csharp
 [System.ComponentModel.DefaultValue(typeof(UndoService))]
@@ -73,8 +75,8 @@ public interface IUndoService
 }
 ```
 
-> **NOTE:** When using `System.ComponentModel.DefaultValueAttribute` to specify a default implementation, the implementation is considered to be a singleton. The `DefaultValueAttribute` does not allow you to provide other parameters such as whether or not the class should be instantiated upon each request.
+> **NOTE:** When using `System.ComponentModel.DefaultValueAttribute` to specify a default implementation, the implementation is considered to be a singleton. Unlike Codon's `DefaultType` and `DefaultTypeName` attributes, the `DefaultValueAttribute` does not allow you to provide other parameters.
 
-In this post we've seen how Codon is a zero-configuration framework; it doesn't require bootstrapping. Services used internally and in user code are resolved automatically, despite potentially being located in platform specific assemblies. Codon's `DefaultType` and `DefaultTypeName` attributes are used to specify default type mappings. Types can also being specified using the `System.ComponentModel.DefaultValueAttribute`, allowing you to specify default implementations within class libraries that do not reference Codon's core assembly.
+In this post we've seen how Codon is a zero-configuration framework; it doesn't require bootstrapping. Services used internally and in user code are resolved automatically, despite being potentially located in platform specific assemblies. Codon's `DefaultType` and `DefaultTypeName` attributes are used to specify default type mappings. Types can also being specified using the `System.ComponentModel.DefaultValueAttribute`, allowing you to specify default type mappings within class libraries that do not reference Codon's core assembly.
 
 I hope you find this post useful. Have a great day!
