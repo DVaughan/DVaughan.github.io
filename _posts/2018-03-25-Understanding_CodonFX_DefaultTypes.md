@@ -3,7 +3,7 @@ categories: Codon
 title: Understanding Codon's Default Type Mapping
 ---
 
-Codon FX is a cross-platform framework for building maintainable applications. I use it for all of my .NET based applications.
+[Codon FX](http://www.codonfx.com) is a cross-platform framework for building maintainable applications. I use it for all of my .NET based applications.
 Codon is built on .NET Standard and uses platform specific assemblies to support various platforms such as Xamarin Android, iOS, WPF, and UWP. It's a zero-configuration framework. By that I mean that it doesn't require bootstrapping; services used internally and in user code are resolved automatically, despite being potentially located in platform specific assemblies. The way that Codon resolves platform specific services deserves some explanation. That's the purpose of this post.
 
 There are various abstractions within Codon, such as the `ISynchronizationService`, `IDialogService`, `IClipboardService`, `INavigationMonitor`, `ISettingsService`, `IMemoryUsage`, `IPowerService`, and `IStateManager` to name just a few. If you take a look at one of these services you'll notice that it is decorated with a `Codon.InversionOfControl.DefaultTypeAttribute` and/or a `Codon.InversionOfControl.DefaultTypeName`. These attributes give Codon's IoC container `FrameworkContainer` a hint on how to resolve service implementations at run-time. For example, the `IDialogService` is a decidedly platform specific service. It is used to display dialogs, ask the user questions, and popup toasts. Implementations exist for it in each of the platform specific assemblies. The `IDialogService` is decorated with a `DefaultTypeName` attribute, as shown in the following excerpt:
