@@ -9,8 +9,9 @@ Codon is built on .NET Standard and uses platform specific assemblies to support
 There are various abstractions within Codon, such as the `ISynchronizationService`, `IDialogService`, `IClipboardService`, `INavigationMonitor`, `ISettingsService`, `IMemoryUsage`, `IPowerService`, and `IStateManager` to name just a few. If you take a look at one of these services you'll notice that it is decorated with a `Codon.InversionOfControl.DefaultTypeAttribute` and/or a `Codon.InversionOfControl.DefaultTypeName`. These attributes give Codon's IoC container `FrameworkContainer` a hint on how to resolve service implementations at run-time. For example, the `IDialogService` is a decidedly platform specific service. It is used to display dialogs, ask the user questions, and popup toasts. Implementations exist for it in each of the platform specific assemblies. The `IDialogService` is decorated with a `DefaultTypeName` attribute, as shown in the following excerpt:
 
 ```csharp
-[DefaultTypeName(AssemblyConstants.Namespace + "." + nameof(DialogModel)
-		+ ".DialogService, " + AssemblyConstants.PlatformAssembly, Singleton = true)]
+[DefaultTypeName(AssemblyConstants.Namespace + "." 
+        + nameof(DialogModel) + ".DialogService, " 
+        + AssemblyConstants.PlatformAssembly, Singleton = true)]
 public interface IDialogService
 {
 ...
@@ -44,22 +45,22 @@ The default implementation of the `IExceptionHandler` simply logs the exception 
 ```csharp
 class LoggingExceptionHandler : IExceptionHandler
 {
-	public bool ShouldRethrowException(
-		Exception exception, 
-		object owner, 
-		string memberName = null, 
-		string filePath = null,
-		int lineNumber = 0)
-	{
-		var log = Dependency.Resolve<ILog>();
-		if (log.ErrorEnabled)
-		{
-			log.Error("LoggingExceptionHandler: Unhandled exception occurred. " + owner,
-						exception, null, memberName, filePath, lineNumber);
-		}
+    public bool ShouldRethrowException(
+        Exception exception, 
+        object owner, 
+        string memberName = null, 
+        string filePath = null,
+        int lineNumber = 0)
+    {
+        var log = Dependency.Resolve<ILog>();
+        if (log.ErrorEnabled)
+        {
+            log.Error("LoggingExceptionHandler: Unhandled exception occurred. " + owner,
+                    exception, null, memberName, filePath, lineNumber);
+        }
 
-		return true;
-	}
+        return true;
+    }
 }
 ```
 
