@@ -4,6 +4,16 @@ title: Using the UWP Community Toolkit with Codon FX
 published: false
 ---
 
+[//]: # (TOC Begin)
+* [Introduction](#introduction)
+* [Creating a Custom Dialog Service](#creating-a-custom-dialog-service)
+* [Leveraging the UWP Community Toolkit](#leveraging-the-uwp-community-toolkit)
+* [Conclusion](#conclusion)
+
+[//]: # (TOC End)
+
+## Introduction
+
 [Codon FX](http://www.codonfx.com) is a cross-platform framework for building maintainable applications. I use it for all of my .NET based applications.
 
 Codon is built on .NET Standard and uses platform specific assemblies to support various platforms including UWP. Codon has no references to third-party libraries, keeping it light-weight and free from version conflicts. There is, however, nothing preventing you from enriching Codon with your own custom services tailored for a particular platform. 
@@ -21,7 +31,7 @@ All of Codon's services and many of its other components are designed to be repl
 ## Creating a Custom Dialog Service
 
 To create a custom UWP `IDialogService` implementation, begin by using the NuGet package manager to reference the package *Codon.Uwp*. This package brings in Codon's .NET Standard core library and a UWP platform specific library.
-While you're at it, use the NuGet package manager to reference the UWP Community Toolkit package named *Microsoft.Toolkit.UWP*.
+While you're at it, use the NuGet package manager to reference the UWP Community Toolkit package named *Microsoft.Toolkit.Uwp.UI.Controls*.
 
 Once you've referenced Codon, you can take the default `IDialogService` implementation for a spin by using the following:
 
@@ -48,6 +58,8 @@ var questionResponse = await DialogService.AskQuestionAsync(question);
 Here I create a `TextQuestion` object that defines a caption to display on a dialog ("Find on Page"), a default value to place in the text box, and even an input scope value, which determines the soft input panel keyboard. Figure 1. shows the dialog displayed within Surfy Browser on Android.
 
 <figure><img src='/assets/images/2018-03-25_FindOnPage.png'><figcaption>Figure 1. Using the IDialogService to ask the user a text response question.</figcaption></figure>
+
+## Leveraging the UWP Community Toolkit
 
 Let's turn our attention back at the task at hand: changing the toast notification behavior of the `IDialogService` implementation.
 
@@ -144,6 +156,10 @@ Passing an instance of the `CustomDialogService` class to the `Register` method 
 
 > **NOTE:** If you have multiple pages or views, you'll need to assign the `InAppNotification` object to the `CustomDialogService` when the view becomes visible. I'm not happy with that approach. As I mentioned above, I'd like to see the `InAppNotification` component placed dynamically in the visual tree so it is not dependent on being explicitly defined for each page or control.
 
+## Conclusion
+
 In this post you've seen how to supplant Codon's `IDialogService` implementation, with a custom implementation that leverages the UWP Community Toolkit's `InAppNotification` component, to display in-app toast messages. You also saw how Codon's services and components can be replaced to provide new capabilities. Codon is a zero-dependency framework. There are no references to third party libraries, keeping it light-weight and free from version conflicts. There is, however, nothing preventing you from enriching Codon with your own custom services tailored for a particular platform.
+
+You can download the source code for this article from the [Codon Samples repository](https://github.com/CodonFramework/Samples) on GitHub.
 
 I hope you find this post useful. Have a great day!
