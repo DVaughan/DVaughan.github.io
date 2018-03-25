@@ -1,6 +1,6 @@
 ---
 categories: Codon
-title: Understanding Codon's Default Type Mapping
+title: Understanding Default Type Mapping with Codon FX
 ---
 
 [Codon FX](http://www.codonfx.com) is a cross-platform framework for building maintainable applications. I use it for all of my .NET based applications.
