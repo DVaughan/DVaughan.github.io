@@ -17,7 +17,11 @@ public interface IDialogService
 }
 ```
 
-Consumers of the `IDialogService` retrieve the service implementation either via dependency injection (constructor or property), or by leveraging the IoC container directly. This is ordinarily done by calling the static `Dependency.Resolve<IDialogService>()` method. When a request to resolve the `IDialogService` arrives, the `FrameworkContainer` looks for a registered type implementing `IDialogService`. If it doesn't find one, it then turns to the `DefaultTypeName` and `DefaultType` attributes to located the implementation. In the case of the `IDialogService` it probes for the implementation using the fully qualified type name *Codon.DialogModel.DialogService, Codon.Platform*. Notice that the assembly name is *Codon.Platform*. Codon uses this assembly name for all of its platform specific core assemblies. Thus making it easy to reference types in, for example, XAML regardless of what platform the application is running on.
+Consumers of the `IDialogService` retrieve the service implementation either via dependency injection (constructor or property), or by leveraging the IoC container directly. This is ordinarily done by calling the static `Dependency.Resolve<IDialogService>()` method. 
+
+When a request to resolve the `IDialogService` arrives, the `FrameworkContainer` looks for a registered type implementing `IDialogService`. If it doesn't find one, it then turns to the `DefaultTypeName` and `DefaultType` attributes to locate the implementation. In the case of the `IDialogService` it probes for the implementation using the fully qualified type name *Codon.DialogModel.DialogService, Codon.Platform*. Notice that the assembly name is *Codon.Platform*. Codon uses this assembly name for all of its platform specific core assemblies. Thus making it easy to reference types in, for example, XAML regardless of what platform the application is running on.
+
+> **NOTE:** The same convention used by the *Codon.Platform* assemblies is also used by the platform specific Extras assemblies; platform specific Extras assemblies are all named *Codon.Extras.Platform*.
 
 > **NOTE:** When set to `true` the `Singleton` property of the `DefaultType` and `DefaultTypeName` attributes indicate to the IoC container that only one instance of the specified mapped type should be created, which is reused for all subsequent requests. When `false`, the IoC container creates a new instance of the default type upon each request. The default value of the `Singleton` property is true.
 
