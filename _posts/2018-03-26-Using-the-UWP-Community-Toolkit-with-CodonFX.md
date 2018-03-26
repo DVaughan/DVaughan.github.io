@@ -1,6 +1,6 @@
 ---
 categories: Codon
-title: Using the UWP Community Toolkit with Codon FX
+title: Combining the UWP Community Toolkit with Codon FX
 ---
 
 [//]: # (TOC Begin)
