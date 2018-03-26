@@ -1,7 +1,6 @@
 ---
 categories: Codon
 title: Using the UWP Community Toolkit with Codon FX
-published: false
 ---
 
 [//]: # (TOC Begin)
@@ -81,7 +80,7 @@ The UWP Community Toolkit contains an in-app notification component. You use it 
 </Page>
 ```
 
-Now, while I don't particularly care for this approach, in that I'd prefer to see the control live independently from the page, placed dynamically in the visual tree. But, for this example, I'm going to live with it.
+While I'm not so keen on the approach that `InAppNotification` takes, in that I'd prefer to see the control live independently from the page, placed dynamically in the visual tree, for this example I'm going to live with it.
 
 With the `InAppNotification` element on the page you can then call the `InAppNotification`'s `Show` method; passing in the text to display and the duration before it is hidden again.
 
