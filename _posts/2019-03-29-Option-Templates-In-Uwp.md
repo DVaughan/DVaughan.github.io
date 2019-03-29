@@ -4,19 +4,19 @@ title: Option Templates in UWP
 published: false
 ---
 
-# Introduction
+## Introduction
 
 Just about every app needs a settings screen. A lot of developers choose to simply build-out static UI; hard-wiring buttons and text fields to a setting backing store. If one does this, however, eventually, as the number of settings grows, technical debt increases; making refactoring your settings screen into categories, or changing how the settings are stored or displayed, evermore difficult.
 
-That's why I built an options system into CodonFX, which integrates with an settings system and an isolated storage backing store, which can be swapped out for a SQLite backing store.
+That's why I built an options system into [CodonFX](http://codonfx.com/), which integrates with an settings system and an isolated storage backing store, which can be swapped out for a SQLite backing store.
 The options system in Codon has probably saved me months of development time, and allowed me to do some pretty neat things with little effort, such as exporting and importing options. 
 
-# Adding Options
+## Adding Options
 
 With the Codon options system, a single line of code can be used to materialize an option on an option screen that writes itself to a backing store. See the following:
 
 ```cs
-generalOptions.Add(new BooleanUserOption(() => "Boolean 1 title", "Boolean1Key", () => boolean1DefaultValue));
+generalOptions.Add(new BooleanUserOption(() => "Boolean 1 title", "Boolean1Key", () => false));
 ```
 
 Here we create a `BooleanUserOption`, which is rendered as a switch on the options screen, and automatically writes its value to Codon's `ISettingsService` using the specified string key. The title for the option is a lambda expression, which allows you to easily localize it, so that if the UI language changes the title will be displayed in the correct language.
@@ -44,13 +44,13 @@ There are others that are used to present settings in different ways, including:
 
 You can, of course, create custom `IUserOption` classes, to suite the needs of your application.
 
-# Sample Overview
+## Sample Overview
 
 I've put together a [small sample for UWP](https://github.com/CodonFramework/Samples/tree/master/Source/OptionsSample) to demonstrate it in a UWP app. Codon is cross-platform, and you can see the option's system in action in apps such as [Surfy Browser for Android](https://play.google.com/store/apps/details?id=com.outcoder.browser).
 
 In the sample you see the projects: a UWP app project and a .NET Standard class library. The user options system is located in the Codon.Extras.Core NuGet package, which is referenced by the class library. The UWP app project references the package NuGet Codon.Extras.Uwp.
 
-# Exploring the .NET Standard Library
+## Exploring the .NET Standard Library
 
 The class library contains various classes including a `Bootstrapper` class, whose `Run` method is called when the app starts. 
 
@@ -148,7 +148,7 @@ public class Bootstrapper
 }
 ```
 
-# Rendering Options in UWP
+## Rendering Options in UWP
 
 The `OptionsViewModel` class, in the class library project, contains a `Groupings` property, which retrieves the `UserOptionGroupings` from the `IUserOptionsService`, like so:
 
@@ -288,7 +288,11 @@ Back in the *OptionsPage.xml* file we see that options are rendered within a `Li
 </ListView>
 ```
 
-# Conclusion
+The sample app displays its options as shown in the following figure:
+
+![Options Sample App](/assets/images/2019-03-29_AppScreenShot.png)
+
+## Conclusion
 
 An app's functionality grows and changes over time. When building a settings screen for your app, it's prudent to engineer it so that you can easily add and remove settings from the screen without having to spend time re-working the user interface. One way to achieve that is by using a third-party framework like Codon FX, which allows you to add a new user option to your app with a single line of code.
 
