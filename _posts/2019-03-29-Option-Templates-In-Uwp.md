@@ -4,7 +4,6 @@ title: Option Templates in UWP
 published: false
 ---
 
-
 # Introduction
 
 Just about every app needs a settings screen. A lot of developers choose to simply build-out static UI; hard-wiring buttons and text fields to a setting backing store. If one does this, however, then eventually, as the number of settings grows, technical debt increases; making refactoring your settings screen into categories, or changing how the settings are stored or displayed, evermore difficult.
@@ -196,6 +195,104 @@ We use a custom template selector to determine the `DataTemplate` to use for eac
 </Page.Resources>
 ```
 
-`Option`
+The `OptionTemplateSelector` has a `Templates` property that is bound to a resource located in App.xaml. See Listing x. 
 
+The `NamedTemplateCollection` includes all the templates, used to display each user option. There is a *String* template and a *Boolean* template. The names *String* and *Boolean* map to the `TemplateName` properties of the `StringUserOption` and the `BooleanUserOption` class respectively.
+
+> **NOTE:** You can override the template used by a user option by setting its `TemplateName` property.
+
+**Listing x.** NamedTemplateCollection element
+```xml
+<local:NamedTemplateCollection x:Key="OptionTemplateCollection">
+	<local:NamedTemplate Name="String">
+		<local:NamedTemplate.DataTemplate>
+			<DataTemplate>
+				<TextBox 
+					Header="{Binding UserOption.Title, Mode=OneWay}" 
+					Text="{Binding Setting, Mode=TwoWay}" 
+					Style="{StaticResource OptionBox}" />
+			</DataTemplate>
+		</local:NamedTemplate.DataTemplate>
+	</local:NamedTemplate>
+	<local:NamedTemplate Name="Boolean">
+		<local:NamedTemplate.DataTemplate>
+			<DataTemplate>
+				<ToggleSwitch 
+					Header="{Binding UserOption.Title, Mode=OneWay}" 
+					IsOn="{Binding Setting, Mode=TwoWay}" 
+					Margin="{StaticResource OptionItemMargin}" />
+			</DataTemplate>
+		</local:NamedTemplate.DataTemplate>
+	</local:NamedTemplate>
+</local:NamedTemplateCollection>
+```
+
+The custom template selector is named `OptionTemplateSelector` and it sub-classes `Windows.UI.Xaml.Controls.DataTemplateSelector`. See Listing x.
+
+The `SelectTemplateCore` method attempts to retrieve a template whose name matches that of the `TemplateName` property of the `IUserOption`. A cache, which is a `Dictionary<string, NamedTemplate>` is used for efficient O(1) retrieval of templates.
+
+**Listing x.** OptionTemplateSelector class
+```cs
+public class OptionTemplateSelector : DataTemplateSelector
+{
+	public NamedTemplateCollection Templates { get; set; }
+
+	IDictionary<string, NamedTemplate> cache { get; set; }
+
+	void InitTemplateCollection()
+	{
+		cache = Templates?.ToDictionary(x => x.Name) 
+							?? new Dictionary<string, NamedTemplate>();
+	}
+
+	protected override DataTemplate SelectTemplateCore(
+					object item, DependencyObject container)
+	{
+		if (cache == null)
+		{
+			InitTemplateCollection();
+		}
+
+		if (item != null)
+		{
+			var readerWriter = (IUserOptionReaderWriter)item;
+			var templateName = readerWriter.UserOption.TemplateName;
+
+			cache.TryGetValue(templateName, out NamedTemplate keyedTemplate);
+			
+			if (keyedTemplate != null)
+			{
+				return keyedTemplate.DataTemplate;
+			}
+		}
+
+		DataTemplate result = base.SelectTemplateCore(item, container);
+		return result;
+	}
+}
+```
+
+Back in the *OptionsPage.xml* file we see that options are rendered within a `ListView`. See Listing x. The `ListView` is bound to the `CollectionViewSource` to retrieve its option groupings, and  `OptionTemplateSelector` retrieves the `DataTemplate` objects for each option.
+
+**Listing x.** Options are rendered in a ListView
+```xml
+<ListView ItemsSource="{Binding Source={StaticResource optionsViewSource}}"
+		ItemTemplateSelector="{StaticResource optionTemplateSelector}"
+		SelectionMode="None">
+	<ListView.ItemContainerStyle>
+		<Style TargetType="ListViewItem">
+			<Setter Property="HorizontalContentAlignment" Value="Stretch" />
+		</Style>
+	</ListView.ItemContainerStyle>
+</ListView>
+```
+
+# Conclusion
+
+An app's functionality grows and changes over time. When building a settings screen for your app, it's prudent to engineer it so that you can easily add and remove settings from the screen without having to spend time re-working the user interface. One way to achieve that is by using a third-party framework like Codon FX, which allows you to add a new user option to your app with a single line of code.
+
+In this article you've seen how to configure a .NET Standard project and a UWP app to use Codon FX. You looked at defining an `AppSettings` class containing settings used throughout your app, and at exposing a subset of those settings as user options.
+You saw how to create `DataTemplate` elements for user options, and at consuming a collection of data templates to render each user option on a settings screen.
+
+I hope you find this article useful. If so, then I'd appreciate it if you would leave feedback below. 
 * [UWP Options Sample on GitHub](https://github.com/CodonFramework/Samples/tree/master/Source/OptionsSample)
