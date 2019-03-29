@@ -6,7 +6,7 @@ published: false
 
 # Introduction
 
-Just about every app needs a settings screen. A lot of developers choose to simply build-out static UI; hard-wiring buttons and text fields to a setting backing store. If one does this, however, then eventually, as the number of settings grows, technical debt increases; making refactoring your settings screen into categories, or changing how the settings are stored or displayed, evermore difficult.
+Just about every app needs a settings screen. A lot of developers choose to simply build-out static UI; hard-wiring buttons and text fields to a setting backing store. If one does this, however, eventually, as the number of settings grows, technical debt increases; making refactoring your settings screen into categories, or changing how the settings are stored or displayed, evermore difficult.
 
 That's why I built an options system into CodonFX, which integrates with an settings system and an isolated storage backing store, which can be swapped out for a SQLite backing store.
 The options system in Codon has probably saved me months of development time, and allowed me to do some pretty neat things with little effort, such as exporting and importing options. 
@@ -42,13 +42,13 @@ There are others that are used to present settings in different ways, including:
 
 `RangeUserOption` can be used to present a slider to the user, for writing a double or int value to the backing store.
 
-And, of course, you can create custom `IUserOption` classes, to suite the needs of your application.
+You can, of course, create custom `IUserOption` classes, to suite the needs of your application.
 
 # Sample Overview
 
 I've put together a [small sample for UWP](https://github.com/CodonFramework/Samples/tree/master/Source/OptionsSample) to demonstrate it in a UWP app. Codon is cross-platform, and you can see the option's system in action in apps such as [Surfy Browser for Android](https://play.google.com/store/apps/details?id=com.outcoder.browser).
 
-In the sample you see the projects: a UWP app project and a .NET Standard class library. The user options system is located in the Codon.Extras.Core NuGet package, which is referenced by the class library. The UWP app project references the NuGet Codon.Extras.Uwp package.
+In the sample you see the projects: a UWP app project and a .NET Standard class library. The user options system is located in the Codon.Extras.Core NuGet package, which is referenced by the class library. The UWP app project references the package NuGet Codon.Extras.Uwp.
 
 # Exploring the .NET Standard Library
 
@@ -58,7 +58,7 @@ While not absolutely necessary, the `AppSettings` class has strongly typed prope
 
 The partial class located in *AppSettings.UserOptions.cs* is responsible for registering user options that are presented on the `OptionsPage`. Generally speaking, the user options represent a subset of the settings. 
 
-The `ConfigureUserOptions` method of the `AppSettings` class, requires the `IUserOptionsService`. See Listing x. 
+The `ConfigureUserOptions` method of the `AppSettings` class, requires the `IUserOptionsService`. See Listing 1. 
 
 The `userRoles` parameter is provided just to demonstrate how you might display a different set of options depending on the privileges of the user. This would be more applicable for an enterprise scenario. I do this in one of my apps, and you may not need it.
 
@@ -70,7 +70,7 @@ You can specify a template for the option by setting its `TemplateFunc` property
 
 For more information see the `UserOptionBase` implementations.
 
-**Listing x.** `AppSettings.ConfigureUserOptions` method.
+**Listing 1.** `AppSettings.ConfigureUserOptions` method.
 ```cs
 partial class AppSettings
 {
@@ -91,10 +91,11 @@ partial class AppSettings
 
 I mentioned that the `AppSettings` class is not really necessary. But I like to use it so I can easily refactor the setting names without fear of breaking something.
 
-For completeness I'd like to mention that I use a Resharper live template for defining a setting. See Listing x. *$SettingName$* and *$Type$* are the only two editable values. *$SettingName$* is defined as 'Suggest name for a variable' in the property grid for the template. *$Type$* is set to 'Guess type expected at this point.'
+For completeness I'd like to mention that I use a Resharper live template for defining a setting. See Listing 2. *$SettingName$* and *$Type$* are the only two editable values. *$SettingName$* is defined as 'Suggest name for a variable' in the property grid for the template. *$Type$* is set to 'Guess type expected at this point.'
 
 Depending on where you define your `AppSettings` class, you may want to alter the visibility of the setting name and setter from `private` to `internal` or `public`.
 
+**Listing 2.** Resharper Live Template for a Setting
 ```cs
 public const string $SettingName$Key = "$SettingName$";
 static $Type$ $SettingNameLower$DefaultValue = $DefaultValue$;
@@ -123,7 +124,7 @@ protected override void OnLaunched(LaunchActivatedEventArgs e)
 ```
 Sometimes your bootstrapper may need to go off and perform some asynchronous activity, in which case you'll want to make the `Run` method `async`, and handle errors appropriately.
 
-The `Bootstrapper` class, registers the `AppSettings` class as a singleton. See Listing x.
+The `Bootstrapper` class, registers the `AppSettings` class as a singleton. See Listing 3.
 
 > **TIP:**Depending on the needs of your app, you may need to implement a platform specific bootstrapper, for each of your platforms. I usually do that, and have the platform-specific bootstrappers call Run on the non-platform-specific bootstrapper.
 
@@ -133,7 +134,7 @@ In case you're interested in the Codon framework's internals, `FrameworkContaine
 
 We could configure the user options when the `AppSettings` class is instantiated, which would allow us to pass the `IUserOptionsService` using DI, but I chose to use an explicit method call since we might wish to post-pone configuring the user options to optimize app start time. 
 
-**Listing x.** Bootstrapper class.
+**Listing 3.** Bootstrapper class.
 ```cs
 public class Bootstrapper
 {
@@ -147,7 +148,7 @@ public class Bootstrapper
 }
 ```
 
-# Rendering Options
+# Rendering Options in UWP
 
 The `OptionsViewModel` class, in the class library project, contains a `Groupings` property, which retrieves the `UserOptionGroupings` from the `IUserOptionsService`, like so:
 
@@ -156,11 +157,11 @@ public IUserOptionGroupings Groupings =>
 			Dependency.Resolve<IUserOptionsService>().UserOptionGroupings;
 ```
 
-The `OptionsPage` class exposes an instance of the `OptionsViewModel` via the IoC container, as shown in Listing x.
+The `OptionsPage` class exposes an instance of the `OptionsViewModel` via the IoC container, as shown in Listing 4.
 
 We use both `x:Bind` and `x:Binding` expression on the XAML page, and thus the `OptionsViewModel` instance is exposed both as a property and set as the `DataContext` of the page. In case you're not aware, `x:Bind` context is a property of the Page, whereas the good old `x:Binding` expression uses the Page's `DataContext` when resolving values. 
 
-**Listing x.** OptionsPage class
+**Listing 4.** OptionsPage class
 ```cs
 public sealed partial class OptionsPage : Page
 {
@@ -178,11 +179,11 @@ public sealed partial class OptionsPage : Page
 }
 ```
 
-Within the OptionsPage.xaml file, you see that the page resources include a `CollectionViewSource` declaration, whose `Source` property is bound to the view-model's `Groupings` property. See Listing x.
+Within the OptionsPage.xaml file, you see that the page resources include a `CollectionViewSource` declaration, whose `Source` property is bound to the view-model's `Groupings` property. See Listing 5.
 
 We use a custom template selector to determine the `DataTemplate` to use for each option in the `CollectionViewSource`.
 
-**Listing x.** OptionsPage Resources element
+**Listing 5.** OptionsPage Resources element
 ```xml
 <Page.Resources>
 	<CollectionViewSource x:Key="optionsViewSource"  
@@ -195,13 +196,13 @@ We use a custom template selector to determine the `DataTemplate` to use for eac
 </Page.Resources>
 ```
 
-The `OptionTemplateSelector` has a `Templates` property that is bound to a resource located in App.xaml. See Listing x. 
+The `OptionTemplateSelector` has a `Templates` property that is bound to a resource located in App.xaml. See Listing 6. 
 
 The `NamedTemplateCollection` includes all the templates, used to display each user option. There is a *String* template and a *Boolean* template. The names *String* and *Boolean* map to the `TemplateName` properties of the `StringUserOption` and the `BooleanUserOption` class respectively.
 
 > **NOTE:** You can override the template used by a user option by setting its `TemplateName` property.
 
-**Listing x.** NamedTemplateCollection element
+**Listing 6.** NamedTemplateCollection element
 ```xml
 <local:NamedTemplateCollection x:Key="OptionTemplateCollection">
 	<local:NamedTemplate Name="String">
@@ -227,11 +228,11 @@ The `NamedTemplateCollection` includes all the templates, used to display each u
 </local:NamedTemplateCollection>
 ```
 
-The custom template selector is named `OptionTemplateSelector` and it sub-classes `Windows.UI.Xaml.Controls.DataTemplateSelector`. See Listing x.
+The custom template selector is named `OptionTemplateSelector` and it sub-classes `Windows.UI.Xaml.Controls.DataTemplateSelector`. See Listing 7.
 
 The `SelectTemplateCore` method attempts to retrieve a template whose name matches that of the `TemplateName` property of the `IUserOption`. A cache, which is a `Dictionary<string, NamedTemplate>` is used for efficient O(1) retrieval of templates.
 
-**Listing x.** OptionTemplateSelector class
+**Listing 7.** OptionTemplateSelector class
 ```cs
 public class OptionTemplateSelector : DataTemplateSelector
 {
@@ -272,9 +273,9 @@ public class OptionTemplateSelector : DataTemplateSelector
 }
 ```
 
-Back in the *OptionsPage.xml* file we see that options are rendered within a `ListView`. See Listing x. The `ListView` is bound to the `CollectionViewSource` to retrieve its option groupings, and  `OptionTemplateSelector` retrieves the `DataTemplate` objects for each option.
+Back in the *OptionsPage.xml* file we see that options are rendered within a `ListView`. See Listing 8. The `ListView` is bound to the `CollectionViewSource` to retrieve its option groupings, and  `OptionTemplateSelector` retrieves the `DataTemplate` objects for each option.
 
-**Listing x.** Options are rendered in a ListView
+**Listing 8.** Options are rendered in a ListView
 ```xml
 <ListView ItemsSource="{Binding Source={StaticResource optionsViewSource}}"
 		ItemTemplateSelector="{StaticResource optionTemplateSelector}"
@@ -295,4 +296,5 @@ In this article you've seen how to configure a .NET Standard project and a UWP a
 You saw how to create `DataTemplate` elements for user options, and at consuming a collection of data templates to render each user option on a settings screen.
 
 I hope you find this article useful. If so, then I'd appreciate it if you would leave feedback below. 
+
 * [UWP Options Sample on GitHub](https://github.com/CodonFramework/Samples/tree/master/Source/OptionsSample)
