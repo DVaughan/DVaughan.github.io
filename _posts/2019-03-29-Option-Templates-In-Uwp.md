@@ -1,8 +1,19 @@
 ---
 categories: Codon
 title: Option Templates in UWP
-published: false
+published: true
 ---
+
+[//]: # (TOC Begin)
+* [Introduction](#introduction)
+* [Adding Options](#adding-options)
+* [Sample Overview](#sample-overview)
+* [Exploring the .NET Standard Library](#exploring-the.net-standard-library)
+* [Rendering Options in UWP](#rendering-options-in-uwp)
+* [Conclusion](#conclusion)
+
+[//]: # (TOC End)
+
 
 ## Introduction
 
@@ -130,9 +141,9 @@ The `Bootstrapper` class, registers the `AppSettings` class as a singleton. See 
 
 You may notice in the code that the `AppSettings` class requires an `ISettingsService` instance as a constructor parameter. Dependency injection is used to resolve the default instance, using the Codon frameworks default IoC container, the `FrameworkContainer` class. 
 
-In case you're interested in the Codon framework's internals, `FrameworkContainer` locates default type mappings using interface attributes, using Codon's `DefaultType` and `DefaultTypeName` attributes; or the .NET Standard `DefaultValueAttribute`. If you take a look at the [ISettingsService source](https://github.com/CodonFramework/Codon/blob/master/Source/Framework/Codon/SettingsModel/SettingsService/ISettingsService.cs), you see how it's decorated with both a `DefaultType` and a `DefaultTypeName` attribute. `DefaultTypeName` takes precedence, and is used to locate a platform specific implementation of the interface, if it exists.
+In case you're interested in the Codon framework's internals, `FrameworkContainer` locates default type mappings using interface attributes, using Codon's `DefaultType` and `DefaultTypeName` attributes; or the .NET Standard `DefaultValueAttribute`. If you take a look at the [ISettingsService source](https://github.com/CodonFramework/Codon/blob/master/Source/Framework/Codon/SettingsModel/SettingsService/ISettingsService.cs), you see how it's decorated with both a `DefaultType` and a `DefaultTypeName` attribute. `DefaultTypeName` takes precedence, and is used to locate a platform specific implementation of the interface, if it exists. If a type identified by `DefaultTypeName` can't be located, the container falls back to `DefaultType`.
 
-We could configure the user options when the `AppSettings` class is instantiated, which would allow us to pass the `IUserOptionsService` using DI, but I chose to use an explicit method call since we might wish to post-pone configuring the user options to optimize app start time. 
+We could configure the user options when the `AppSettings` class is instantiated, which would allow us to pass the `IUserOptionsService` using DI, but I chose to use an explicit method call since we might wish to postpone configuring the user options to optimize app start time. 
 
 **Listing 3.** Bootstrapper class.
 ```cs
@@ -159,7 +170,7 @@ public IUserOptionGroupings Groupings =>
 
 The `OptionsPage` class exposes an instance of the `OptionsViewModel` via the IoC container, as shown in Listing 4.
 
-We use both `x:Bind` and `x:Binding` expression on the XAML page, and thus the `OptionsViewModel` instance is exposed both as a property and set as the `DataContext` of the page. In case you're not aware, `x:Bind` context is a property of the Page, whereas the good old `x:Binding` expression uses the Page's `DataContext` when resolving values. 
+We use both `x:Bind` and `x:Binding` expression on the XAML page, and thus the `OptionsViewModel` instance is exposed both as a property and set as the `DataContext` of the page. In case you're not aware, the context of `x:Bind` is a property of the Page, whereas the good old `x:Binding` expression uses the Page's `DataContext` when resolving properties. 
 
 **Listing 4.** OptionsPage class
 ```cs
@@ -294,7 +305,7 @@ The sample app displays its options as shown in the following figure:
 
 ## Conclusion
 
-An app's functionality grows and changes over time. When building a settings screen for your app, it's prudent to engineer it so that you can easily add and remove settings from the screen without having to spend time re-working the user interface. One way to achieve that is by using a third-party framework like Codon FX, which allows you to add a new user option to your app with a single line of code.
+An app's functionality grows and changes over time. When building a settings screen for your app, it's prudent to engineer it so that you can easily add settings from the screen without having to spend time re-working the user interface. One way to achieve that is by using a third-party framework like Codon FX, which allows you to add a new user option to your app with a single line of code.
 
 In this article you've seen how to configure a .NET Standard project and a UWP app to use Codon FX. You looked at defining an `AppSettings` class containing settings used throughout your app, and at exposing a subset of those settings as user options.
 You saw how to create `DataTemplate` elements for user options, and at consuming a collection of data templates to render each user option on a settings screen.
