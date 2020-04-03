@@ -30,7 +30,7 @@ public static class Extensions
         {
             return collection.Count < 1;
         }
-        return enumerable.Any();
+        return !enumerable.Any();
     }
 
     /// <summary>
