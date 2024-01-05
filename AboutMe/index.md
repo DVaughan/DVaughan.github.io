@@ -13,7 +13,7 @@ redirect_from:
 [Contact](/Contact/)
 
 <iframe src="https://www.codeproject.com/members/flair/187345" 
-        height="150" width="250" scrolling="no" frameborder="no"></iframe>
+        height="250" width="250" scrolling="no" frameborder="no"></iframe>
 
 <br />
 <br />
