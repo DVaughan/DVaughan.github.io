@@ -20,7 +20,8 @@ redirect_from:
 
 I publish most of my articles over at [CodeProject](https://www.codeproject.com/Articles/DanielVaughan#Article)  
 Here are a few:
-
+* [Quantum Messaging, MSDN](https://learn.microsoft.com/en-us/archive/msdn-magazine/2019/september/quantum-computing-quantum-messaging-with-qsharp-and-blazor)
+* [Quantum Primer](https://www.codeproject.com/Articles/5155638/Quantum-Computation-Primer-Part-1)
 * [Perceptor: An artificially intelligent guided navigation system for WPF](https://www.codeproject.com/Articles/34383/Perceptor-An-artificially-intelligent-guided-navig)
 * [Legion: Build your own virtual super computer with Silverlight](https://www.codeproject.com/Articles/22433/Legion-Build-your-own-virtual-super-computer-with)
 * [Calcium: A modular application toolset leveraging PRISM - Part 1](https://www.codeproject.com/Articles/36852/Calcium-A-modular-application-toolset-leveraging-P)
