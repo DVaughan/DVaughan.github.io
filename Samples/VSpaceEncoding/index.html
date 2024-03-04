@@ -39,7 +39,11 @@
             }
             .textBox {
                 width: 100%;
-                height: 150px;
+                height: 100px;
+            }
+            .encodedBox {
+                width: 100%;
+                height: 100px;
             }
             label {
                 display: inline-block;
@@ -78,7 +82,7 @@
         <label for="inputText">Text to be encoded:</label>
         <textarea class="textBox" id="inputText" oninput="encodeTextAndDisplay()" placeholder="Enter text here..." rows="4" cols="50"></textarea>
         <label for="encodedText">Encoded text:</label>
-        <textarea class="textBox" id="encodedText" oninput="onTextEncoded()" rows="4" cols="50"></textarea>
+        <textarea class="encodedBox" id="encodedText" oninput="onTextEncoded()" rows="4" cols="50"></textarea>
         <button id="copyButton" onclick="onCopyButtonClick()">Copy to Clipboard</button>
         <button id="pasteButton" onclick="onPasteButtonClick()">Paste</button>
         <br />
