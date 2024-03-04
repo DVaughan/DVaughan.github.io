@@ -1,0 +1,90 @@
+<html>
+    <head>
+        <script src="VSpaceEncoding.js"></script>
+        <script>
+            var asciiVSpaceEncoder = new AsciiVSpaceEncoder();
+
+            function encodeTextAndDisplay() {
+                var inputText = document.getElementById('inputText').value;
+                var encodedText = asciiVSpaceEncoder.encode(inputText);
+                document.getElementById('encodedText').value = encodedText;
+
+                onTextEncoded();
+            }
+
+            function onTextEncoded() {
+                var encodedText = document.getElementById('encodedText').value;
+                var text = asciiVSpaceEncoder.decode(encodedText);
+                document.getElementById('decodedText').value = text;
+            }
+
+            function onCopyButtonClick() {
+                var encodedText = document.getElementById('encodedText').value;
+
+                navigator.clipboard.writeText(encodedText);
+                alert('Text copied to clipboard');
+            }
+
+            function onPasteButtonClick() {
+                navigator.clipboard.readText()
+                    .then(text => {
+                        document.getElementById('encodedText').value = text;
+                        onTextEncoded();
+                    })
+            }
+        </script>
+        <style>
+            body {
+                font-family: Arial, sans-serif;
+            }
+            .textBox {
+                width: 100%;
+                height: 150px;
+            }
+            label {
+                display: inline-block;
+                margin-top: 30px;
+            }
+            #footer {
+                display: inline-block;
+                margin-top: 30px;
+            }
+        </style>
+    </head>
+    <body>
+        <div>
+            <h2>VSpace Encoding Example</h2>
+            <p>
+                <ol>
+                    <li>
+                        Write some text in the `Text to be encoded` text box.
+                        That text is encoded as Ascii whitespace characters and placed in the `Encoded text` text box.
+                        Whatever goes into the 'Encoded text' is automatically decoded into the `Decoded text` box.
+                        <br />
+                        <blockquote>
+                            <em>The 'Encoded text' box may look empty. It isn't.</em><br />
+                        </blockquote>
+
+                    </li>
+                    <li>Copy `Encoded text` using the `Copy to Clipboard` button.</li>
+                    <li>Change the text in the `Text to be encoded` box.</li>
+                    <li>
+                        Paste the clipboard using the `Paste` button, and the `Decoded text`
+                        should change to reflect the new value in the `Encoded text` box.
+                    </li>
+                </ol>
+            </p>
+        </div>
+        <label for="inputText">Text to be encoded:</label>
+        <textarea class="textBox" id="inputText" oninput="encodeTextAndDisplay()" placeholder="Enter text here..." rows="4" cols="50"></textarea>
+        <label for="encodedText">Encoded text:</label>
+        <textarea class="textBox" id="encodedText" oninput="onTextEncoded()" rows="4" cols="50"></textarea>
+        <button id="copyButton" onclick="onCopyButtonClick()">Copy to Clipboard</button>
+        <button id="pasteButton" onclick="onPasteButtonClick()">Paste</button>
+        <br />
+        <label for="decodedText">Decoded text:</label>
+        <textarea class="textBox" id="decodedText" rows="4" cols="50"></textarea>
+
+        <div id="footer">For more information see the <a href="https://github.com/DVaughan/VSpaceEncoding">VSpace Encoding repo</a>.</div>
+    </body>
+</html>
