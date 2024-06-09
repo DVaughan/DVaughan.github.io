@@ -1,6 +1,6 @@
 ---
 categories: SQL
-title: Find tables named with keywords
+title: Find Tables with Keyword Names
 published: true
 ---
 
