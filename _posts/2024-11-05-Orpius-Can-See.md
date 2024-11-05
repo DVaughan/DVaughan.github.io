@@ -4,8 +4,6 @@ title: Orpius can see!
 published: true
 ---
 
-## Orpius can see!
-
 Orpius now supports image retrieval and analysis! 
 
 Orpius can download images, analyze them, perform activities based on what it sees.
