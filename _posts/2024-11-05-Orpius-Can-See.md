@@ -1,6 +1,6 @@
 ---
 categories: Orpius
-title: Orpius can see!
+title: Orpius can see
 published: true
 ---
 
