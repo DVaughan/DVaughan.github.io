@@ -2,6 +2,10 @@
 ---
 @import "{{ site.theme }}";
 
+#project_title {
+	font-size:1.2em;
+}
+
 div .content {
 	margin-bottom: 5em;
 }
