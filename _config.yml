@@ -1,5 +1,5 @@
 theme: jekyll-theme-slate
-name: Daniel Vaughan
+name: Daniel's Blog
 markdown: kramdown
 highlighter: rouge
 default_lang: csharp
