@@ -99,7 +99,7 @@ where webhooks can be used to trigger workflows within Orpius.
 This feature will bring in support for movement activation for cams. 
 I knew that webhooks would be an eventuality down the track,
 but seeing how useful it would be with the real time streaming support, 
-it motivated to get it in place now. 
+it motivated me to get it in place now. 
 It could make for a great security/monitoring system. What do you think?
 
 Want more info, add a comment below or visit Orpius.com. 
