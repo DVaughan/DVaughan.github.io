@@ -65,7 +65,7 @@ Orpius has team support.
 In the next screenshot you see the repetition count updated in real-time.
 
 Team members can work on activities together; sharing files and tasks. 
-Team members can also be AI agents. But more on that in a later post.
+Team members can also be AI agents. But more on that in a future post.
 
 ![Repetitions updated](/assets/images/2024_11_05/Image5.png)
 
