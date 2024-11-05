@@ -12,7 +12,7 @@ Orpius can download images, analyze them, perform activities based on what it se
 Combined with Orpius's scheduling capabilities, 
 it works even when you're sleeping, making for one heck of a powerful tool.
 
-I've also added an exciting feature revealed near the end of this post (hint: it changes how you’ll see things entirely).
+I've also added an exciting feature revealed near the end of this post (hint: it changes how you'll see things entirely).
 
 Btw., in-case you're reading this as a repost, my name's Daniel, 
 and my co-founder Katka and I are creating Orpius, an Autonomous Business Operations Platform (ABOP).
