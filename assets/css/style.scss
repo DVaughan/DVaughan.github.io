@@ -6,6 +6,10 @@
 	font-size:1.2em;
 }
 
+h1, h2, h3, h4, h5, h6 {
+	color: #444444;
+}
+
 div .content {
 	margin-bottom: 5em;
 }
@@ -37,6 +41,7 @@ div .content {
 	margin-right: .5em;
 	font-size: 1.1em;
 	font-weight: bold;
+	color: white;
 }
 
 #MainButtons a:first-child {
