@@ -38,13 +38,13 @@ Orpius is able to leverage the analysis information across all its plugins; web 
 web page downloading, scheduling, team management, notifications; 
 and for anything we can't think of up front, it can compile and execute its own code in an isolated environment.
 
-In the next screenshot, I ask Orpius to analyze the image at 5-minute intervals.
+In the next screenshot, I ask Orpius to analyze the image at 5-minute intervals. 
 I ask it to email me the analysis each time. 
-Btw, Orpius runs in the cloud, so there's no need for Orpius Console to remain open. 
-
-In the following screenshot you see how the schedule item shows up in the Schedule view.
+You see how the schedule item shows up in the Schedule view. 
 When the schedule comes around, Orpius passes the task off to an AI agent, 
 which will do its thing.
+
+Btw, Orpius runs in the cloud, so there's no need for Orpius Console to remain open. 
 
 ![Schedule item added](/assets/images/2024_11_05/Image4.png)
 
