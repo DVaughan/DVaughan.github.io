@@ -7,7 +7,7 @@ published: true
 Orpius now supports image retrieval and analysis! 
 
 Orpius can download images, analyze them, perform activities based on what it sees.
-Combined with Orpius's scheduling capabilities, 
+Combined with the scheduling capabilities of Orpius, 
 it works even when you're sleeping, making for one heck of a powerful tool.
 
 I've also added an exciting feature revealed near the end of this post (hint: it changes how you'll see things entirely).
