@@ -25,7 +25,7 @@ so the user can see it too.
 
 ![Example image](/assets/images/2024_11_05/Image1.png)
 
-When I try this is ChatGPT, I see:
+When I try this in ChatGPT, I see:
 
 ![ChatGPT response](/assets/images/2024_11_05/ChatGptResponse.png)
 
