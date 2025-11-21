@@ -14,12 +14,9 @@ redirect_from:
 | [Windows Phone 8 Unleashed](http://www.amazon.com/gp/product/0672336898/ref=as_li_qf_sp_asin_il_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=0672336898&linkCode=as2&tag=danielvaughan-20) Published by SAMS | [Windows Phone 7.5 Unleashed](http://www.amazon.com/gp/product/0672336898/ref=as_li_qf_sp_asin_il_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=0672336898&linkCode=as2&tag=danielvaughan-20) Published by SAMS |
 
 
+## Articles &amp; Papers
 
-
-## Articles
-
-I publish most of my articles over at [CodeProject](https://www.codeproject.com/Articles/DanielVaughan#Article)  
-Here are a few:
+* [Distributed Agent Reasoning Across Independent Systems With Strict Data Locality](https://arxiv.org/abs/2511.16292)
 * [Quantum Messaging, MSDN](https://learn.microsoft.com/en-us/archive/msdn-magazine/2019/september/quantum-computing-quantum-messaging-with-qsharp-and-blazor)
 * [Quantum Primer](https://www.codeproject.com/Articles/5155638/Quantum-Computation-Primer-Part-1)
 * [Perceptor: An artificially intelligent guided navigation system for WPF](https://www.codeproject.com/Articles/34383/Perceptor-An-artificially-intelligent-guided-navig)
