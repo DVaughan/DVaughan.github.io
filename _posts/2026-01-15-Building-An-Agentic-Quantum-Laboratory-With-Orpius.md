@@ -1,5 +1,3 @@
-# Building an Agentic Quantum Laboratory with Orpius
-
 ## Introduction
 
 As frontier language models improve, AI agents are set to move further into the realm of scientific research. Multiple agents, working independenty, exploring scientific domains, offer the promise of greater speed of discovery. In addition, LLMs encode a vast amount of technical information that empowers humans to reach beyond the limits of their own education and experience.
@@ -126,26 +124,26 @@ The sidecar contains a single *app.py* python file. It's task is to call into qi
 
 ```python
 def run_job(qasm_text: str, shots: int, queue: mp.Queue) -> None:
-	install_signal_handlers()
-	apply_limits()
+    install_signal_handlers()
+    apply_limits()
 
-	try:
-		from qiskit import qasm3, transpile
-		from qiskit_aer import Aer
+    try:
+        from qiskit import qasm3, transpile
+        from qiskit_aer import Aer
 
-		circuit = qasm3.loads(qasm_text)
-		validate_circuit(circuit)
-		simulator = Aer.get_backend("aer_simulator")
+        circuit = qasm3.loads(qasm_text)
+        validate_circuit(circuit)
+        simulator = Aer.get_backend("aer_simulator")
 
-		# Keep optimisation low to avoid expensive transpilation.
-		compiled = transpile(circuit, simulator, optimization_level=0)
+        # Keep optimisation low to avoid expensive transpilation.
+        compiled = transpile(circuit, simulator, optimization_level=0)
 
-		result = simulator.run(compiled, shots=shots).result()
-		counts = result.get_counts()
+        result = simulator.run(compiled, shots=shots).result()
+        counts = result.get_counts()
 
-		queue.put({"ok": True, "counts": counts})
-	except Exception as ex:
-		queue.put({"ok": False, "error": build_error_payload(ex)})
+        queue.put({"ok": True, "counts": counts})
+    except Exception as ex:
+        queue.put({"ok": False, "error": build_error_payload(ex)})
 ```
 
 Incoming requests to the sidecar are placed in a queue. During execution we ensure that each job does not exceed a timeout. We also surface any errors back to the caller.
@@ -153,84 +151,84 @@ Incoming requests to the sidecar are placed in a queue. During execution we ensu
 ```python
 @app.post("/execute")
 async def execute(request: ExecuteRequest) -> Any:
-	if len(request.qasm) > MAX_QASM_CHARS:
-		raise HTTPException(status_code=413, detail="QASM program is too large.")
+    if len(request.qasm) > MAX_QASM_CHARS:
+        raise HTTPException(status_code=413, detail="QASM program is too large.")
 
-	if request.shots < 1 or request.shots > MAX_SHOTS:
-		raise HTTPException(
-			status_code=400,
-			detail=f"Shots must be between 1 and {MAX_SHOTS}."
-		)
+    if request.shots < 1 or request.shots > MAX_SHOTS:
+        raise HTTPException(
+            status_code=400,
+            detail=f"Shots must be between 1 and {MAX_SHOTS}."
+        )
 
-	async with semaphore:
-		queue = mp.SimpleQueue()
-		process = mp.Process(
-			target=run_job,
-			args=(request.qasm, request.shots, queue),
-			daemon=True
-		)
+    async with semaphore:
+        queue = mp.SimpleQueue()
+        process = mp.Process(
+            target=run_job,
+            args=(request.qasm, request.shots, queue),
+            daemon=True
+        )
 
-		start_time = time.monotonic()
-		process.start()
+        start_time = time.monotonic()
+        process.start()
 
-		# Poll without blocking the event loop.
-		while process.is_alive():
-			elapsed = time.monotonic() - start_time
-			if elapsed > TIMEOUT_SECONDS:
-				process.terminate()
-				process.join(timeout=1.0)
-			  
-				if process.is_alive():
-					process.kill()
-					process.join()
-		  
-				exit_code = process.exitcode
-				signal_name = get_signal_name_from_exit_code(exit_code)
+        # Poll without blocking the event loop.
+        while process.is_alive():
+            elapsed = time.monotonic() - start_time
+            if elapsed > TIMEOUT_SECONDS:
+                process.terminate()
+                process.join(timeout=1.0)
+              
+                if process.is_alive():
+                    process.kill()
+                    process.join()
+          
+                exit_code = process.exitcode
+                signal_name = get_signal_name_from_exit_code(exit_code)
 
-				raise HTTPException(
-					status_code=408,
-					detail={
-						"type": "Timeout",
-						"message": f"Simulation exceeded time limit ({TIMEOUT_SECONDS}s).",
-						"elapsedSeconds": elapsed,
-						"exitCode": exit_code,
-						"signal": signal_name,
-					}
-				)
+                raise HTTPException(
+                    status_code=408,
+                    detail={
+                        "type": "Timeout",
+                        "message": f"Simulation exceeded time limit ({TIMEOUT_SECONDS}s).",
+                        "elapsedSeconds": elapsed,
+                        "exitCode": exit_code,
+                        "signal": signal_name,
+                    }
+                )
 
-			await asyncio.sleep(0.05)
+            await asyncio.sleep(0.05)
 
-		process.join()
+        process.join()
 
-		if queue.empty():
-			exit_code = process.exitcode
-			signal_name = get_signal_name_from_exit_code(exit_code)
+        if queue.empty():
+            exit_code = process.exitcode
+            signal_name = get_signal_name_from_exit_code(exit_code)
 
-			raise HTTPException(
-				status_code=500,
-				detail={
-					"type": "WorkerCrashed",
-					"message": "Simulator worker exited without output."
-							   "This usually indicates a hard kill "
-							   "(CPU/memory limit) or a native crash.",
-					"exitCode": exit_code,
-					"signal": signal_name,
-					"elapsedSeconds": time.monotonic() - start_time,
-				}
-			)
+            raise HTTPException(
+                status_code=500,
+                detail={
+                    "type": "WorkerCrashed",
+                    "message": "Simulator worker exited without output."
+                               "This usually indicates a hard kill "
+                               "(CPU/memory limit) or a native crash.",
+                    "exitCode": exit_code,
+                    "signal": signal_name,
+                    "elapsedSeconds": time.monotonic() - start_time,
+                }
+            )
 
-		payload = queue.get()
+        payload = queue.get()
 
-		if not payload.get("ok", False):
-			error = payload.get("error") or {"type": "UnknownError", "message": "Unknown error."}
+        if not payload.get("ok", False):
+            error = payload.get("error") or {"type": "UnknownError", "message": "Unknown error."}
 
-			status_code = classify_http_status(error)
-			raise HTTPException(status_code=status_code, detail=error)
+            status_code = classify_http_status(error)
+            raise HTTPException(status_code=status_code, detail=error)
 
-		return {
-			"counts": payload["counts"],
-			"elapsedSeconds": time.monotonic() - start_time
-		}
+        return {
+            "counts": payload["counts"],
+            "elapsedSeconds": time.monotonic() - start_time
+        }
 ```
 
 ## Managing Multiple Sidecars in a Visual Studio Solution
@@ -241,7 +239,7 @@ My intention is to build out more custom tools that will probably require sideca
 
 The csproj file is shown below. I explicitly exclude everything from compilation.
 
-```
+```xml
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <TargetFramework>net8.0</TargetFramework>
@@ -331,50 +329,51 @@ The `ExecuteResponse.Counts` dictionary holds the resulting qubit states, or an 
 ```cs
 sealed class ExecuteRequest
 {
-	public required string Qasm { get; init; }
+    public required string Qasm { get; init; }
 
-	public int Shots { get; init; } = 1024;
+    public int Shots { get; init; } = 1024;
 }
 
 sealed class ExecuteResponse
 {
-	public Dictionary<string, int>? Counts { get; init; }
+    public Dictionary<string, int>? Counts { get; init; }
 }
 ```
 
 To call the sidecar the `QuantumSimulatorClient` has the following `ExecuteAsync` method:
 
 ```cs
-public async Task<Dictionary<string, int>> ExecuteAsync(string openQasm3Program,
-														int shots,
-														CancellationToken token)
+public async Task<Dictionary<string, int>> ExecuteAsync(
+                                               string openQasm3Program,
+                                               int shots,
+                                               CancellationToken token)
 {
-	var response = await httpClient.PostAsJsonAsync(
-					   "/execute",
-					   new ExecuteRequest
-					   {
-						   Qasm  = openQasm3Program,
-						   Shots = shots
-					   },
-					   cancellationToken: token);
+    var response = await httpClient.PostAsJsonAsync(
+                       "/execute",
+                       new ExecuteRequest
+                       {
+                           Qasm  = openQasm3Program,
+                           Shots = shots
+                       },
+                       cancellationToken: token);
 
-	if (!response.IsSuccessStatusCode)
-	{
-		var errorText = await response.Content.ReadAsStringAsync(token);
-		throw new InvalidOperationException(
-			$"Quantum simulator call failed: {(int)response.StatusCode} {errorText}");
-	}
+    if (!response.IsSuccessStatusCode)
+    {
+        var errorText = await response.Content.ReadAsStringAsync(token);
+        throw new InvalidOperationException(
+            $"Quantum simulator call failed: {(int)response.StatusCode} {errorText}");
+    }
 
-	var payload = await response.Content.ReadFromJsonAsync<ExecuteResponse>(
+    var payload = await response.Content.ReadFromJsonAsync<ExecuteResponse>(
                            cancellationToken: token);
 
-	if (payload?.Counts is null)
-	{
-		throw new InvalidOperationException(
-			"Quantum simulator response was empty or invalid.");
-	}
+    if (payload?.Counts is null)
+    {
+        throw new InvalidOperationException(
+            "Quantum simulator response was empty or invalid.");
+    }
 
-	return payload.Counts;
+    return payload.Counts;
 }
 ```
 
@@ -391,13 +390,13 @@ The `QuantumQasm3Tool` leverages the `QuantumSimulatorClient`, which is injected
 [Tool]
 public class QuantumQasm3Tool
 {
-	readonly QuantumSimulatorClient quantumSimulatorClient;
+    readonly QuantumSimulatorClient quantumSimulatorClient;
 
-	public QuantumQasm3Tool(QuantumSimulatorClient quantumSimulatorClient)
-	{
-		this.quantumSimulatorClient = quantumSimulatorClient
-			?? throw new ArgumentNullException(nameof(quantumSimulatorClient));
-	}
+    public QuantumQasm3Tool(QuantumSimulatorClient quantumSimulatorClient)
+    {
+        this.quantumSimulatorClient = quantumSimulatorClient
+            ?? throw new ArgumentNullException(nameof(quantumSimulatorClient));
+    }
     ...
 ```
 > **TIP:** If you wish, you could place the client code directly in the `Tool`, but I chose to build this out in stages: client first, get that working, then expose it via a Tool class.
@@ -408,43 +407,43 @@ The API surface of this method and parameters is automatically provided to the O
 
 ```cs
 [ToolMethod(Description
-	= "Executes an OpenQASM 3 program on the quantum simulator"
-	  + " and returns measurement counts. "
-	  + "'Shots' controls the number of samples taken.")]
+    = "Executes an OpenQASM 3 program on the quantum simulator"
+      + " and returns measurement counts. "
+      + "'Shots' controls the number of samples taken.")]
 public async Task<ExecuteQasm3ProgramResponse> ExecuteQasm3Program(
-	ExecuteQasm3ProgramRequest request,
-	ICombinedContext context)
+    ExecuteQasm3ProgramRequest request,
+    ICombinedContext context)
 {
-	if (request is null)
-	{
-		throw new ArgumentNullException(nameof(request));
-	}
+    if (request is null)
+    {
+        throw new ArgumentNullException(nameof(request));
+    }
 
-	if (string.IsNullOrWhiteSpace(request.OpenQasm3Program))
-	{
-		throw new RpcException(new Status(
-			StatusCode.InvalidArgument,
-			"OpenQasm3Program is required and cannot be empty."));
-	}
+    if (string.IsNullOrWhiteSpace(request.OpenQasm3Program))
+    {
+        throw new RpcException(new Status(
+            StatusCode.InvalidArgument,
+            "OpenQasm3Program is required and cannot be empty."));
+    }
 
-	if (request.Shots <= 0)
-	{
-		throw new RpcException(new Status(
-			StatusCode.InvalidArgument,
-			"Shots must be greater than 0."));
-	}
+    if (request.Shots <= 0)
+    {
+        throw new RpcException(new Status(
+            StatusCode.InvalidArgument,
+            "Shots must be greater than 0."));
+    }
 
-	CancellationToken token = GetCancellationToken(context);
+    CancellationToken token = GetCancellationToken(context);
 
-	Dictionary<string, int> counts
-		= await quantumSimulatorClient.ExecuteAsync(
-										  request.OpenQasm3Program, request.Shots, token)
-									  .ConfigureAwait(false);
+    Dictionary<string, int> counts
+        = await quantumSimulatorClient.ExecuteAsync(
+                                          request.OpenQasm3Program, request.Shots, token)
+                                      .ConfigureAwait(false);
 
-	return new ExecuteQasm3ProgramResponse
-	{
-		Counts = counts
-	};
+    return new ExecuteQasm3ProgramResponse
+    {
+        Counts = counts
+    };
 }
 ```
 
@@ -455,26 +454,26 @@ Any business logic you'd like to have an agent be able to call into can be rolle
 ```cs
 public class ExecuteQasm3ProgramRequest
 {
-	[ToolProperty(
-		Required = true,
-		Description
-			= """
-			  OpenQASM 3 program text to execute.
+    [ToolProperty(
+        Required = true,
+        Description
+            = """
+              OpenQASM 3 program text to execute.
                 (content trimmed for brevity)
-			  """)]
-	public required string OpenQasm3Program { get; set; }
+              """)]
+    public required string OpenQasm3Program { get; set; }
 
-	[ToolProperty(
-		Description = "Number of shots (samples) to run. Defaults to 1024.")]
-	public int Shots { get; set; } = 1024;
+    [ToolProperty(
+        Description = "Number of shots (samples) to run. Defaults to 1024.")]
+    public int Shots { get; set; } = 1024;
 }
 
 public class ExecuteQasm3ProgramResponse
 {
-	[ToolProperty(
-		Description = "Measurement counts keyed by bitstring"
-					  + " outcome (for example, \"00\", \"01\", \"10\", \"11\").")]
-	public Dictionary<string, int>? Counts { get; init; }
+    [ToolProperty(
+        Description = "Measurement counts keyed by bitstring"
+                      + " outcome (for example, \"00\", \"01\", \"10\", \"11\").")]
+    public Dictionary<string, int>? Counts { get; init; }
 }
 ```
 
@@ -507,7 +506,8 @@ services.AddHttpClient<QuantumSimulatorClient>(
 
         if (string.IsNullOrWhiteSpace(baseUrl))
         {
-            throw new InvalidOperationException("QuantumSimulator:BaseUrl is not configured.");
+            throw new InvalidOperationException(
+                "QuantumSimulator:BaseUrl is not configured.");
         }
 
         client.BaseAddress = new Uri(baseUrl, UriKind.Absolute);
@@ -519,7 +519,7 @@ readonly HttpClient httpClient;
 
 public QuantumSimulatorClient(HttpClient httpClient)
 {
-	this.httpClient = httpClient;
+    this.httpClient = httpClient;
 }
 ```
 
@@ -531,9 +531,9 @@ We parse the *External ID* and *Access Key*, which we obtained in the previous s
 
 ```cs
 FuncRegistrationParameters toolRegistrationParameters
-	= new(getLocalUrl: () => new Uri("https://host.docker.internal:7190/"),
-		getExternalId: () => Guid.Parse("ee2b90ff-a4c6-44bf-93a7-a25b7e3271b0"),
-		getApiKey: () => Guid.Parse("72e1b1f1-414b-46d9-bcb1-1a736d7e6027"));
+    = new(getLocalUrl: () => new Uri("https://host.docker.internal:7190/"),
+        getExternalId: () => Guid.Parse("ee2b90ff-a4c6-44bf-93a7-a25b7e3271b0"),
+        getApiKey: () => Guid.Parse("72e1b1f1-414b-46d9-bcb1-1a736d7e6027"));
 
 services.AddSingleton<IToolRegistrationParameters>(toolRegistrationParameters);
 ```
