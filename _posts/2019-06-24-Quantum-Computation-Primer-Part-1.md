@@ -100,11 +100,11 @@ In quantum computation, qubits are represented as vectors in 3 dimensional space
 
 A complex number consists of a real part \(x\) and an imaginary part \(y\), as shown:
 
-\[
+$$
 x + yi
-\]
+$$
 
-where \(i = \sqrt{-1}\), and \(i^2 = -1\).
+where $i = \sqrt{-1}$ and $i^{2} = -1$.
 
 When multiplying two complex numbers, you add together the products of the real and imaginary parts of both numbers. See Figure 1.
 
@@ -112,26 +112,26 @@ When multiplying two complex numbers, you add together the products of the real 
 
 Multiplying this out gives us:
 
-\[
+$$
 (x_1 + y_1 i)(x_2 + y_2 i)
 = x_1 x_2 + x_1 y_2 i + y_1 x_2 i + y_1 y_2 i^2
-\]
+$$
 
 Since \(i^2 = -1\), this simplifies to:
 
-\[
+$$
 x_1 x_2 - y_1 y_2 + x_1 y_2 i + y_1 x_2 i
-\]
+$$
 
 The following is an example:
 
-\[
+$$
 \begin{align}
 (3 + 2i)(4 + 3i) &= 12 + 9i + 8i + 6i^2 \\
                  &= 12 + 17i - 6       \\
                  &= 6 + 17i
 \end{align}
-\]
+$$
 
 ### Multiplying Two Matrices
 
@@ -165,13 +165,13 @@ We then shift down to the second row of A, and back to the first column in B. Af
 
 By convention, a matrix is often given a capital letter as an identifier. An element within the matrix is specified using the name of the matrix in lowercase, with its row then column (in that order) shown as subscript. See the following example:
 
-\[
+$$
 A =
 \begin{bmatrix}
 a_{00} & a_{01} \\
 a_{10} & a_{11}
 \end{bmatrix}
-\]
+$$
 
 ### Multiplying a Matrix by a Scalar
 
