@@ -213,7 +213,7 @@ In Dirac notation, the values within the ket&mdash;between the vertical line cha
 
 The symbol '⊗' is used to denote the tensor product of two matrices. It is calculated by multiplying each item in the first matrix by all items in the second matrix, as illustrated:
 
-\[
+$$
 \begin{alignedat}{2}
 \begin{bmatrix} a_{1} \\ a_{2} \end{bmatrix}
 \otimes
@@ -231,7 +231,8 @@ a_{2} b_{1} \\
 a_{2} b_{2}
 \end{bmatrix}
 \end{alignedat}
-\]
+$$
+
 
 
 
