@@ -181,7 +181,7 @@ Conversely, a qubit with a one basis state, can be written as:
 
 Recall that 0 represents the column vector [1, 0]<sup>T</sup>, and 1 represent [0, 1]<sup>T</sup>.
 
-In Dirac notation, the values within the ket (between the vertical line character '|' and the angled bracket '&rang;') are tensor products.
+In Dirac notation, the values within the ket (between the vertical line character '&#124;' and the angled bracket '〉') are tensor products.
 
 The tensor product is calculated by multiplying each item in the first matrix by all items in the second matrix, as illustrated:
 
