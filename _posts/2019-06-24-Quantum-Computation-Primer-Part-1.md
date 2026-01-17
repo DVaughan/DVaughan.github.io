@@ -233,29 +233,53 @@ a_{2} b_{2}
 \end{alignedat}
 $$
 
-
-
-
-
-
-
+<!--
 ![Tensor product example](/assets/images/2019-06-24/TensorProduct.png)
+-->
 
 Tensor products are condensed within Dirac notation, like so:
 
-$\lvert 1 \rangle \otimes \lvert 0 \rangle = \lvert 10 \rangle$
-
-You can see how they are combined by calculating the tensor product of the matrices, like so:
-
-![Tensor Product](/assets/images/2019-06-24/ZeroTensorOne.png)
-
-In a quantum circuit, the inputs to the circuit are combined as tensor products. We explore this later in the series.
+$$
+\vert 0 \rangle \otimes \vert 1 \rangle = \vert 01 \rangle
+$$
 
 For qubits, the Dirac notation lends itself beautifully to a binary representation. Notice below how entries in the matrix correspond to the binary, and in particular how the first entry in the matrix corresponds to 0 and not 1.  
 
+<!-- 
 ![Ket Binary](/assets/images/2019-06-24/KetBinary.png)
+-->
 
-> **NOTE:** In some texts, the leading 0's are omitted and replaced with a subscript indicating the length. So that \|0010〉 becomes \|10<sub>4</sub>〉. I'll not be using that convention however.
+$$
+\vert 010 \rangle =
+\begin{bmatrix}0\\0\\1\\0\\0\\0\\0\\0\end{bmatrix}
+\;\;\longleftrightarrow\;\;
+\begin{array}{c c c}
+\text{Binary} & & \text{Decimal} \\
+000 & & 0 \\
+001 & & 1 \\
+\color{red}{010} & & \color{red}{2} \\
+011 & & 3 \\
+100 & & 4 \\
+101 & & 5 \\
+110 & & 6 \\
+111 & & 7
+\end{array}
+$$
+
+
+> **NOTE:** In some texts, the leading 0's within a ket are omitted and replaced with a subscript indicating the length. So that \|0010⟩ becomes \|10<sub>4</sub>⟩. I don't use that notation in this series, but you may see it elsewhere.
+
+You can now see how \|1⟩ ⊗ \|0⟩ are combined by calculating the tensor product of the matrices, like so:
+
+<!-- 
+![Tensor Product](/assets/images/2019-06-24/ZeroTensorOne.png)
+-->
+
+$$
+\vert 0 \rangle \otimes \vert 1 \rangle = \begin{bmatrix}1 \\ 0\end{bmatrix} \otimes \begin{bmatrix}0 \\ 1\end{bmatrix} = \begin{bmatrix}0 \\ 1 \\ 0 \\ 0\end{bmatrix} = \vert 01 \rangle
+$$
+
+In a quantum circuit, the inputs of the circuit are combined as tensor products. We explore this later in the series.
 
 If the Dirac notation points to the left rather than the right, as in: &lang;0\|, this is called a bra. Together they form a bra-ket. 
 
@@ -263,25 +287,37 @@ If the Dirac notation points to the left rather than the right, as in: &lang;0\|
 
 The bra is the [conjugate transpose](https://en.wikipedia.org/wiki/Conjugate_transpose) of the ket. The conjugate transpose is also known as the adjoint matrix, and yet another name is the Hermitian transpose.
 
-To obtain the conjugate transpose, the matrix is rotated and each entry is complex conjugated. For a single column matrix, it just means we turn it horizontally and then take the complex conjugate of each entry. See Figure x. 
+To obtain the conjugate transpose, the matrix is rotated and each entry is complex conjugated. For a single column matrix, it just means we turn it horizontally and then take the complex conjugate of each entry. See Figure 3. 
 
-The complex conjugate simply means changing the sign of the imaginary part. For example, if z = 2 + 3i, then the complex conjugate is <span style="text-decoration: overline">z</span> = 2 - 3i.
+The complex conjugate simply means changing the sign of the imaginary part.  
+For example, if $z = 2 + 3i$, then the complex conjugate is $\overline{z} = 2 - 3i$.
 
-<figure><img alt="Performing a conjugate transpose" src="/assets/images/2019-06-24/Adjoint.png"><figcaption>Figure x. Performing a conjugate transpose</figcaption></figure>
+<figure><img alt="Performing a conjugate transpose" src="/assets/images/2019-06-24/Adjoint.png"><figcaption>Figure 3. Performing a conjugate transpose</figcaption></figure>
 
-> **Why Complex Numbers?** You may wonder why quantum theory relies so heavily on complex numbers. Well, if you add two positive real numbers, the result will always increase. That's not the case with Complex numbers. You can add two complex numbers and produce a smaller result. In fact, they may even cancel each other out. This is referred to as interference, and it's sometimes employed deliberately to eliminate unwanted states in quantum algorithms. <!-- REF Quantum_Com.pdf page 88 and 89 -->
+> **Why Complex Numbers?**  
+> You may wonder why quantum theory relies so heavily on complex numbers. As Yanofsky and Mannucci point out [[1]](#references), if you add two positive real numbers, the result will always increase. That is not the case with complex numbers. You can add two complex numbers and produce a smaller result. In fact, they may even cancel each other out. This is referred to as *interference*, and it is sometimes employed deliberately to eliminate unwanted states in quantum algorithms.
 
 In the following examples we use the variables a and b, such that a,b &isin; C<sup>d</sup>. In other words, a and b denote single column matrices of complex numbers with the number of rows equal to d. Most of the time when we are working with qubits, so the dimension count is 2.
 
 The following illustrates obtaining a bra from a ket:
 
-![Bra equals ket adjoint](/assets/images/2019-06-24/BraKetAdjoint.png)
+<!-- ![Bra equals ket adjoint](/assets/images/2019-06-24/BraKetAdjoint.png) -->
 
-This process is reversible. To obtain a ket from a bra, do the same thing again; calculate the adjoint.
+$$
+\langle a \rvert = \lvert a \rangle^{\dagger} = \begin{bmatrix}\overline{a}_{1} \\ \overline{a}_{2} \\ \vdots \\ \overline{a}_{d}\end{bmatrix}^{\mathsf{T}} = \begin{bmatrix}\overline{a}_{1} & \overline{a}_{2} & \cdots & \overline{a}_{d}\end{bmatrix}
+$$
 
-When combined, a bra-ket &lang;b\|a〉 represents the inner product of b and a. It's sometimes written as &lang;b,a〉. The inner product is the sum of the products of corresponding items. This results in a complex scalar value (with or without an imaginary part). Scalar means that it's not a vector; it's a magnitude without direction.
+This process is reversible. To obtain a ket from a bra, do the same thing again: calculate the conjugate transpose.
 
+When combined, a bra-ket ⟨b\|a⟩ represents the inner product of b and a. It's sometimes written as ⟨b,a⟩. The inner product is the sum of the products of corresponding items. This results in a complex scalar value (with or without an imaginary part). Scalar means that it's not a vector; it's a magnitude without direction.
+
+<!--
 ![Bra equals ket adjoint](/assets/images/2019-06-24/InnerProduct.png)
+-->
+
+$$
+\langle b \vert a \rangle = b \cdot a = a_{1} b_{1} + a_{2} b_{2} + \cdots + a_{d} b_{d}
+$$
 
 All quantum states are normalized, that is &lang;a\|a〉 = 1. This has important implications for the probability of states. We return to it in a later section.
 
@@ -532,12 +568,29 @@ Thanks for reading and I hope you found this article useful. If so, then I'd app
 
 ## References
 
-1. Yanofsky, N., & Mannucci, M. (2008). *Quantum Computing for Computer Scientists*.
+The following sources were used in the preparation of this article:
+
+1. Yanofsky, N., & Mannucci, M. (2008). *Quantum Computing for Computer Scientists*. Cambridge University Press.
+
 2. Anton, H. (2000). *Elementary Linear Algebra* (8th ed.). Wiley.
-3. Nielsen, M., & Chuang, I. (2010). *Quantum Computation and Quantum Information* (10th ed.). Cambridge University Press, Cambridge, UK.
-4. Glendinning, I. (2005). *The Bloch Sphere*. Accessed 10 June 2019, from http://www.vcpc.univie.ac.at/~ian/hotlist/qc/talks/bloch-sphere.pdf
-5. Dutta, S. (2019). *If quantum gates are reversible how can they possibly perform irreversible classical AND and OR operations?* Accessed 9 June 2019, from https://quantumcomputing.stackexchange.com/questions/131/if-quantum-gates-are-reversible-how-can-they-possibly-perform-irreversible-class
-6. Wolf, R. (n.d.). *Quantum Computing: Lecture Notes*. Accessed 9 June 2019, from https://homepages.cwi.nl/~rdewolf/qcnotes.pdf
-7. Wikipedia contributors. (2019). *Quantum logic gate*. Accessed 9 June 2019, from https://en.wikipedia.org/wiki/Quantum_logic_gate
-8. Glendinning, I. (2010). *Rotations on the Bloch Sphere*. Accessed 9 June 2019, from http://www.vcpc.univie.ac.at/~ian/hotlist/qc/talks/bloch-sphere-rotations.pdf
-9. Hui, J. (2018). *What are Qubits in Quantum Computing?* Accessed 9 June 2019, from https://medium.com/@jonathan_hui/qc-what-are-qubits-in-quantum-computing-cdb3cb566595
+
+3. Nielsen, M., & Chuang, I. (2010). *Quantum Computation and Quantum Information* (10th ed.). Cambridge University Press.
+
+4. Glendinning, I. (2005). *The Bloch Sphere*.  
+   https://www.vcpc.univie.ac.at/~ian/hotlist/qc/talks/bloch-sphere.pdf
+
+5. Dutta, S. (2019). *If quantum gates are reversible how can they possibly perform irreversible classical AND and OR operations?*  
+   https://quantumcomputing.stackexchange.com/questions/131/if-quantum-gates-are-reversible-how-can-they-possibly-perform-irreversible-class
+
+6. Wolf, R. (n.d.). *Quantum Computing: Lecture Notes*.  
+   https://homepages.cwi.nl/~rdewolf/qcnotes.pdf
+
+7. Wikipedia contributors. (2019). *Quantum logic gate*.  
+   https://en.wikipedia.org/wiki/Quantum_logic_gate
+
+8. Glendinning, I. (2010). *Rotations on the Bloch Sphere*.  
+   https://www.vcpc.univie.ac.at/~ian/hotlist/qc/talks/bloch-sphere-rotations.pdf
+
+9. Hui, J. (2018). *What are Qubits in Quantum Computing?*  
+   https://medium.com/@jonathan_hui/qc-what-are-qubits-in-quantum-computing-cdb3cb566595
+
