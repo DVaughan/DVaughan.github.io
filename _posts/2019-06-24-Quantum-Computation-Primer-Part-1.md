@@ -4,12 +4,17 @@ title: Quantum Computation Primer Part 1
 published: true
 ---
 
+
+
+![header](/assets/images/2019-06-24/header.png)
+
 ## Introduction
 
 The major cloud providers: Microsoft, Amazon, Google, IBM, and Oracle are racing to bring quantum computing as a service to their offerings. In addition, companies, universities, and even [nation states](https://www.axios.com/us-chinese-race-for-quantum-dominance-63f55bc2-45b5-438f-ae5c-a29b32a42642.html) are investing heavily.
 
-Why all the buzz? 
-Quantum computers offer the potential to bring parallelism to calculations on a scale that cannot be matched by classical computers. They may enable us to model the quantum world, bringing breakthroughs in material science, medicine, you name it. 
+Why all the buzz?
+
+Quantum computers offer the potential to bring parallelism to calculations on a scale that cannot be matched by classical computers. They may enable us to model the quantum world, bringing breakthroughs in material science, medicine, you name it.
 
 There already exists actual multi-qubit quantum computers, such as [IBM](https://quantum-computing.ibm.com), that allow you to create and run quantum algorithms in the cloud.
 
@@ -31,7 +36,7 @@ When I began learning quantum theory several months ago, my first step was to pl
 
 So, armed with my newly acquired linear algebra, I pushed through the quantum computing book; turning to the web to increase clarity here and there. Eventually I found myself where I wanted to be from the beginning, understanding and constructing quantum circuits.
 
-While the mathematics and notation underpinning quantum theory seems daunting at first. Along my own journey, I've been taken with the elegance by which it all fits together. I wrote this series of articles to provide you with a grounding in the fundamentals of quantum computing without spending a lot of time on quantum mechanics (the branch of physics). This series doesn't spend much time on covering the relevant mathematics up front either, but rather introduces critical mathematics along the way. While there's quite a bit of math and formulas littered throughout these articles, we work through them together.
+While the mathematics and notation underpinning quantum theory seems daunting at first, on my journey, I've been taken with the elegance by which it all fits together. I wrote this series of articles to provide you with a grounding in the fundamentals of quantum computation without spending a lot of time on quantum mechanics, which is a branch of physics heavy in theory that, while broadening comprehension, may deter a beginner. This series doesn't spend much time on covering the relevant mathematics up front either, but rather introduces critical mathematics along the way. While there's quite a bit of math and formulas littered throughout these articles, we work through them together.
 
 Let's dive in.
 
@@ -63,7 +68,7 @@ I'll cover some of these topics, but not all. We cover things as we need them.
 
 ## Bits to Qubits
 
-In quantum computing, a qubit is analogous to a bit in classical computing. As is a qubyte to a byte. As with classical computing, a qubit has two measurable states but there's a little more to it. 
+In quantum computing, a qubit is analogous to a bit in classical computing. I'm guessing you knew that already. As is a qubyte to a byte. As with classical computing, a qubit has two measurable states but there's a little more to it. 
 
 When you measure a qubit, its quantum state is said to collapse; to a value that is either 0 or 1. Before you measure it, however, the two observable states have a certain probability. You can modify the probabilities of a quantum state, and what's more, you can employ multiple qubits that affect one another.
 
@@ -75,50 +80,64 @@ Orthogonal means that the inner product of the matrices is 0. To calculate the i
 
 ![Qubit basis vectors are orthogonal](/assets/images/2019-06-24/Orthogonal.png)
 
-Normalized means that the probabilities of the observable states add up to 1. Determining the probability of quantum states is fundamental to quantum information theory, and we delve further into that later in the article. Firstly, however, we need to cover some basic math; complex numbers and matrix multiplication, then familiarize ourselves with Dirac notation.
+Normalized means that the probabilities of the observable states add up to 1.
 
-## Math to Know
+Determining the probability of quantum states is fundamental to quantum information theory, and we delve further into that later in the article. Firstly, however, we need to cover some basic math; complex numbers and matrix multiplication, then familiarize ourselves with Dirac notation.
 
-Though it may appear otherwise, I've tried to keep the math in the article simple. There are, however, a couple operations you need to have under your belt to be able to able to follow along. In particular, you need to know how to multiply complex numbers and matrices. We look at those operations now.
+## Some Preliminary Mathematics
+
+Though it may appear otherwise skimming over this article, I've tried to keep the math simple. There are, however, just a couple operations you need under your belt to be able to follow along. In particular, you need to know how to multiply complex numbers and matrices. We look at those operations now.
 
 ### Multiplying Complex Numbers
 
-In quantum computing, qubits are represented as vectors in 3 dimensional space. In quantum circuits, we rotate them and combine them to perform computations.
-Complex numbers are often used to rotate qubits in this space.
+In quantum computation, qubits are represented as vectors in 3 dimensional space. In quantum circuits, we rotate and combine them to perform computations. The vectors representing qubits' state contain complex numbers, and complex numbers are also used to rotate qubits in this space.
 
-A complex number consists of a real part (x) and an imaginary part (y), as shown:
+A complex number consists of a real part \(x\) and an imaginary part \(y\), as shown:
 
-x + y*i*
+\[
+x + yi
+\]
 
-*i* equals &radic;-1, and (&radic;-1)<sup>2</sup> equals -1.
+where \(i = \sqrt{-1}\), and \(i^2 = -1\).
 
-When multiplying two complex numbers, you add together the products of the real and imaginary parts of both numbers. See Figure x.
+When multiplying two complex numbers, you add together the products of the real and imaginary parts of both numbers. See Figure 1.
 
-The result is:
+<figure><img alt="Multiplying imaginary numbers" src="/assets/images/2019-06-24/ImaginaryMultiplication.png" /><figcaption>Figure 1. Multiplying imaginary numbers</figcaption></figure>
 
-(x<sub>1</sub> + y<sub>1</sub>*i*)(x<sub>2</sub> + y<sub>2</sub>*i*) = x<sub>1</sub>x<sub>2</sub> + x<sub>1</sub>y<sub>2</sub>*i* + y<sub>1</sub>x<sub>2</sub>i + y<sub>1</sub>y<sub>2</sub>(i<sup>2</sup>)
+Multiplying this out gives us:
 
-Since i<sup>2</sup> = -1, this simplifies to:
+\[
+(x_1 + y_1 i)(x_2 + y_2 i)
+= x_1 x_2 + x_1 y_2 i + y_1 x_2 i + y_1 y_2 i^2
+\]
 
-= x<sub>1</sub>x<sub>2</sub> - y<sub>1</sub>y<sub>2</sub> + x<sub>1</sub>y<sub>2</sub>*i* + y<sub>1</sub>x<sub>2</sub>i
+Since \(i^2 = -1\), this simplifies to:
 
-<figure><img alt="Multiplying imaginary numbers" src="/assets/images/2019-06-24/ImaginaryMultiplication.png" /><figcaption>Figure x. Multiplying imaginary numbers</figcaption></figure>
+\[
+x_1 x_2 - y_1 y_2 + x_1 y_2 i + y_1 x_2 i
+\]
 
 The following is an example:
 
-(3 + 2*i*)(4 + 3*i*) = 12 + 9*i* + 8*i* + 6*i*<sup>2</sup> = 12 + 17i - 6 = 6 + 17i
+\[
+\begin{align}
+(3 + 2i)(4 + 3i) &= 12 + 9i + 8i + 6i^2 \\
+                 &= 12 + 17i - 6       \\
+                 &= 6 + 17i
+\end{align}
+\]
 
 ### Multiplying Two Matrices
 
-When working with quantum states, there are three matrix by matrix multiplication operations that are commonly performed: direct product, inner product, and tensor product (a.k.a. outer product). We look at the direct product now and cover the inner and tensor products in later sections, as we need them.
+When working with quantum states, there are three matrix by matrix multiplication operations that are commonly performed: matrix product, inner product, and tensor product (a.k.a. outer product). We look at the matrix product now and cover the inner and tensor products in later sections, as we need them.
 
-The first thing to note is that calculation of the direct product is only valid if the number of columns in the first matrix is equal to the number of rows in the second matrix. See Figure x.
+The first thing to note is that calculation of the matrix product is only valid if the number of columns in the first matrix is equal to the number of rows in the second matrix. See Figure 2.
 
 Also notice that the row count for the result equals the row count of the first matrix, and the column count of the result, equals the column count of the second matrix.
 
-<figure><img alt="Colums A must equal Rows" src="/assets/images/2019-06-24/MMustBeEqual.png" /><figcaption>Figure x. Size outcomes when multiplying two matrices</figcaption></figure>
+<figure><img alt="Colums A must equal Rows" src="/assets/images/2019-06-24/MMustBeEqual.png" /><figcaption>Figure 2. Size outcomes when multiplying two matrices</figcaption></figure>
 
-The direct product is generally written without an operator as AB, where A and B are two matrices. 
+The matrix product is generally written without an operator as AB, where A and B are two matrices.
 
 Let's work through an example, where matrix A and B are presented below.
 
@@ -132,13 +151,25 @@ We then stay on the first row of A, but we shift to the next column of B; repeat
 
 ![A times B part 2](/assets/images/2019-06-24/MSecondColumn.png)
 
-We then shift down to the second row of A, and back to the first column in B. After we reach the last row in A, we're done.
+We then shift down to the second row of A, and back to the first column in B. After we complete the last row in A, we're done.
 
 ![A times B part 2](/assets/images/2019-06-24/MMAB2.png)
 
+### Identifying an Element in a Matrix
+
+By convention, a matrix is often given a capital letter as an identifier. An element within the matrix is specified using the name of the matrix in lowercase, with its row then column (in that order) shown as subscript. See the following example:
+
+\[
+A =
+\begin{bmatrix}
+a_{00} & a_{01} \\
+a_{10} & a_{11}
+\end{bmatrix}
+\]
+
 ### Multiplying a Matrix by a Scalar
 
-The principal of multiplying a matrix by a scalar is a simple one: You multiply every item in the matrix by the scalar. 
+The process of multiplying a matrix by a scalar is a simple one: multiply every item in the matrix by the scalar.
 
 If A is the matrix:
 
@@ -156,37 +187,55 @@ Then the result is as follows:
 
 ![A times B part 2](/assets/images/2019-06-24/MatrixScalarExample.png)
 
-If the scalar is a complex number and/or the matrix contains complex numbers, the procedure does not change. You calculate the products using the rules of complex number multiplication, which we looked at in a previous section.
+If the scalar is a complex number and/or the matrix contains complex numbers, the procedure does not change. You calculate the products using the rules of complex number multiplication, which we looked at earlier.
 
-Okay, so we've looked at some basic math operations that we need to know to follow along. Let's move on to something more fun.
+Okay, so we've gone over some basic math operations that you need to know to follow along. Let's move on to something more fun.
 
 ## Describing Quantum State with Dirac Notation
 
 Dirac notation (also known as bra-ket notation) is everywhere in quantum theory. It's used to describe quantum states. You can think of it as matrix shorthand.
 
-A single qubit with the zero basis state can be written as a *ket*, like so:
+A single qubit with the zero basis state can be written as a **ket**, like so:
 
-&#124;0〉
+\|0〉
 
 This reads as "ket zero."
 
 Conversely, a qubit with a one basis state, can be written as:
 
-&#124;1〉
+\|1〉
 
-> **NOTE:** In some texts, &#124;0〉 and &#124;1〉 are presented as &#124;&uarr;〉 (spin-up) and &#124;&darr;〉 (spin-down), respectively. When you visualize a qubit on a three dimensional sphere, &#124;0〉 is up at the north pole and &#124;1〉 is down at the south pole. I use &#124;0〉 and &#124;1〉 exclusively in this series. 
+> **NOTE:** In some texts, \|0〉 and \|1〉 are presented as \|&uarr;〉 (spin-up) and \|&darr;〉 (spin-down), respectively. When you visualize a qubit on a three dimensional sphere, \|0〉 is up at the north pole and \|1〉 is down at the south pole. I use \|0〉 and \|1〉 exclusively in this series. 
 
-Recall that 0 represents the column vector [1, 0]<sup>T</sup>, and 1 represent [0, 1]<sup>T</sup>.
+Recall that \|0〉 represents the column vector [1, 0]<sup>T</sup>, and 1 represent [0, 1]<sup>T</sup>.
 
-In Dirac notation, the values within the ket (between the vertical line character '&#124;' and the angled bracket '〉') are tensor products.
+In Dirac notation, the values within the ket&mdash;between the vertical line character '\|' and the angled bracket '〉'&mdash;are tensor products.
 
-The tensor product is calculated by multiplying each item in the first matrix by all items in the second matrix, as illustrated:
+The symbol '⊗' is used to denote the tensor product of two matrices. It is calculated by multiplying each item in the first matrix by all items in the second matrix, as illustrated:
+
+\[
+\begin{aligned}
+\begin{bmatrix} a_{1} \\ a_{2} \end{bmatrix}
+\otimes
+\begin{bmatrix} b_{1} \\ b_{2} \end{bmatrix}
+&=
+\begin{bmatrix}
+a_{1} b_{1} \\
+a_{1} b_{2} \\
+a_{2} b_{1} \\
+a_{2} b_{2}
+\end{bmatrix}
+\end{aligned}
+\]
+
+
+
 
 ![Tensor product example](/assets/images/2019-06-24/TensorProduct.png)
 
 Tensor products are condensed within Dirac notation, like so:
 
-&#124;1〉 &otimes; &#124;0〉 = &#124;10〉
+$\lvert 1 \rangle \otimes \lvert 0 \rangle = \lvert 10 \rangle$
 
 You can see how they are combined by calculating the tensor product of the matrices, like so:
 
@@ -200,7 +249,7 @@ For qubits, the Dirac notation lends itself beautifully to a binary representati
 
 > **NOTE:** In some texts, the leading 0's are omitted and replaced with a subscript indicating the length. So that \|0010〉 becomes \|10<sub>4</sub>〉. I'll not be using that convention however.
 
-If the Dirac notation points to the left rather than the right, as in: &lang;0&#124;, this is called a bra. Together they form a bra-ket. 
+If the Dirac notation points to the left rather than the right, as in: &lang;0\|, this is called a bra. Together they form a bra-ket. 
 
 ### Deriving a Bra from a Ket (and Vice Versa)
 
@@ -222,15 +271,15 @@ The following illustrates obtaining a bra from a ket:
 
 This process is reversible. To obtain a ket from a bra, do the same thing again; calculate the adjoint.
 
-When combined, a bra-ket &lang;b&#124;a〉 represents the inner product of b and a. It's sometimes written as &lang;b,a〉. The inner product is the sum of the products of corresponding items. This results in a complex scalar value (with or without an imaginary part). Scalar means that it's not a vector; it's a magnitude without direction.
+When combined, a bra-ket &lang;b\|a〉 represents the inner product of b and a. It's sometimes written as &lang;b,a〉. The inner product is the sum of the products of corresponding items. This results in a complex scalar value (with or without an imaginary part). Scalar means that it's not a vector; it's a magnitude without direction.
 
 ![Bra equals ket adjoint](/assets/images/2019-06-24/InnerProduct.png)
 
-All quantum states are normalized, that is &lang;a&#124;a〉 = 1. This has important implications for the probability of states. We return to it in a later section.
+All quantum states are normalized, that is &lang;a\|a〉 = 1. This has important implications for the probability of states. We return to it in a later section.
 
 We've seen that quantum theory relies on complex numbers and vectors to describe quantum particles. This algebraic structure is termed a *complex vector space* and also known as [Hilbert Space](https://en.wikipedia.org/wiki/Hilbert_space).
 
-Another combination of the Dirac notation, which I include for completeness, is the ket-bra. It's written like this &#124;a〉&lang;b&#124; or sometimes \|aXb\|. A ket-bra is the tensor (or outer) product and represents a d by d matrix, illustrated as follows:
+Another combination of the Dirac notation, which I include for completeness, is the ket-bra. It's written like this \|a〉&lang;b\| or sometimes \|aXb\|. A ket-bra is the tensor (or outer) product and represents a d by d matrix, illustrated as follows:
 
 ![Ket-Bra](/assets/images/2019-06-24/KetBra.png)
 
@@ -246,8 +295,7 @@ But, if you employ, for example, a Hadamard gate in your quantum circuit, you ca
 
 When a qubit is in a superposition, its value is undetermined until it's measured. In fact, a qubit is said to be simultaneously 0 and 1 until then. It's both! 
 
-This is such an unusual phenomenon it has driven physicists bananas.
-Yet, it has been widely observed experimentally. Remember the old double slit experiment? A photon seemingly goes everywhere, interfering with itself, before landing on a spot. So to does our qubit exist in all observable states until it is measured.
+This is such an unusual phenomenon, physicists have been unable to explain it using classical physics. Yet, it has been widely observed experimentally. Remember the old double slit experiment? A photon seemingly goes everywhere, interfering with itself, before landing on a spot. So to does our qubit exist in all observable states until it is measured.
 
 While there the probability of any observable state is essentially random, you can, fortunately, modify the probabilities of the observable states. When you do this, you place the qubit into a superposition. 
 
@@ -341,7 +389,7 @@ For instance, take a well known state (one of the Bell states, which we discuss 
 
 The state of the qubits when measured will have a 50% chance of being either 00 or 11.
 
-If we were to measure just one of the qubits, it would cause the other's state to immediately collapse to the same value. The qubits are said to be entangled. 
+If we were to measure just one of the qubits, it would cause the other's state to immediately collapse to the same value. The qubits are said to be entangled. Even if the entangled qubits are far away from each other, possibly light years. This is what Einstein described as "spooky action at a distance."
 
 ### Determining if Qubits are Entangled
 
@@ -468,12 +516,20 @@ and
 
 ## Conclusion
 
+In this article, we explored the differences between qubits and classical bits. We looked at the computation basis for qubits. We saw how to describe quantum state using Dirac notation. We observed that qubits can be placed into superposition, and saw how to calculate the probability of observable states. We also saw how an entangled qubit can affect the quantum state of the pair. Finally we took a ride around the Block sphere, and saw how a qubit's state can be visualized in 3 dimensions.
+
+In the next part, we explore how quantum gates are used to build quantum circuits, which ultimately puts us on the road to materializing quantum algorithms. I hope you'll join me.
+
+Thanks for reading and I hope you found this article useful. If so, then I'd appreciate it if you would please rate it and/or leave feedback below.
+
 ## References
 
-* http://www.vcpc.univie.ac.at/~ian/hotlist/qc/talks/bloch-sphere.pdf
-* <a href="#rr1" title="up to reference">^</a> <a id="r1" href="https://quantumcomputing.stackexchange.com/questions/131/if-quantum-gates-are-reversible-how-can-they-possibly-perform-irreversible-class">Sanchayan Dutta</a>
-* https://homepages.cwi.nl/~rdewolf/qcnotes.pdf
-* https://en.wikipedia.org/wiki/Quantum_logic_gate
-
-* http://www.vcpc.univie.ac.at/~ian/hotlist/qc/talks/bloch-sphere-rotations.pdf
-
+1. Yanofsky, N., & Mannucci, M. (2008). *Quantum Computing for Computer Scientists*.
+2. Anton, H. (2000). *Elementary Linear Algebra* (8th ed.). Wiley.
+3. Nielsen, M., & Chuang, I. (2010). *Quantum Computation and Quantum Information* (10th ed.). Cambridge University Press, Cambridge, UK.
+4. Glendinning, I. (2005). *The Bloch Sphere*. Accessed 10 June 2019, from http://www.vcpc.univie.ac.at/~ian/hotlist/qc/talks/bloch-sphere.pdf
+5. Dutta, S. (2019). *If quantum gates are reversible how can they possibly perform irreversible classical AND and OR operations?* Accessed 9 June 2019, from https://quantumcomputing.stackexchange.com/questions/131/if-quantum-gates-are-reversible-how-can-they-possibly-perform-irreversible-class
+6. Wolf, R. (n.d.). *Quantum Computing: Lecture Notes*. Accessed 9 June 2019, from https://homepages.cwi.nl/~rdewolf/qcnotes.pdf
+7. Wikipedia contributors. (2019). *Quantum logic gate*. Accessed 9 June 2019, from https://en.wikipedia.org/wiki/Quantum_logic_gate
+8. Glendinning, I. (2010). *Rotations on the Bloch Sphere*. Accessed 9 June 2019, from http://www.vcpc.univie.ac.at/~ian/hotlist/qc/talks/bloch-sphere-rotations.pdf
+9. Hui, J. (2018). *What are Qubits in Quantum Computing?* Accessed 9 June 2019, from https://medium.com/@jonathan_hui/qc-what-are-qubits-in-quantum-computing-cdb3cb566595

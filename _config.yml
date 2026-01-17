@@ -14,3 +14,7 @@ gems:
  - jekyll-feed
 permalink: /posts/:categories/:year/:month/:day/:title/
 excerpt_separator: '<a name="excerpt-end"></a>'
+kramdown:
+  input: GFM
+  math_engine: mathjax
+  syntax_highlighter: rouge
