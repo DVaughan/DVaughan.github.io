@@ -117,7 +117,7 @@ $$
 = x_1 x_2 + x_1 y_2 i + y_1 x_2 i + y_1 y_2 i^2
 $$
 
-Since \(i^2 = -1\), this simplifies to:
+Since $i^{2} = -1$, this simplifies to:
 
 $$
 x_1 x_2 - y_1 y_2 + x_1 y_2 i + y_1 x_2 i
