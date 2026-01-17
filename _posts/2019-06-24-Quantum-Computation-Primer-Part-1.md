@@ -220,6 +220,11 @@ The symbol '⊗' is used to denote the tensor product of two matrices. It is cal
 \begin{bmatrix} b_{1} \\ b_{2} \end{bmatrix}
 &=
 \begin{bmatrix}
+a_{1}\begin{bmatrix} b_{1} \\ b_{2} \end{bmatrix} \\
+a_{2}\begin{bmatrix} b_{1} \\ b_{2} \end{bmatrix}
+\end{bmatrix}
+&=
+\begin{bmatrix}
 a_{1} b_{1} \\
 a_{1} b_{2} \\
 a_{2} b_{1} \\
@@ -227,6 +232,7 @@ a_{2} b_{2}
 \end{bmatrix}
 \end{aligned}
 \]
+
 
 
 
