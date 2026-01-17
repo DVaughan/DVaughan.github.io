@@ -198,9 +198,9 @@ For qubits, the Dirac notation lends itself beautifully to a binary representati
 
 ![Ket Binary](/assets/images/2019-06-24/KetBinary.png)
 
-> **NOTE:** In some texts, the leading 0's are omitted and replaced with a subscript indicating the length. So that |0010〉 becomes |10<sub>4</sub>〉. I'll not be using that convention however.
+> **NOTE:** In some texts, the leading 0's are omitted and replaced with a subscript indicating the length. So that \|0010〉 becomes \|10<sub>4</sub>〉. I'll not be using that convention however.
 
-If the Dirac notation points to the left rather than the right, as in: &lang;0|, this is called a bra. Together they form a bra-ket. 
+If the Dirac notation points to the left rather than the right, as in: &lang;0&#124;, this is called a bra. Together they form a bra-ket. 
 
 ### Deriving a Bra from a Ket (and Vice Versa)
 
@@ -222,25 +222,25 @@ The following illustrates obtaining a bra from a ket:
 
 This process is reversible. To obtain a ket from a bra, do the same thing again; calculate the adjoint.
 
-When combined, a bra-ket &lang;b|a〉 represents the inner product of b and a. It's sometimes written as &lang;b,a〉. The inner product is the sum of the products of corresponding items. This results in a complex scalar value (with or without an imaginary part). Scalar means that it's not a vector; it's a magnitude without direction.
+When combined, a bra-ket &lang;b&#124;a〉 represents the inner product of b and a. It's sometimes written as &lang;b,a〉. The inner product is the sum of the products of corresponding items. This results in a complex scalar value (with or without an imaginary part). Scalar means that it's not a vector; it's a magnitude without direction.
 
 ![Bra equals ket adjoint](/assets/images/2019-06-24/InnerProduct.png)
 
-All quantum states are normalized, that is &lang;a|a〉 = 1. This has important implications for the probability of states. We return to it in a later section.
+All quantum states are normalized, that is &lang;a&#124;a〉 = 1. This has important implications for the probability of states. We return to it in a later section.
 
 We've seen that quantum theory relies on complex numbers and vectors to describe quantum particles. This algebraic structure is termed a *complex vector space* and also known as [Hilbert Space](https://en.wikipedia.org/wiki/Hilbert_space).
 
-Another combination of the Dirac notation, which I include for completeness, is the ket-bra. It's written like this |a〉&lang;b| or sometimes |aXb|. A ket-bra is the tensor (or outer) product and represents a d by d matrix, illustrated as follows:
+Another combination of the Dirac notation, which I include for completeness, is the ket-bra. It's written like this &#124;a〉&lang;b&#124; or sometimes \|aXb\|. A ket-bra is the tensor (or outer) product and represents a d by d matrix, illustrated as follows:
 
 ![Ket-Bra](/assets/images/2019-06-24/KetBra.png)
 
-> **TIP:** In quantum theory, it's common to see the Greek characters &phi; (phi) and &psi; (psi) used as placeholders in bras and kets. For example &lang;&phi;|&psi;〉 Don't be put off by the Greek characters, foreign notation, and seemingly complex algebra. It all appears far more complex than it actually is.
+> **TIP:** In quantum theory, it's common to see the Greek characters &phi; (phi) and &psi; (psi) used as placeholders in bras and kets. For example &lang;&phi;\|&psi;〉 Don't be put off by the Greek characters, foreign notation, and seemingly complex algebra. It all appears far more complex than it actually is.
 
 ## Exploring Quantum Superposition
 
 We learned in an earlier section that when you measure a qubit, its quantum state collapses to either 0 or 1. To which value it collapses depends on the way the qubit has been configured. You can change the probability of a qubit collapsing to a particular value. By doing so, you place the qubit into a superposition.
 
-Now, for a qubit that is in a pure basis state, either |0〉 or |1〉, the result is predetermined. It has a 100% chance of collapsing to its respective value. In other words, if you measure a qubit that was placed in the |0〉 state, for example, you always get 0 because the probability of collapsing to 0, is 1; and the probability of collapsing to 1, is 0.
+Now, for a qubit that is in a pure basis state, either \|0〉 or \|1〉, the result is predetermined. It has a 100% chance of collapsing to its respective value. In other words, if you measure a qubit that was placed in the \|0〉 state, for example, you always get 0 because the probability of collapsing to 0, is 1; and the probability of collapsing to 1, is 0.
 
 But, if you employ, for example, a Hadamard gate in your quantum circuit, you can split the probability of the qubit collapsing to 0 or 1, to a 50/50 chance either way.
 
@@ -257,9 +257,9 @@ To recap, as quantum engineers, we have the opportunity to manipulate the probab
 
 The quantum state of one or more qubits can be described using Dirac notation and simple algebra. Observable states and associated probabilities comprise the qubit's superposition. 
 
-A single qubit can be described by a linear combination of |0〉 and |1〉, such that:
+A single qubit can be described by a linear combination of \|0〉 and \|1〉, such that:
 
-|&Psi;〉 = &alpha;|0〉 + &beta;|1〉
+\|&Psi;〉 = &alpha;\|0〉 + &beta;\|1〉
 
 &alpha; and &beta; are known as complex amplitudes or probability amplitudes. The name 'amplitude' comes from the fact that a quantum state is a wave, and a wave is characterized by its amplitudes.  [Reference page 106 "Quantum Computing for Computer Scientists"]
 
@@ -267,7 +267,7 @@ A single qubit can be described by a linear combination of |0〉 and |1〉, such
 
 To calculate the probability of qubit collapsing to a particular state, we take the square of the modulus of its coefficient. This is known as the [Born rule](https://en.wikipedia.org/wiki/Born_rule). 
 
-So, for the |&psi;〉 example shown above, the probability of |0〉 is |&alpha;|<sup>2</sup>.
+So, for the \|&psi;〉 example shown above, the probability of \|0〉 is \|&alpha;\|<sup>2</sup>.
 
 ### Calculating the Modulus
 
@@ -277,7 +277,7 @@ The modulus of a complex number is calculated like so:
 
 To calculate the probability we square that number. All together this can be written succinctly as shown:
 
-<!-- P(x<sub>i</sub>) = |&lang;x<sub>i</sub>|&psi;〉|<sup>2</sup> -->
+<!-- P(x<sub>i</sub>) = \|&lang;x<sub>i</sub>\|&psi;〉\|<sup>2</sup> -->
 ![Probability of Xi equals square of the braket](/assets/images/2019-06-24/PXi.png)
 
 This is saying that to calculate the probability of the observable state X<sub>i</sub> (which is either going to be 0 or 1 for a qubit), you square the modulus of the dot product.
@@ -293,11 +293,11 @@ Then the probability of collapsing to 0 is given by:
 
 ![Probability of collapsing to 0](/assets/images/2019-06-24/P0_1.png)
 
-Now, we can reduce &lang;0|0〉 to 1, as shown:
+Now, we can reduce &lang;0\|0〉 to 1, as shown:
 
 ![bra 0 ket 0 = 1](/assets/images/2019-06-24/P0_2.png)
 
-and because &lang;0| and |1〉 are orthogonal, there inner product is 0, as shown:
+and because &lang;0\| and \|1〉 are orthogonal, there inner product is 0, as shown:
 
 ![bra 0 ket 1 = 0](/assets/images/2019-06-24/P0_3.png)
 
@@ -313,7 +313,7 @@ Hopefully the Dirac notation version makes a bit more sense now.
 
 ### Probability Distribution of Quantum States
 
-We know that the sum of the probabilities in a probability distribution is always 1. And we learned earlier that all quantum states are normalized, i.e., &lang;a|a〉 = 1. For orthonormal bases ([0, 1]<sup>&dagger;</sup>, [1, 0]<sup>&dagger;</sup> and the like) this means that the observable states are in a probability distribution and so their probabilities must also add up to 1. 
+We know that the sum of the probabilities in a probability distribution is always 1. And we learned earlier that all quantum states are normalized, i.e., &lang;a\|a〉 = 1. For orthonormal bases ([0, 1]<sup>&dagger;</sup>, [1, 0]<sup>&dagger;</sup> and the like) this means that the observable states are in a probability distribution and so their probabilities must also add up to 1. 
 
 ![The coefficient squares sum to 1](/assets/images/2019-06-24/SumOfP.png)
 
@@ -325,9 +325,9 @@ Therefore, we can calculate P(1) like so:
 
 So far we've looked at the quantum states of single qubits. We can, of course, create quantum states with multiple qubits. These are known as multi-partite quantum states.
 
-To do so, we combine states using tensor products. For example, if qubit A is in state |&psi;〉<sub>A</sub> = |0〉 and qubit B is in state |&psi;〉<sub>B</sub> = |1〉, then the total state is given by:
+To do so, we combine states using tensor products. For example, if qubit A is in state \|&psi;〉<sub>A</sub> = \|0〉 and qubit B is in state \|&psi;〉<sub>B</sub> = \|1〉, then the total state is given by:
 
-|&psi;〉<sub>AB</sub> = |0〉<sub>A</sub> &otimes; |1〉<sub>B</sub> = |01〉<sub>AB</sub>.
+\|&psi;〉<sub>AB</sub> = \|0〉<sub>A</sub> &otimes; \|1〉<sub>B</sub> = \|01〉<sub>AB</sub>.
 
 In this case, we can measure the state of qubit A without collapsing the state of qubit B. The individual states are said to be uncorrelated.
 
@@ -350,26 +350,26 @@ When we look at the mathematics governing entanglement, we can use the matrix re
 A vector that can be written as the tensor product of two vectors is called **separable**. <!-- REF Quantum_Com.pdf page 89 -->
 In contrast, if the tensor product state of two qubits cannot be factored, they are said to be entangled. This is pointed out in Andrew Helwer's [introductory video on quantum computing](https://www.microsoft.com/en-us/research/video/quantum-computing-computer-scientists). 
 
-For example, if we take the state |01〉, and forget for a moment that we know what the tensor product representation is already.
+For example, if we take the state \|01〉, and forget for a moment that we know what the tensor product representation is already.
 
-![|&phi;+〉 resultant matrix](/assets/images/2019-06-24/Ket01MatrixABCD.png)
+![\|&phi;+〉 resultant matrix](/assets/images/2019-06-24/Ket01MatrixABCD.png)
 
-We can see that ac = 0, ad = 1, bc = 0, and bd = 0. If we solve for a, b, c, and d; we get a = 1, b = 0, c = 0, and d = 1. We can factor it, therefore we know |01〉 is separable and not entangled.
+We can see that ac = 0, ad = 1, bc = 0, and bd = 0. If we solve for a, b, c, and d; we get a = 1, b = 0, c = 0, and d = 1. We can factor it, therefore we know \|01〉 is separable and not entangled.
 
-![|&phi;+〉 resultant matrix](/assets/images/2019-06-24/Ket01Matrix.png)
+![\|&phi;+〉 resultant matrix](/assets/images/2019-06-24/Ket01Matrix.png)
 
-In contrast, if we look at the |&phi;+〉 state, it is a two qubits state in equal superposition. The matrix representation is calculated below:
+In contrast, if we look at the \|&phi;+〉 state, it is a two qubits state in equal superposition. The matrix representation is calculated below:
 
-![|&phi;+〉 resultant matrix](/assets/images/2019-06-24/PhiPlusMatrix.png)
+![\|&phi;+〉 resultant matrix](/assets/images/2019-06-24/PhiPlusMatrix.png)
 
 In this case the matrix is not factorable. ac = 1/&radic;2, ad = 0, bc = 0, bd = 1/&radic;2. There is no solution to a, b, c, and d.
-Therefore, the matrix is not separable and so the qubits are entangled. In fact, in this case, because of the equal probability of the two states |00〉 and |11〉, |&phi;+〉 is said to be maximally entangled. They're as entangled as you can get.
+Therefore, the matrix is not separable and so the qubits are entangled. In fact, in this case, because of the equal probability of the two states \|00〉 and \|11〉, \|&phi;+〉 is said to be maximally entangled. They're as entangled as you can get.
 
 <!--
 
 There are some topics I've deliberately neglected to present or cut-out. The content presented in the article is rather difficult, and I didn't want to overdo it with more advanced topics.
 
-When you can write the state as |&psi;〉<sub>A</sub> &otimes; |&psi;〉<sub>B</sub>, the state is said to be uncorrelated. If you cannot write the state as a tensor product of two states, then the overall state is said to be correlated. Correlated states come in two varieties: separable and entangled. We look at examples of correlated states next.
+When you can write the state as \|&psi;〉<sub>A</sub> &otimes; \|&psi;〉<sub>B</sub>, the state is said to be uncorrelated. If you cannot write the state as a tensor product of two states, then the overall state is said to be correlated. Correlated states come in two varieties: separable and entangled. We look at examples of correlated states next.
 
 The resulting state is called an uncorrelated state; the qubits are independent of one another. We can, however, create a superposition that affects both qubits, in which case they are said to be correlated.
 
@@ -383,7 +383,7 @@ There are three ways qubits
 
 So far we've seen that a qubit can be expressed as a single ket, like so:
 
-|&psi;> = &alpha;|0〉 + &beta;|1〉 
+\|&psi;> = &alpha;\|0〉 + &beta;\|1〉 
 
 When a qubit can be expressed like this, it is said to have a pure state, and is in a **coherent** superposition.
 
@@ -397,7 +397,7 @@ Many operations on single qubits can be neatly visualized on a 3 dimensional uni
 
 A qubit can be represented as a line of length 1 from the center of the sphere to the sphere's surface. 
 
-At the north poll sits basis state |0〉; at the south, |1〉. Before collapsing into a basis state, a qubits superposition may be located anywhere on the Bloch sphere. You can think of &theta; as latitude and &phi; as longitude. As we move vertically, north or south, the latitude changes (&theta;), and as we move horizontally the longitude (&phi;) changes.
+At the north poll sits basis state \|0〉; at the south, \|1〉. Before collapsing into a basis state, a qubits superposition may be located anywhere on the Bloch sphere. You can think of &theta; as latitude and &phi; as longitude. As we move vertically, north or south, the latitude changes (&theta;), and as we move horizontally the longitude (&phi;) changes.
 
 While the latitude affects the probability of the qubit collapsing to a particular basis state, the longitude does not. The longitude is referred to as the qubit's phase.
 
@@ -405,7 +405,7 @@ While the latitude affects the probability of the qubit collapsing to a particul
 
 A qubit superposition can be written 
 
-|&psi;〉 = &alpha; |0〉 + &beta; |1〉
+\|&psi;〉 = &alpha; \|0〉 + &beta; \|1〉
 
 where &alpha; and &beta; are its probability amplitudes. They are two complex numbers.
 
@@ -445,7 +445,7 @@ It's okay to skim through this section. While its useful to understand how state
 
 &alpha; and &beta; can be visualized on the Bloch sphere as a point corresponding to the two angles (&theta;, &phi;).
 
-It turns out that because |&alpha;|<sup>2</sup> + |&beta;|<sup>2</sup> = 1 we can calculate a qubit's position on the Bloch sphere using the following:
+It turns out that because \|&alpha;\|<sup>2</sup> + \|&beta;\|<sup>2</sup> = 1 we can calculate a qubit's position on the Bloch sphere using the following:
 
 ![A point on the Bloch sphere](/assets/images/2019-06-24/KetPsiCos.png)
 
@@ -457,13 +457,13 @@ That gives us
 
 To find the angles use
 
-&theta; = 2 cos<sup>-1</sup>(|&alpha;|)
+&theta; = 2 cos<sup>-1</sup>(\|&alpha;\|)
 
 and
 
 &phi; = arg(&beta;) - arg(&alpha;)
 
-> **NOTE:** You can also find these values via the state's [density matrix](https://en.wikipedia.org/wiki/Density_matrix), which is calculated by its ket-bra: &rho; = |&psi;〉&lang;&psi;|. But that's outside the scope of this article.
+> **NOTE:** You can also find these values via the state's [density matrix](https://en.wikipedia.org/wiki/Density_matrix), which is calculated by its ket-bra: &rho; = \|&psi;〉&lang;&psi;\|. But that's outside the scope of this article.
 
 
 ## Conclusion
