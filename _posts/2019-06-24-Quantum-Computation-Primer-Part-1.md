@@ -98,7 +98,7 @@ Though it may appear otherwise skimming over this article, I've tried to keep th
 
 In quantum computation, qubits are represented as vectors in 3 dimensional space. In quantum circuits, we rotate and combine them to perform computations. The vectors representing qubits' state contain complex numbers, and complex numbers are also used to rotate qubits in this space.
 
-A complex number consists of a real part \(x\) and an imaginary part \(y\), as shown:
+A complex number consists of a real part $x$ and an imaginary part $y$, as shown:
 
 $$
 x + yi
@@ -782,3 +782,9 @@ The following sources were used in the preparation of this article:
 9. Hui, J. (2018). *What are Qubits in Quantum Computing?*  
    https://medium.com/@jonathan_hui/qc-what-are-qubits-in-quantum-computing-cdb3cb566595
 
+
+## Previous Discusssion
+
+This article was originally published on CodeProject, where reader comments available:
+
+👉 [View comments and discussion on CodeProject](https://www.codeproject.com/articles/Quantum-Computation-Primer-Part-1#comments-section)
