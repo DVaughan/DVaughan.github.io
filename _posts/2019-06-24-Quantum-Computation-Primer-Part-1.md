@@ -6,9 +6,6 @@ published: true
 
 ## Introduction
 
-Quantum computing may be on the cusp of revolutionizing modern computing. 
-[Gartner predicts](https://www.gartner.com/smarterwithgartner/the-cios-guide-to-quantum-computing/) that "by 2023, 20% of organizations will be budgeting for quantum computing projects."
-
 The major cloud providers: Microsoft, Amazon, Google, IBM, and Oracle are racing to bring quantum computing as a service to their offerings. In addition, companies, universities, and even [nation states](https://www.axios.com/us-chinese-race-for-quantum-dominance-63f55bc2-45b5-438f-ae5c-a29b32a42642.html) are investing heavily.
 
 Why all the buzz? 
