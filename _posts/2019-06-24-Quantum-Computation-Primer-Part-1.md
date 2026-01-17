@@ -108,7 +108,7 @@ where $i = \sqrt{-1}$ and $i^{2} = -1$.
 
 When multiplying two complex numbers, you add together the products of the real and imaginary parts of both numbers. See Figure 1.
 
-<figure><img alt="Multiplying imaginary numbers" src="/assets/images/2019-06-24/ImaginaryMultiplication.png" /><figcaption>Figure 1. Multiplying imaginary numbers</figcaption></figure>
+<figure align="center"><img alt="Multiplying imaginary numbers" src="/assets/images/2019-06-24/ImaginaryMultiplication.png" /><figcaption>Figure 1. Multiplying imaginary numbers</figcaption></figure>
 
 Multiplying this out gives us:
 
@@ -141,7 +141,7 @@ The first thing to note is that calculation of the matrix product is only valid 
 
 Also notice that the row count for the result equals the row count of the first matrix, and the column count of the result, equals the column count of the second matrix.
 
-<figure><img alt="Colums A must equal Rows" src="/assets/images/2019-06-24/MMustBeEqual.png" /><figcaption>Figure 2. Size outcomes when multiplying two matrices</figcaption></figure>
+<figure align="center"><img alt="Colums A must equal Rows" src="/assets/images/2019-06-24/MMustBeEqual.png" /><figcaption>Figure 2. Size outcomes when multiplying two matrices</figcaption></figure>
 
 The matrix product is generally written without an operator as AB, where A and B are two matrices.
 
@@ -341,7 +341,7 @@ To obtain the conjugate transpose, the matrix is rotated and each entry is compl
 The complex conjugate simply means changing the sign of the imaginary part.  
 For example, if $z = 2 + 3i$, then the complex conjugate is $\overline{z} = 2 - 3i$.
 
-<figure><img alt="Performing a conjugate transpose" src="/assets/images/2019-06-24/Adjoint.png"><figcaption>Figure 3. Performing a conjugate transpose</figcaption></figure>
+<figure align="center"><img alt="Performing a conjugate transpose" src="/assets/images/2019-06-24/Adjoint.png"><figcaption>Figure 3. Performing a conjugate transpose</figcaption></figure>
 
 > **Why Complex Numbers?**  
 > You may wonder why quantum theory relies so heavily on complex numbers. As Yanofsky and Mannucci point out [[1]](#references), if you add two positive real numbers, the result will always increase. That is not the case with complex numbers. You can add two complex numbers and produce a smaller result. In fact, they may even cancel each other out. This is referred to as *interference*, and it is sometimes employed deliberately to eliminate unwanted states in quantum algorithms.
@@ -646,7 +646,7 @@ Before collapsing into a basis state, a qubit's superposition may be located any
 
 While the latitude affects the probability of the qubit collapsing to a particular basis state, the longitude does not. The longitude is referred to as the qubit's phase.
 
-<figure><a title="Glosser.ca [CC BY-SA 3.0 (https://creativecommons.org/licenses/by-sa/3.0)], via Wikimedia Commons" href="https://commons.wikimedia.org/wiki/File:Bloch_Sphere.svg"><img alt="Bloch Sphere" src="/assets/images/2019-06-24/BlochSphere.png"></a><figcaption>Figure 4. Bloch Sphere</figcaption></figure>
+<figure align="center"><a title="Glosser.ca [CC BY-SA 3.0 (https://creativecommons.org/licenses/by-sa/3.0)], via Wikimedia Commons" href="https://commons.wikimedia.org/wiki/File:Bloch_Sphere.svg"><img alt="Bloch Sphere" src="/assets/images/2019-06-24/BlochSphere.png"></a><figcaption>Figure 4. Bloch Sphere</figcaption></figure>
 
 We saw earlier that a qubit's superposition can be written:
 
@@ -675,7 +675,7 @@ $$
 
 Later in this section you will see how to use the $\operatorname{arg}$ function to calculate the angles $(\theta, \phi)$ on the Bloch sphere.
 
-<figure><a title="Glosser.ca [CC BY-SA 3.0 (https://creativecommons.org/licenses/by-sa/3.0)], via Wikimedia Commons" href="https://en.wikipedia.org/wiki/File:Argandgaussplane.png"><img alt="Argand diagram" src="/assets/images/2019-06-24/Argandgaussplane.png"></a><figcaption>Figure x. Argand diagram</figcaption></figure>
+<figure align="center"><a title="Glosser.ca [CC BY-SA 3.0 (https://creativecommons.org/licenses/by-sa/3.0)], via Wikimedia Commons" href="https://en.wikipedia.org/wiki/File:Argandgaussplane.png"><img alt="Argand diagram" src="/assets/images/2019-06-24/Argandgaussplane.png"></a><figcaption>Figure x. Argand diagram</figcaption></figure>
 
 We can convert the Cartesian coordinates to polar representation. The polar coordinates consist of the modulus $\rho$ and the angle $\theta$. Recall that to calculate the modulus we use:
 
