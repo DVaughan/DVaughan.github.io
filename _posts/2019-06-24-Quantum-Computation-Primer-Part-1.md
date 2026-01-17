@@ -177,7 +177,7 @@ Conversely, a qubit with a one basis state, can be written as:
 
 |1&rang;
 
-> **NOTE:** In some texts, |0&rang; and |1&rang; are presented as |&uarr;&rang; (spin-up) and |&darr;&rang; (spin-down), respectively. When you visualize a qubit on a three dimensional sphere, |0&rang; is up at the north pole and |1&rang; is down at the south pole. I use |0&rang; and |1&rang; exclusively in this series. 
+> **NOTE:** In some texts, &#124;0&rang; and &#124;1&rang; are presented as &#124;&uarr;&rang; (spin-up) and &#124;&darr;&rang; (spin-down), respectively. When you visualize a qubit on a three dimensional sphere, &#124;0&rang; is up at the north pole and &#124;1&rang; is down at the south pole. I use &#124;0&rang; and &#124;1&rang; exclusively in this series. 
 
 Recall that 0 represents the column vector [1, 0]<sup>T</sup>, and 1 represent [0, 1]<sup>T</sup>.
 
