@@ -577,3 +577,5 @@ There are various headers you can use for authentication. You can use the `ITool
 In this article we looked at how we can schedule an AI agent to periodically write and execute OpenQASM code and update a webpage based on the results. We then delved into the implementation and saw how to create a Docker sidecar for Qiskit, call that sidecar from our host tools ASP.NET Core application, and create a custom Tool for Orpius, which can be called by your Orpius AI agent. Finally, we looked at how authentication headers can be used to secure tool calls from Orpius to your server.
 
 I hope you enjoyed this article, and I welcome your feedback and questions.
+
+* [@dbvaughan on X (Twitter)](https://x.com/dbvaughan)

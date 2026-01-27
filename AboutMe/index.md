@@ -8,9 +8,9 @@ redirect_from:
 
 <img src="/assets/images/DanielVaughanRound.png" width="120px" style="float: left;  margin-right:20px; margin-bottom:10px" />
 
-<a href="https://www.linkedin.com/in/danielvaughan/">LinkedIn profile</a>
-
-[Contact](/Contact/)
+* [@dbvaughan on X (Twitter)](https://x.com/dbvaughan)
+* [LinkedIn profile](https://www.linkedin.com/in/danielvaughan/)
+* [Contact](/Contact/)
 
 <br />
 <br />
