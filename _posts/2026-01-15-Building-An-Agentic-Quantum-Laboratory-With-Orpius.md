@@ -1,3 +1,8 @@
+---
+categories: Quantum
+title: Building an Agentic Quantum Laboratory with ASP.NET Core
+---
+
 ## Introduction
 
 As frontier language models improve, AI agents are set to move further into the realm of scientific research. Multiple agents, working independenty, exploring scientific domains, offer the promise of greater speed of discovery. In addition, LLMs encode a vast amount of technical information that empowers humans to reach beyond the limits of their own education and experience.
