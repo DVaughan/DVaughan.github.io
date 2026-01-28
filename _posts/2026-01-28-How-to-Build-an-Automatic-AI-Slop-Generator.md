@@ -7,6 +7,8 @@ published: true
 
 Use AI to publish regular AI slop. On a schedule. Reliably. Like a factory.
 
+![AI Slop Generator](/assets/images/2026-01-28/header.png)
+
 ## Introduction
 
 According to [this](https://graphite.io/five-percent/more-articles-are-now-created-by-ai-than-humans), more articles are now written by generative AI than by humans. Getting your message out there is sadly no longer about insight, originality, or effort. It's about volume of output, and lots of it.
