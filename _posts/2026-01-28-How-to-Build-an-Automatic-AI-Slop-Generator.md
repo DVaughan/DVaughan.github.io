@@ -15,7 +15,7 @@ According to [this](https://graphite.io/five-percent/more-articles-are-now-creat
 
 Articles are still produced, but they no longer appear to be meant for reading. They accumulate, existing only to be referenced.
 
-Interesting, ground-breaking, nuanced articles, 100% human-written articles like [this](https://danielvaughan.org/posts/2026/01/15/Building-An-Agentic-Quantum-Laboratory-With-Orpius/) may still be produced, briefly admired by their author, and then politely ignored forever.
+Interesting, ground-breaking, nuanced articles, 100% human-written articles like [this](https://danielvaughan.org/posts/quantum/2026/01/15/Building-An-Agentic-Quantum-Laboratory-With-Orpius/) may still be produced, briefly admired by their author, and then politely ignored forever.
 
 This over abundance of AI generated content has been dubbed *AI slop*.
 
