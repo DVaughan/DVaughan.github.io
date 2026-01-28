@@ -1,6 +1,7 @@
 ---
-categories: Quantum
+categories: Quantum Orpius AI
 title: Building an Agentic Quantum Laboratory with ASP.NET Core
+published: true
 ---
 
 ## Introduction
