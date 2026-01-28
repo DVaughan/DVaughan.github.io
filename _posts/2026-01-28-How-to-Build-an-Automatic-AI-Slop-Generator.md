@@ -100,7 +100,11 @@ The first PAT that you'll create is for authorizing the push from the source rep
 
 When your workflow runs the step 'Deploy to GitHub Pages repo' (shown in a later section) with the token:
 
-<pre><code class="language-yaml">token: &#36;{{ secrets.PAGES_DEPLOY_TOKEN }}</code></pre>
+{% raw %}
+```yaml
+token: ${{ secrets.PAGES_DEPLOY_TOKEN }}
+```
+{% endraw %}
 
 the job will authenticate as you and allow the action to push to the target repo.
 
