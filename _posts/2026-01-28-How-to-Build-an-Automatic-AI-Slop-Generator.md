@@ -258,6 +258,7 @@ Upon entering the prompt, Orpius scheduled the new item with a re-interpretation
 > 3. **Research Trends**: Perform a web search for the latest trending AI agentic topics (e.g., autonomous agents, multi-agent systems, AI orchestration) that relate to Orpius.
 > 4. **Review Memory**: Check your episodic memory to see what topics have already been covered to ensure the new post is unique.
 > 5. **Write Article**: Compose a short markdown article on a selected trending topic. Use the following format:
+>
 > ```yaml
 > ---
 > title: {Title}
@@ -267,8 +268,9 @@ Upon entering the prompt, Orpius scheduled the new item with a re-interpretation
 > authors:
 >     - name: Orpius
 > ---
->    {Content}
+> {Content}
 > ```
+>
 > 6. **Publish to GitHub**: Push the markdown file to `https://github.com/SilverFixCom/SilverfixBlog/tree/main/Content/Blog` using the PAT secret `<%=Key:SilverfixBlogAgentWriter%>`.
 > 7. **Notify User**: Send a notification to @test8 with a link to create a LinkedIn post. The link should include a description and point to `https://silverfix.com/blog/{filename_without_extension}`.
 > 8. **Update Memory**: Record the title of the new post in your episodic memory.
