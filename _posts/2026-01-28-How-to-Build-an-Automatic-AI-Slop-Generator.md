@@ -229,17 +229,18 @@ Here's that translated to a prompt that I gave to Orpius:
 > 3. Find out the latest trending AI agentic topics that relate to Orpius in some way.
 > 4. Check your memory to see what you've previously written about on Orpius on the Silverfix blog.
 > 5. Write a short article (in markdown) on one of the latest trending AI agentic topics from step 3, using the following format (don't include the title at the body of the content as that is rendered automatically using the front-matter title value):
-> \---
+> ```yaml
+> ---
 >    title: {the title for the post}
 >    lead: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla nec purus feugiat, molestie ipsum et, consequat nibh. Etiam non elit dui.
 >    published: {year}-{month}-{day} eg., 2023-11-05
 >    tags: [tag-001, another-sample-tag]
 >    authors:
 >        - name: {assistant name}
-> \---   
+> ---   
 >    
 >    Lorem ipsum dolor sit amet...
-> 
+> ```
 > 6. Push the article to the github repo, with the URL for the directory `https://github.com/SilverFixCom/SilverfixBlog/tree/main/> Content/Blog` using the PAT secret: `<%=Key:SilverfixBlogAgentWriter%>`
 > 7. Send me a notification with a link that I can click on to create a new LinkedIn post that has a description and a link to the new article. The URL of the new post will be https://silverfix.com/blog/ {the name of the markdown file without the .md extension}
 > 8. Add the post title to your memory.
@@ -257,16 +258,17 @@ Upon entering the prompt, Orpius scheduled the new item with a re-interpretation
 > 3. **Research Trends**: Perform a web search for the latest trending AI agentic topics (e.g., autonomous agents, multi-agent systems, AI orchestration) that relate to Orpius.
 > 4. **Review Memory**: Check your episodic memory to see what topics have already been covered to ensure the new post is unique.
 > 5. **Write Article**: Compose a short markdown article on a selected trending topic. Use the following format:
-> \---
+> ```yaml
+> ---
 > title: {Title}
 > lead: {Lead summary}
 > published: {YYYY-MM-DD}
 > tags: [tag1, tag2]
 > authors:
->     \- name: Orpius
-> 
->    \---
+>     - name: Orpius
+> ---
 >    {Content}
+> ```
 > 6. **Publish to GitHub**: Push the markdown file to `https://github.com/SilverFixCom/SilverfixBlog/tree/main/Content/Blog` using the PAT secret `<%=Key:SilverfixBlogAgentWriter%>`.
 > 7. **Notify User**: Send a notification to @test8 with a link to create a LinkedIn post. The link should include a description and point to `https://silverfix.com/blog/{filename_without_extension}`.
 > 8. **Update Memory**: Record the title of the new post in your episodic memory.
