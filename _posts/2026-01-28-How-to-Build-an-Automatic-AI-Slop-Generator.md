@@ -1,5 +1,5 @@
 ---
-categories: Orpius AI
+categories: Orpius
 title: How to Build an Automatic AI Slop Generator
 "markdown.math.enabled": false
 published: true
