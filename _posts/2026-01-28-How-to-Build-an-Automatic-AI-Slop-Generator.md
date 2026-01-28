@@ -1,6 +1,7 @@
 ---
 categories: Orpius AI
 title: How to Build an Automatic AI Slop Generator
+"markdown.math.enabled": false
 published: true
 ---
 
@@ -125,6 +126,7 @@ At this point, the responsibilities are cleanly separated into the following:
 
 Here is the workflow template:
 
+{% raw %}
 ```yaml
 name: Build and publish to gh pages
 
@@ -175,6 +177,7 @@ jobs:
           clean: true
           exclude: ".git,.github,.ssh"
 ```
+{% endraw %}
 
 With this in place, committing a markdown file to the source repo triggers the entire process automatically. 30 seconds later, the page appears on the public site. The system is ready to run unattended.
 
