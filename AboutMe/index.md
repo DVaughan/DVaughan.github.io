@@ -1,6 +1,6 @@
 ---
 title: Daniel Vaughan - About Me
-heading: About Me
+heading: About
 layout: page
 redirect_from:
  - /author/Daniel-Vaughan.aspx.html
