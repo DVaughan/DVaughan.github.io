@@ -6,7 +6,9 @@ redirect_from:
  - /author/Daniel-Vaughan.aspx.html
 ---
 
+<!--
 <img src="/assets/images/DanielVaughanRound.png" width="120px" style="float: left;  margin-right:20px; margin-bottom:10px" />
+-->
 
 Daniel is co-founder of Orpius, an AI company making generative AI adoption radically easier while helping organizations avoid the failures that often plague AI projects. Orpius pushes the boundaries of applied AI with genuinely novel research and engineering.
 

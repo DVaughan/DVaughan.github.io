@@ -3,12 +3,13 @@
 @import "{{ site.theme }}";
 
 #project_title {
-	font-size:1.5em;
-	color: #999999
+	font-size: 1.5em;
+	color: #0072c6;
+	text-shadow: none;
 }
 
 h1, h2, h3, h4, h5, h6 {
-	color: #0072c6;
+	color: #373737;
 }
 
 div .content {
@@ -42,7 +43,7 @@ div .content {
 	margin-right: .5em;
 	font-size: 1.1em;
 	font-weight: bold;
-	color: #FFFFFF;
+	color: #0072c6;
 }
 
 #MainButtons a:first-child {
@@ -51,7 +52,7 @@ div .content {
 
 /* font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; */
 body {
-	
+	background: #ffffff;
 }
 
 
@@ -74,7 +75,11 @@ img {
 }
 
 #header_wrap .inner {
-	padding: 20px 10px 0px 10px;
+	padding: 20px 10px 10px 10px;
+}
+
+#header_wrap {
+	background: #ffffff;
 }
 
 .Publications img {
@@ -102,6 +107,8 @@ pre {
 
 #main_content_wrap {
 	background: #ffffff;
+	border-top: none;
+	border-bottom: none;
 }
 
 footer a {
